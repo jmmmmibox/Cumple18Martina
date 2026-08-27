@@ -860,29 +860,39 @@ function openLightbox(src){document.getElementById('lb-img').src=src;document.ge
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
 
 // ══ MÚSICA ══
-let musicPlaying = true;
-const ytFrame = document.getElementById('yt-frame');
-const musicBtn = document.getElementById('music-btn');
+let musicPlaying = false;
+
+function getFrame(){ return document.getElementById('yt-frame'); }
+function getMusicBtn(){ return document.getElementById('music-btn'); }
 
 function toggleMusic(){
+  const frame = getFrame();
+  if(!frame) return;
   if(musicPlaying){
-    ytFrame.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
-    musicBtn.textContent = '🔇';
-    musicBtn.title = 'Reproducir música';
+    frame.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
+    getMusicBtn().textContent = '🔇';
   } else {
-    ytFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*');
-    musicBtn.textContent = '🎵';
-    musicBtn.title = 'Pausar música';
+    frame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*');
+    getMusicBtn().textContent = '🎵';
   }
   musicPlaying = !musicPlaying;
 }
 
-// Intentar autoplay al cargar (algunos navegadores lo bloquean hasta interacción)
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    ytFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*');
-  }, 1500);
-});
+// Autoplay tras primera interacción del usuario (requisito de navegadores)
+function startMusicOnce(){
+  if(musicPlaying) return;
+  const frame = getFrame();
+  if(!frame || !frame.contentWindow) return;
+  try {
+    frame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*');
+    musicPlaying = true;
+    getMusicBtn().textContent = '🎵';
+  } catch(e){}
+  document.removeEventListener('click', startMusicOnce);
+  document.removeEventListener('touchstart', startMusicOnce);
+}
+document.addEventListener('click', startMusicOnce);
+document.addEventListener('touchstart', startMusicOnce);
 </script>
 <!-- MÚSICA -->
 <button id="music-btn" onclick="toggleMusic()" title="Música">🎵</button>
