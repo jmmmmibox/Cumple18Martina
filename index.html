@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Martina · 18 Años 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdfaf6;
+    --blush: #f5e6e0;
+    --rose: #e8c4b8;
+    --mauve: #c9a99a;
+    --deep: #6b4c45;
+    --text: #3a2a26;
+    --muted: #9a7b74;
+    --white: #ffffff;
+    --shadow: 0 4px 24px rgba(107,76,69,0.08);
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(253,250,246,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rose);
+    padding: 0 1.5rem;
+    display: flex; align-items: center; gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    background: none; border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem; font-weight: 500;
+    color: var(--muted); cursor: pointer;
+    padding: 1.1rem 1rem;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all .2s;
+  }
+  .nav-btn.active, .nav-btn:hover {
+    color: var(--deep);
+    border-bottom-color: var(--mauve);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    background: linear-gradient(160deg, var(--cream) 0%, var(--blush) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,196,184,0.3) 0%, transparent 70%);
+  }
+  .hero-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mauve);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 12vw, 7rem);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--deep);
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--mauve);
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+
+  /* CUENTA ATRÁS */
+  .countdown {
+    display: flex; gap: 1.5rem; justify-content: center;
+    margin-bottom: 3rem; flex-wrap: wrap;
+  }
+  .countdown-unit {
+    text-align: center;
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1rem 1.5rem;
+    box-shadow: var(--shadow);
+    min-width: 80px;
+  }
+  .countdown-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 600;
+    color: var(--deep); line-height: 1;
+  }
+  .countdown-label {
+    font-size: 0.65rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    margin-top: 0.3rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  }
+  .btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem; font-weight: 500;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all .2s;
+    text-decoration: none;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--deep);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: var(--text); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(107,76,69,0.25); }
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--mauve);
+    color: var(--deep);
+  }
+  .btn-outline:hover { background: var(--blush); transform: translateY(-1px); }
+
+  /* SECCIONES */
+  .section {
+    display: none;
+    min-height: 100vh;
+    padding: 7rem 1.5rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .section.active { display: block; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 400;
+    color: var(--deep);
+    margin-bottom: 0.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--mauve); }
+  .section-sub {
+    color: var(--muted); font-weight: 300;
+    margin-bottom: 2.5rem; font-size: 0.95rem;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+  }
+
+  /* FORM ELEMENTS */
+  .form-group { margin-bottom: 1.2rem; }
+  label {
+    display: block;
+    font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.5rem;
+  }
+  input[type="text"], textarea {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
+    border: 1.5px solid var(--rose);
+    border-radius: 10px;
+    background: var(--cream);
+    color: var(--text);
+    outline: none;
+    transition: border-color .2s;
+  }
+  input[type="text"]:focus, textarea:focus { border-color: var(--mauve); }
+  textarea { resize: vertical; min-height: 100px; }
+
+  /* CANVAS FIRMA */
+  #firma-canvas {
+    border: 1.5px solid var(--rose);
+    border-radius: 10px;
+    background: var(--white);
+    cursor: crosshair;
+    width: 100%;
+    max-width: 500px;
+    height: 160px;
+    display: block;
+    touch-action: none;
+  }
+  .canvas-actions {
+    display: flex; gap: 0.8rem; margin-top: 0.8rem; flex-wrap: wrap;
+  }
+  .btn-sm {
+    font-size: 0.78rem; padding: 0.5rem 1.2rem;
+    border-radius: 50px; cursor: pointer; border: none;
+    font-family: 'Inter', sans-serif; font-weight: 500;
+  }
+  .btn-sm-outline {
+    background: transparent; border: 1.5px solid var(--rose);
+    color: var(--muted);
+  }
+  .btn-sm-outline:hover { border-color: var(--mauve); color: var(--deep); }
+
+  /* FOTO UPLOAD */
+  .upload-area {
+    border: 2px dashed var(--rose);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s;
+    background: var(--cream);
+  }
+  .upload-area:hover { border-color: var(--mauve); background: var(--blush); }
+  .upload-area input { display: none; }
+  .upload-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .upload-text { color: var(--muted); font-size: 0.9rem; }
+  .preview-img {
+    max-width: 200px; max-height: 200px;
+    border-radius: 10px; margin: 1rem auto;
+    display: block; object-fit: cover;
+  }
+
+  /* FIRMAS LISTA */
+  .firmas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+  .firma-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border-top: 3px solid var(--rose);
+  }
+  .firma-card .nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--deep);
+    margin-bottom: 0.4rem;
+  }
+  .firma-card .mensaje {
+    font-size: 0.88rem; color: var(--muted);
+    line-height: 1.6; margin-bottom: 0.8rem;
+  }
+  .firma-card img.foto {
+    width: 100%; height: 140px;
+    object-fit: cover; border-radius: 8px;
+    margin-bottom: 0.8rem;
+  }
+  .firma-card img.svg-firma {
+    width: 100%; max-height: 60px;
+    object-fit: contain; opacity: 0.6;
+  }
+
+  /* MURO DE DESEOS */
+  .deseos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .deseo-card {
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    transform: rotate(var(--rotate));
+    transition: transform .2s;
+  }
+  .deseo-card:hover { transform: rotate(0deg) scale(1.02); }
+  .deseo-card .dnombre {
+    font-weight: 500; font-size: 0.85rem;
+    color: var(--deep); margin-bottom: 0.4rem;
+  }
+  .deseo-card .dmsg {
+    font-size: 0.88rem; line-height: 1.6; color: var(--text);
+  }
+
+  /* GALERÍA */
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .galeria-item {
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform .2s;
+  }
+  .galeria-item:hover { transform: scale(1.03); }
+  .galeria-item img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+
+  /* PREMIOS */
+  .premios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .premio-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .premio-emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .premio-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--deep);
+    margin-bottom: 1rem;
+  }
+  .premio-input {
+    width: 100%; font-family: 'Inter', sans-serif;
+    font-size: 0.9rem; padding: 0.7rem 1rem;
+    border: 1.5px solid var(--rose); border-radius: 8px;
+    background: var(--cream); color: var(--text); outline: none;
+    margin-bottom: 0.6rem;
+  }
+  .premio-input:focus { border-color: var(--mauve); }
+  .premio-resultado {
+    font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem;
+  }
+  .ganador {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--deep); font-weight: 600;
+  }
+
+  /* RAZONES */
+  .razones-list {
+    display: flex; flex-direction: column; gap: 0.8rem;
+    margin-top: 2rem;
+  }
+  .razon-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: var(--white); border-radius: 12px;
+    padding: 1rem 1.2rem; box-shadow: var(--shadow);
+  }
+  .razon-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: var(--rose); font-weight: 600;
+    min-width: 2rem; line-height: 1.2;
+  }
+  .razon-text { font-size: 0.95rem; line-height: 1.6; }
+  .razon-autor { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* SORPRESA */
+  .sorpresa-lock {
+    text-align: center; padding: 4rem 2rem;
+  }
+  .lock-icon { font-size: 4rem; margin-bottom: 1rem; }
+  .lock-msg {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--deep); margin-bottom: 0.5rem;
+  }
+  .lock-sub { color: var(--muted); font-size: 0.9rem; }
+  .sorpresa-msg {
+    background: linear-gradient(135deg, var(--blush), var(--cream));
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    text-align: center;
+    border: 1px solid var(--rose);
+  }
+  .sorpresa-msg p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; line-height: 1.8;
+    color: var(--deep); font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .sorpresa-msg .autor {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem; color: var(--muted);
+    font-style: normal;
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 2rem; left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--deep); color: var(--white);
+    padding: 0.9rem 2rem; border-radius: 50px;
+    font-size: 0.9rem; font-weight: 500;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+    z-index: 999;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* LOADING */
+  .loading {
+    text-align: center; padding: 3rem;
+    color: var(--muted); font-size: 0.9rem;
+  }
+  .spinner {
+    width: 32px; height: 32px;
+    border: 3px solid var(--rose);
+    border-top-color: var(--mauve);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    margin: 0 auto 1rem;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* VIDEO */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.2rem; margin-top: 2rem;
+  }
+  .video-item {
+    background: var(--white); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow);
+  }
+  .video-item video {
+    width: 100%; aspect-ratio: 9/16; object-fit: cover;
+    max-height: 300px;
+  }
+  .video-item .vnombre {
+    padding: 0.8rem; font-size: 0.85rem;
+    color: var(--muted); font-weight: 500;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85); z-index: 200;
+    align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw; max-height: 90vh;
+    border-radius: var(--radius);
+    object-fit: contain;
+  }
+  .lightbox-close {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: rgba(255,255,255,0.15); border: none;
+    color: white; font-size: 1.5rem; width: 44px; height: 44px;
+    border-radius: 50%; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+  }
+
+  /* HERO section always shown */
+  #hero-section { display: flex; }
+  .sections-wrapper { padding-top: 0; }
+
+  @media (max-width: 600px) {
+    .card { padding: 1.5rem; }
+    .firmas-grid, .premios-grid { grid-template-columns: 1fr; }
+    .countdown { gap: 0.8rem; }
+    .countdown-unit { padding: 0.8rem 1rem; min-width: 65px; }
+    .countdown-num { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav" style="display:none;">
+  <button class="nav-btn" onclick="showSection('firmas')">✍️ Firmas</button>
+  <button class="nav-btn" onclick="showSection('galeria')">📸 Galería</button>
+  <button class="nav-btn" onclick="showSection('deseos')">💌 Deseos</button>
+  <button class="nav-btn" onclick="showSection('videos')">🎬 Vídeos</button>
+  <button class="nav-btn" onclick="showSection('premios')">🏆 Premios</button>
+  <button class="nav-btn" onclick="showSection('razones')">💛 18 Razones</button>
+  <button class="nav-btn" onclick="showSection('sorpresa')">🔒 Sorpresa</button>
+  <button class="nav-btn" onclick="showSection('hero-section')" style="margin-left:auto;">← Inicio</button>
+</nav>
+
+<!-- HERO -->
+<div id="hero-section" class="hero section active">
+  <p class="hero-eyebrow">12 · Septiembre · 2026</p>
+  <h1>Martina<br><em>cumple 18</em></h1>
+  <p class="hero-sub">Una noche para recordar siempre 🌸</p>
+
+  <div class="countdown" id="countdown">
+    <div class="countdown-unit"><div class="countdown-num" id="cd-dias">--</div><div class="countdown-label">Días</div></div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-horas">--</div><div class="countdown-label">Horas</div></div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-min">--</div><div class="countdown-label">Min</div></div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-seg">--</div><div class="countdown-label">Seg</div></div>
+  </div>
+
+  <div class="hero-cta">
+    <button class="btn btn-primary" onclick="showSection('firmas')">✍️ Dejar mi firma</button>
+    <button class="btn btn-outline" onclick="showSection('deseos')">💌 Escribir un deseo</button>
+  </div>
+</div>
+
+<!-- FIRMAS -->
+<div id="firmas" class="section">
+  <h2 class="section-title">Libro de <em>firmas</em></h2>
+  <p class="section-sub">Deja tu huella en el día más especial de Martina</p>
+
+  <div class="card">
+    <div class="form-group">
+      <label>Tu nombre</label>
+      <input type="text" id="firma-nombre" placeholder="¿Cómo te llamas?">
+    </div>
+    <div class="form-group">
+      <label>Tu mensaje para Martina</label>
+      <textarea id="firma-mensaje" placeholder="Escríbele algo especial..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Tu firma (dibuja con el dedo o ratón)</label>
+      <canvas id="firma-canvas"></canvas>
+      <div class="canvas-actions">
+        <button class="btn-sm btn-sm-outline" onclick="clearCanvas()">Borrar firma</button>
+        <select id="firma-color" onchange="cambiarColor(this.value)" style="border:1.5px solid var(--rose);border-radius:8px;padding:0.4rem 0.8rem;background:var(--cream);color:var(--text);font-family:'Inter',sans-serif;cursor:pointer;">
+          <option value="#3a2a26">Negro</option>
+          <option value="#c9a99a">Rosa</option>
+          <option value="#6b4c45">Marrón</option>
+          <option value="#4a7c7e">Verde azulado</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Foto (opcional)</label>
+      <div class="upload-area" onclick="document.getElementById('firma-foto-input').click()">
+        <input type="file" id="firma-foto-input" accept="image/*" onchange="previewFirmaFoto(this)">
+        <div class="upload-icon">📷</div>
+        <div class="upload-text">Toca para añadir una foto</div>
+      </div>
+      <img id="firma-foto-preview" class="preview-img" style="display:none;">
+    </div>
+    <button class="btn btn-primary" onclick="enviarFirma()" style="width:100%;">Enviar mi firma ✨</button>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;color:var(--deep);margin:2rem 0 0.5rem;font-weight:400;font-size:1.4rem;">Firmas de todos</h3>
+  <div id="firmas-lista" class="firmas-grid"><div class="loading"><div class="spinner"></div>Cargando firmas...</div></div>
+</div>
+
+<!-- GALERÍA -->
+<div id="galeria" class="section">
+  <h2 class="section-title">Galería <em>colectiva</em></h2>
+  <p class="section-sub">Sube tus fotos y crea el álbum del día con todos</p>
+
+  <div class="card">
+    <div class="form-group">
+      <label>Tu nombre</label>
+      <input type="text" id="galeria-nombre" placeholder="¿Cómo te llamas?">
+    </div>
+    <div class="form-group">
+      <label>Tu foto</label>
+      <div class="upload-area" onclick="document.getElementById('galeria-foto-input').click()">
+        <input type="file" id="galeria-foto-input" accept="image/*" onchange="previewGaleriaFoto(this)">
+        <div class="upload-icon">🖼️</div>
+        <div class="upload-text">Toca para subir tu foto</div>
+      </div>
+      <img id="galeria-foto-preview" class="preview-img" style="display:none;">
+    </div>
+    <button class="btn btn-primary" onclick="enviarGaleria()" style="width:100%;">Subir foto 📸</button>
+  </div>
+
+  <div id="galeria-grid" class="galeria-grid"><div class="loading"><div class="spinner"></div>Cargando fotos...</div></div>
+</div>
+
+<!-- DESEOS -->
+<div id="deseos" class="section">
+  <h2 class="section-title">Muro de <em>deseos</em></h2>
+  <p class="section-sub">¿Qué le deseas a Martina para sus 18?</p>
+
+  <div class="card">
+    <div class="form-group">
+      <label>Tu nombre</label>
+      <input type="text" id="deseo-nombre" placeholder="¿Cómo te llamas?">
+    </div>
+    <div class="form-group">
+      <label>Tu deseo</label>
+      <textarea id="deseo-msg" placeholder="Que te deseo con todo mi corazón..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Color del post-it</label>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+        <button onclick="selectColor('#fff9c4')" style="width:36px;height:36px;background:#fff9c4;border:2px solid #ccc;border-radius:50%;cursor:pointer;" title="Amarillo"></button>
+        <button onclick="selectColor('#ffd6d6')" style="width:36px;height:36px;background:#ffd6d6;border:2px solid #ccc;border-radius:50%;cursor:pointer;" title="Rosa"></button>
+        <button onclick="selectColor('#d6f0d6')" style="width:36px;height:36px;background:#d6f0d6;border:2px solid #ccc;border-radius:50%;cursor:pointer;" title="Verde"></button>
+        <button onclick="selectColor('#d6e4f7')" style="width:36px;height:36px;background:#d6e4f7;border:2px solid #ccc;border-radius:50%;cursor:pointer;" title="Azul"></button>
+        <button onclick="selectColor('#f5e6ff')" style="width:36px;height:36px;background:#f5e6ff;border:2px solid #ccc;border-radius:50%;cursor:pointer;" title="Lila"></button>
+      </div>
+      <input type="hidden" id="deseo-color" value="#fff9c4">
+    </div>
+    <button class="btn btn-primary" onclick="enviarDeseo()" style="width:100%;">Colgar mi deseo 💌</button>
+  </div>
+
+  <div id="deseos-grid" class="deseos-grid"><div class="loading"><div class="spinner"></div>Cargando deseos...</div></div>
+</div>
+
+<!-- VÍDEOS -->
+<div id="videos" class="section">
+  <h2 class="section-title">Vídeos de <em>felicitación</em></h2>
+  <p class="section-sub">Graba un vídeo de hasta 10 segundos para Martina</p>
+
+  <div class="card">
+    <div class="form-group">
+      <label>Tu nombre</label>
+      <input type="text" id="video-nombre" placeholder="¿Cómo te llamas?">
+    </div>
+    <div class="form-group">
+      <label>Tu vídeo (máx. 10 segundos)</label>
+      <div class="upload-area" onclick="document.getElementById('video-input').click()">
+        <input type="file" id="video-input" accept="video/*" onchange="previewVideo(this)">
+        <div class="upload-icon">🎬</div>
+        <div class="upload-text">Toca para subir tu vídeo (máx. 10 seg)</div>
+      </div>
+      <video id="video-preview" style="display:none;width:100%;max-height:300px;border-radius:10px;margin-top:1rem;" controls></video>
+      <p id="video-duracion-msg" style="color:var(--muted);font-size:0.8rem;margin-top:0.4rem;"></p>
+    </div>
+    <button class="btn btn-primary" onclick="enviarVideo()" style="width:100%;">Enviar vídeo 🎬</button>
+  </div>
+
+  <div id="videos-grid" class="video-grid"><div class="loading"><div class="spinner"></div>Cargando vídeos...</div></div>
+</div>
+
+<!-- PREMIOS -->
+<div id="premios" class="section">
+  <h2 class="section-title">Los <em>premios</em></h2>
+  <p class="section-sub">Vota a quién merece cada premio de la noche</p>
+
+  <div class="form-group card" style="margin-bottom:1.5rem;">
+    <label>Tu nombre (para votar)</label>
+    <input type="text" id="votante-nombre" placeholder="¿Cómo te llamas?" style="margin-top:0.5rem;">
+  </div>
+
+  <div class="premios-grid" id="premios-grid"></div>
+
+  <button class="btn btn-primary" onclick="enviarVotos()" style="margin-top:1.5rem;width:100%;">Enviar mis votos 🏆</button>
+
+  <div id="resultados-premios" style="margin-top:2rem;"></div>
+</div>
+
+<!-- RAZONES -->
+<div id="razones" class="section">
+  <h2 class="section-title">18 razones para <em>quererte</em></h2>
+  <p class="section-sub">Cada persona que la conoce tiene una razón. ¿Cuál es la tuya?</p>
+
+  <div class="card">
+    <div class="form-group">
+      <label>Tu nombre</label>
+      <input type="text" id="razon-nombre" placeholder="¿Cómo te llamas?">
+    </div>
+    <div class="form-group">
+      <label>Tu razón para querer a Martina</label>
+      <textarea id="razon-texto" placeholder="Porque..."></textarea>
+    </div>
+    <button class="btn btn-primary" onclick="enviarRazon()" style="width:100%;">Añadir mi razón 💛</button>
+  </div>
+
+  <div id="razones-lista" class="razones-list"><div class="loading"><div class="spinner"></div>Cargando razones...</div></div>
+</div>
+
+<!-- SORPRESA -->
+<div id="sorpresa" class="section">
+  <h2 class="section-title">Mensaje <em>sorpresa</em></h2>
+  <p class="section-sub">Un mensaje especial que se revelará el día de la fiesta</p>
+
+  <div id="sorpresa-container">
+    <div class="loading"><div class="spinner"></div>Comprobando...</div>
+  </div>
+
+  <div class="card" style="margin-top:2rem;" id="sorpresa-form-admin">
+    <p style="font-size:0.8rem;color:var(--muted);margin-bottom:1rem;">👑 Área para escribir el mensaje sorpresa (solo organizadores)</p>
+    <div class="form-group">
+      <label>De parte de</label>
+      <input type="text" id="sorpresa-autor" placeholder="Tu nombre">
+    </div>
+    <div class="form-group">
+      <label>Mensaje para Martina</label>
+      <textarea id="sorpresa-texto" placeholder="Martina, este mensaje ha esperado hasta hoy para decirte que..." style="min-height:150px;"></textarea>
+    </div>
+    <button class="btn btn-primary" onclick="guardarSorpresa()" style="width:100%;">Guardar mensaje secreto 🔒</button>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const SUPABASE_URL = 'https://ksxassjthcofhhskhxht.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzeGFzc2p0aGNvZmhoc2toeGh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NDU5MzAsImV4cCI6MjEwMzQyMTkzMH0.Z5g35FPK_wbC72LMGXy4yQOnA2H0p79zd7cZjpJiRo0';
+const BUCKET = 'martina18';
+const FIESTA_DATE = new Date('2026-09-12T20:00:00');
+
+const headers = {
+  'apikey': SUPABASE_KEY,
+  'Authorization': `Bearer ${SUPABASE_KEY}`,
+  'Content-Type': 'application/json',
+  'Prefer': 'return=representation'
+};
+
+// ======= NAVEGACIÓN =======
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const nav = document.getElementById('main-nav');
+  if (id === 'hero-section') {
+    nav.style.display = 'none';
+  } else {
+    nav.style.display = 'flex';
+    document.querySelectorAll('.nav-btn').forEach(b => {
+      if (b.getAttribute('onclick').includes(id)) b.classList.add('active');
+    });
+    if (id === 'firmas') cargarFirmas();
+    if (id === 'galeria') cargarGaleria();
+    if (id === 'deseos') cargarDeseos();
+    if (id === 'videos') cargarVideos();
+    if (id === 'premios') initPremios();
+    if (id === 'razones') cargarRazones();
+    if (id === 'sorpresa') cargarSorpresa();
+  }
+  window.scrollTo(0, 0);
+}
+
+// ======= CUENTA ATRÁS =======
+function updateCountdown() {
+  const now = new Date();
+  const diff = FIESTA_DATE - now;
+  if (diff <= 0) {
+    document.getElementById('countdown').innerHTML = '<div style="font-family:Playfair Display,serif;font-size:2rem;color:var(--deep)">🎉 ¡Hoy es el gran día!</div>';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-dias').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-horas').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-seg').textContent = String(s).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// ======= TOAST =======
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ======= SUPABASE HELPERS =======
+async function dbSelect(table, order = 'created_at') {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?order=${order}.asc`, { headers });
+  return res.json();
+}
+async function dbInsert(table, data) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+    method: 'POST', headers, body: JSON.stringify(data)
+  });
+  return res.json();
+}
+async function uploadFile(file, path) {
+  const res = await fetch(`${SUPABASE_URL}/storage/v1/object/${BUCKET}/${path}`, {
+    method: 'POST',
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': file.type },
+    body: file
+  });
+  const data = await res.json();
+  return `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${path}`;
+}
+
+// ======= CANVAS FIRMA =======
+let isDrawing = false, lastX = 0, lastY = 0, strokeColor = '#3a2a26';
+const canvas = document.getElementById('firma-canvas');
+const ctx = canvas.getContext('2d');
+
+function initCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = 160;
+  ctx.strokeStyle = strokeColor;
+  ctx.lineWidth = 2.5;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+}
+initCanvas();
+window.addEventListener('resize', initCanvas);
+
+function getPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  const src = e.touches ? e.touches[0] : e;
+  return [src.clientX - rect.left, src.clientY - rect.top];
+}
+canvas.addEventListener('mousedown', e => { isDrawing = true; [lastX, lastY] = getPos(e); });
+canvas.addEventListener('mousemove', e => { if (!isDrawing) return; draw(e); });
+canvas.addEventListener('mouseup', () => isDrawing = false);
+canvas.addEventListener('touchstart', e => { e.preventDefault(); isDrawing = true; [lastX, lastY] = getPos(e); });
+canvas.addEventListener('touchmove', e => { e.preventDefault(); if (!isDrawing) return; draw(e); });
+canvas.addEventListener('touchend', () => isDrawing = false);
+
+function draw(e) {
+  const [x, y] = getPos(e);
+  ctx.beginPath();
+  ctx.moveTo(lastX, lastY);
+  ctx.lineTo(x, y);
+  ctx.stroke();
+  [lastX, lastY] = [x, y];
+}
+function clearCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
+function cambiarColor(c) { strokeColor = c; ctx.strokeStyle = c; }
+
+// ======= FOTO PREVIEW =======
+function previewFirmaFoto(input) {
+  const file = input.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = document.getElementById('firma-foto-preview');
+    img.src = e.target.result; img.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+function previewGaleriaFoto(input) {
+  const file = input.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = document.getElementById('galeria-foto-preview');
+    img.src = e.target.result; img.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+// ======= VIDEO PREVIEW =======
+function previewVideo(input) {
+  const file = input.files[0]; if (!file) return;
+  const url = URL.createObjectURL(file);
+  const vid = document.getElementById('video-preview');
+  vid.src = url; vid.style.display = 'block';
+  vid.onloadedmetadata = () => {
+    const msg = document.getElementById('video-duracion-msg');
+    if (vid.duration > 10) {
+      msg.textContent = `⚠️ El vídeo dura ${vid.duration.toFixed(1)}s. Por favor usa uno de máx. 10 segundos.`;
+      msg.style.color = '#c0392b';
+    } else {
+      msg.textContent = `✅ Duración: ${vid.duration.toFixed(1)} segundos`;
+      msg.style.color = 'var(--muted)';
+    }
+  };
+}
+
+// ======= ENVIAR FIRMA =======
+async function enviarFirma() {
+  const nombre = document.getElementById('firma-nombre').value.trim();
+  const mensaje = document.getElementById('firma-mensaje').value.trim();
+  if (!nombre) return showToast('¡Escribe tu nombre! 😊');
+
+  const firmaDataUrl = canvas.toDataURL();
+  const isEmpty = !ctx.getImageData(0,0,canvas.width,canvas.height).data.some(x => x !== 0);
+
+  let foto_url = null;
+  const fotoFile = document.getElementById('firma-foto-input').files[0];
+  if (fotoFile) {
+    showToast('Subiendo foto...');
+    const path = `firmas/${Date.now()}_${fotoFile.name}`;
+    foto_url = await uploadFile(fotoFile, path);
+  }
+
+  await dbInsert('firmas', {
+    nombre, mensaje,
+    firma_svg: isEmpty ? null : firmaDataUrl,
+    foto_url
+  });
+
+  showToast('¡Firma enviada! Gracias 💛');
+  document.getElementById('firma-nombre').value = '';
+  document.getElementById('firma-mensaje').value = '';
+  clearCanvas();
+  document.getElementById('firma-foto-preview').style.display = 'none';
+  document.getElementById('firma-foto-input').value = '';
+  cargarFirmas();
+}
+
+// ======= CARGAR FIRMAS =======
+async function cargarFirmas() {
+  const cont = document.getElementById('firmas-lista');
+  cont.innerHTML = '<div class="loading"><div class="spinner"></div>Cargando firmas...</div>';
+  const data = await dbSelect('firmas');
+  if (!data.length) { cont.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;">Sé el primero en firmar 💛</p>'; return; }
+  cont.innerHTML = data.map(f => `
+    <div class="firma-card">
+      ${f.foto_url ? `<img class="foto" src="${f.foto_url}" alt="${f.nombre}" onclick="openLightbox('${f.foto_url}')">` : ''}
+      <div class="nombre">${f.nombre}</div>
+      ${f.mensaje ? `<div class="mensaje">${f.mensaje}</div>` : ''}
+      ${f.firma_svg ? `<img class="svg-firma" src="${f.firma_svg}" alt="firma">` : ''}
+    </div>
+  `).join('');
+}
+
+// ======= ENVIAR GALERÍA =======
+async function enviarGaleria() {
+  const nombre = document.getElementById('galeria-nombre').value.trim();
+  const fotoFile = document.getElementById('galeria-foto-input').files[0];
+  if (!nombre) return showToast('¡Escribe tu nombre! 😊');
+  if (!fotoFile) return showToast('¡Selecciona una foto! 📸');
+
+  showToast('Subiendo foto...');
+  const path = `galeria/${Date.now()}_${fotoFile.name}`;
+  const foto_url = await uploadFile(fotoFile, path);
+  await dbInsert('galeria', { nombre, foto_url });
+
+  showToast('¡Foto subida! 📸');
+  document.getElementById('galeria-nombre').value = '';
+  document.getElementById('galeria-foto-preview').style.display = 'none';
+  document.getElementById('galeria-foto-input').value = '';
+  cargarGaleria();
+}
+
+// ======= CARGAR GALERÍA =======
+async function cargarGaleria() {
+  const cont = document.getElementById('galeria-grid');
+  cont.innerHTML = '<div class="loading"><div class="spinner"></div>Cargando fotos...</div>';
+  const data = await dbSelect('galeria');
+  if (!data.length) { cont.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;">¡Sube la primera foto! 📸</p>'; return; }
+  cont.innerHTML = data.map(g => `
+    <div class="galeria-item" onclick="openLightbox('${g.foto_url}')">
+      <img src="${g.foto_url}" alt="${g.nombre}">
+    </div>
+  `).join('');
+}
+
+// ======= DESEOS =======
+let colorSeleccionado = '#fff9c4';
+function selectColor(c) {
+  colorSeleccionado = c;
+  document.getElementById('deseo-color').value = c;
+  document.querySelectorAll('#deseos button[onclick^="selectColor"]').forEach(b => {
+    b.style.border = b.getAttribute('onclick').includes(c) ? '2px solid var(--deep)' : '2px solid #ccc';
+  });
+}
+
+async function enviarDeseo() {
+  const nombre = document.getElementById('deseo-nombre').value.trim();
+  const mensaje = document.getElementById('deseo-msg').value.trim();
+  if (!nombre || !mensaje) return showToast('Rellena tu nombre y deseo 💌');
+  await dbInsert('deseos', { nombre, mensaje, color: colorSeleccionado });
+  showToast('¡Deseo colgado! 💌');
+  document.getElementById('deseo-nombre').value = '';
+  document.getElementById('deseo-msg').value = '';
+  cargarDeseos();
+}
+
+async function cargarDeseos() {
+  const cont = document.getElementById('deseos-grid');
+  cont.innerHTML = '<div class="loading"><div class="spinner"></div>Cargando deseos...</div>';
+  const data = await dbSelect('deseos');
+  if (!data.length) { cont.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;">Sé el primero en colgar un deseo 💌</p>'; return; }
+  const rotaciones = [-2, 1, -1, 2, 0, -1.5, 1.5];
+  cont.innerHTML = data.map((d, i) => `
+    <div class="deseo-card" style="background:${d.color};--rotate:${rotaciones[i % rotaciones.length]}deg">
+      <div class="dnombre">${d.nombre}</div>
+      <div class="dmsg">${d.mensaje}</div>
+    </div>
+  `).join('');
+}
+
+// ======= VÍDEOS =======
+async function enviarVideo() {
+  const nombre = document.getElementById('video-nombre').value.trim();
+  const videoFile = document.getElementById('video-input').files[0];
+  if (!nombre) return showToast('¡Escribe tu nombre! 😊');
+  if (!videoFile) return showToast('¡Selecciona un vídeo! 🎬');
+
+  const vid = document.getElementById('video-preview');
+  if (vid.duration > 10) return showToast('El vídeo supera los 10 segundos ⚠️');
+
+  showToast('Subiendo vídeo...');
+  const path = `videos/${Date.now()}_${videoFile.name}`;
+  const video_url = await uploadFile(videoFile, path);
+  await dbInsert('videos', { nombre, video_url });
+  showToast('¡Vídeo enviado! 🎬');
+  document.getElementById('video-nombre').value = '';
+  document.getElementById('video-preview').style.display = 'none';
+  document.getElementById('video-input').value = '';
+  cargarVideos();
+}
+
+async function cargarVideos() {
+  const cont = document.getElementById('videos-grid');
+  cont.innerHTML = '<div class="loading"><div class="spinner"></div>Cargando vídeos...</div>';
+  const data = await dbSelect('videos');
+  if (!data.length) { cont.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;">¡Sé el primero en enviar un vídeo! 🎬</p>'; return; }
+  cont.innerHTML = data.map(v => `
+    <div class="video-item">
+      <video src="${v.video_url}" controls playsinline></video>
+      <div class="vnombre">De: ${v.nombre}</div>
+    </div>
+  `).join('');
+}
+
+// ======= PREMIOS =======
+const CATEGORIAS = [
+  { emoji: '👑', titulo: 'El/La más elegante de la noche' },
+  { emoji: '💃', titulo: 'El/La mejor bailarín/a' },
+  { emoji: '😂', titulo: 'El/La más divertido/a' },
+  { emoji: '🌟', titulo: 'El/La alma de la fiesta' },
+  { emoji: '📸', titulo: 'El/La más fotogénico/a' },
+  { emoji: '🎤', titulo: 'El/La más karaokero/a' },
+  { emoji: '🥂', titulo: 'El/La mejor brindis del año' },
+  { emoji: '🎨', titulo: 'El/La más creativo/a' },
+];
+
+async function initPremios() {
+  const grid = document.getElementById('premios-grid');
+  grid.innerHTML = CATEGORIAS.map((c, i) => `
+    <div class="premio-card">
+      <div class="premio-emoji">${c.emoji}</div>
+      <div class="premio-title">${c.titulo}</div>
+      <input class="premio-input" type="text" placeholder="Escribe el nombre..." data-cat="${c.titulo}" id="voto-${i}">
+    </div>
+  `).join('');
+  cargarResultados();
+}
+
+async function enviarVotos() {
+  const votante = document.getElementById('votante-nombre').value.trim();
+  if (!votante) return showToast('¡Escribe tu nombre para votar! 🗳️');
+  const inputs = document.querySelectorAll('.premio-input');
+  const votos = [];
+  inputs.forEach(inp => {
+    const nominado = inp.value.trim();
+    if (nominado) votos.push({ votante, categoria: inp.dataset.cat, nominado });
+  });
+  if (!votos.length) return showToast('¡Vota al menos en una categoría!');
+  for (const v of votos) await dbInsert('votos', v);
+  showToast(`¡Votos enviados! Gracias ${votante} 🏆`);
+  inputs.forEach(i => i.value = '');
+  cargarResultados();
+}
+
+async function cargarResultados() {
+  const data = await dbSelect('votos');
+  if (!data.length) return;
+  const cont = document.getElementById('resultados-premios');
+  const porCategoria = {};
+  data.forEach(v => {
+    if (!porCategoria[v.categoria]) porCategoria[v.categoria] = {};
+    porCategoria[v.categoria][v.nominado] = (porCategoria[v.categoria][v.nominado] || 0) + 1;
+  });
+  cont.innerHTML = `<h3 style="font-family:'Playfair Display',serif;color:var(--deep);font-weight:400;font-size:1.3rem;margin-bottom:1rem;">Resultados en tiempo real</h3>` +
+    Object.entries(porCategoria).map(([cat, votos]) => {
+      const sorted = Object.entries(votos).sort((a,b) => b[1]-a[1]);
+      const emoji = CATEGORIAS.find(c => c.titulo === cat)?.emoji || '🏆';
+      return `<div class="card" style="margin-bottom:1rem;">
+        <div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem;">${emoji} ${cat}</div>
+        ${sorted.map(([n, v], i) => `
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.4rem 0;border-bottom:1px solid var(--blush);">
+            <span style="${i===0?'font-weight:600;color:var(--deep);':''}">${i===0?'🥇 ':''}${n}</span>
+            <span style="font-size:0.85rem;color:var(--muted);">${v} ${v===1?'voto':'votos'}</span>
+          </div>
+        `).join('')}
+      </div>`;
+    }).join('');
+}
+
+// ======= RAZONES =======
+async function enviarRazon() {
+  const autor = document.getElementById('razon-nombre').value.trim();
+  const razon = document.getElementById('razon-texto').value.trim();
+  if (!autor || !razon) return showToast('Rellena tu nombre y tu razón 💛');
+  await dbInsert('razones', { autor, razon });
+  showToast('¡Razón añadida! 💛');
+  document.getElementById('razon-nombre').value = '';
+  document.getElementById('razon-texto').value = '';
+  cargarRazones();
+}
+
+async function cargarRazones() {
+  const cont = document.getElementById('razones-lista');
+  cont.innerHTML = '<div class="loading"><div class="spinner"></div>Cargando razones...</div>';
+  const data = await dbSelect('razones');
+  if (!data.length) { cont.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;">Sé el primero en escribir una razón 💛</p>'; return; }
+  cont.innerHTML = data.map((r, i) => `
+    <div class="razon-item">
+      <div class="razon-num">${String(i+1).padStart(2,'0')}</div>
+      <div>
+        <div class="razon-text">${r.razon}</div>
+        <div class="razon-autor">— ${r.autor}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ======= SORPRESA =======
+async function cargarSorpresa() {
+  const cont = document.getElementById('sorpresa-container');
+  const hoy = new Date();
+  const fiestaDay = new Date('2026-09-12');
+  hoy.setHours(0,0,0,0); fiestaDay.setHours(0,0,0,0);
+
+  if (hoy < fiestaDay) {
+    cont.innerHTML = `
+      <div class="card sorpresa-lock">
+        <div class="lock-icon">🔒</div>
+        <div class="lock-msg">Este mensaje se revelará el 12 de septiembre</div>
+        <div class="lock-sub">¡El día de la fiesta de Martina!</div>
+      </div>`;
+    return;
+  }
+
+  const data = await dbSelect('mensaje_sorpresa');
+  if (!data.length) {
+    cont.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;">Aún no hay mensaje sorpresa</p>';
+    return;
+  }
+  cont.innerHTML = data.map(m => `
+    <div class="sorpresa-msg">
+      <div style="font-size:2rem;margin-bottom:1rem;">🎁</div>
+      <p>${m.mensaje}</p>
+      <div class="autor">— Con todo el amor, ${m.autor}</div>
+    </div>
+  `).join('');
+  document.getElementById('sorpresa-form-admin').style.display = 'none';
+}
+
+async function guardarSorpresa() {
+  const autor = document.getElementById('sorpresa-autor').value.trim();
+  const mensaje = document.getElementById('sorpresa-texto').value.trim();
+  if (!autor || !mensaje) return showToast('Rellena el mensaje y tu nombre 💌');
+  await dbInsert('mensaje_sorpresa', { autor, mensaje });
+  showToast('¡Mensaje guardado en secreto! 🔒');
+  document.getElementById('sorpresa-autor').value = '';
+  document.getElementById('sorpresa-texto').value = '';
+}
+
+// ======= LIGHTBOX =======
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+</script>
+</body>
+</html>
