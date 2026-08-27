@@ -2,225 +2,240 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Martina · 18 Años 🎂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Martina · 18 🎉</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
+:root{
   --cream:#fdfaf6;--blush:#f5e6e0;--rose:#e8c4b8;
   --mauve:#c9a99a;--deep:#6b4c45;--text:#3a2a26;
   --muted:#9a7b74;--white:#fff;
-  --shadow:0 4px 24px rgba(107,76,69,.10);--radius:16px;
+  --shadow:0 4px 24px rgba(107,76,69,.12);--radius:20px;
+  --bar-h:72px;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overscroll-behavior:none}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);padding-bottom:var(--bar-h)}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,250,246,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--rose);display:flex;align-items:center;overflow-x:auto;scrollbar-width:none}
-nav::-webkit-scrollbar{display:none}
-.nav-btn{background:none;border:none;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:500;color:var(--muted);cursor:pointer;padding:1.1rem .9rem;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
-.nav-btn.active,.nav-btn:hover{color:var(--deep);border-bottom-color:var(--mauve)}
-.admin-badge{background:var(--deep);color:#fff;font-size:.6rem;padding:.15rem .5rem;border-radius:50px;margin-left:.3rem;vertical-align:middle}
+/* ═══ BOTTOM NAV (tipo app) ═══ */
+#bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:rgba(253,250,246,.97);backdrop-filter:blur(20px);
+  border-top:1px solid var(--rose);
+  display:flex;align-items:stretch;
+  height:var(--bar-h);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.bnav-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:none;border:none;cursor:pointer;gap:4px;padding:8px 2px;
+  color:var(--muted);transition:color .15s;position:relative;
+}
+.bnav-btn.active{color:var(--deep)}
+.bnav-btn .bicon{font-size:1.55rem;line-height:1;transition:transform .15s}
+.bnav-btn.active .bicon{transform:scale(1.15)}
+.bnav-btn .blbl{font-size:.58rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.bnav-btn::after{content:'';position:absolute;top:0;left:25%;right:25%;height:2.5px;background:var(--deep);border-radius:0 0 4px 4px;opacity:0;transition:opacity .15s}
+.bnav-btn.active::after{opacity:1}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;background:linear-gradient(160deg,var(--cream) 0%,var(--blush) 100%);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(232,196,184,.3) 0%,transparent 70%)}
-.hero>*{position:relative;z-index:1}
-.eyebrow{font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--mauve);margin-bottom:1.2rem}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,11vw,6.5rem);font-weight:400;line-height:1.05;color:var(--deep);margin-bottom:.4rem}
-.hero h1 em{font-style:italic;color:var(--mauve)}
-.hero-sub{font-size:1.1rem;color:var(--muted);font-weight:300;margin-bottom:2.5rem}
-.fecha-doble{display:flex;gap:2rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
-.fecha-item{text-align:center}
-.fecha-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mauve);margin-bottom:.3rem}
-.fecha-val{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--deep)}
-.countdown{display:flex;gap:1rem;justify-content:center;margin-bottom:2.5rem;flex-wrap:wrap}
-.cd-unit{text-align:center;background:var(--white);border-radius:var(--radius);padding:.9rem 1.2rem;box-shadow:var(--shadow);min-width:72px}
-.cd-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:600;color:var(--deep);line-height:1}
-.cd-lbl{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
-.hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
+/* ═══ PAGES ═══ */
+.page{display:none;min-height:calc(100vh - var(--bar-h));padding:0}
+.page.active{display:block}
 
-/* BUTTONS */
-.btn{font-family:'Inter',sans-serif;font-size:.85rem;font-weight:500;padding:.85rem 1.8rem;border-radius:50px;cursor:pointer;transition:all .2s;border:none;display:inline-block}
-.btn-primary{background:var(--deep);color:#fff}
-.btn-primary:hover{background:var(--text);transform:translateY(-1px);box-shadow:0 6px 20px rgba(107,76,69,.25)}
-.btn-outline{background:transparent;border:1.5px solid var(--mauve);color:var(--deep)}
-.btn-outline:hover{background:var(--blush)}
-.btn-full{width:100%;text-align:center}
-.btn-danger{background:#c0392b;color:#fff;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:500;padding:.4rem .9rem;border-radius:50px;border:none;cursor:pointer}
-.btn-danger:hover{background:#a93226}
-.btn-edit{background:var(--deep);color:#fff;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:500;padding:.4rem .9rem;border-radius:50px;border:none;cursor:pointer}
-.btn-edit:hover{background:var(--text)}
-.btn-save{background:#27ae60;color:#fff;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:500;padding:.4rem .9rem;border-radius:50px;border:none;cursor:pointer}
-.btn-save:hover{background:#219a52}
+/* ═══ HERO ═══ */
+#p-home{
+  min-height:calc(100vh - var(--bar-h));
+  background:linear-gradient(170deg,var(--cream) 0%,var(--blush) 60%,var(--rose) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:2rem 1.5rem;position:relative;overflow:hidden;
+}
+#p-home::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 90% 50% at 50% 10%,rgba(232,196,184,.4) 0%,transparent 70%);
+}
+#p-home>*{position:relative;z-index:1}
+.hero-tag{font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--mauve);margin-bottom:1rem;background:rgba(255,255,255,.6);padding:.35rem 1rem;border-radius:50px;backdrop-filter:blur(8px)}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,16vw,6rem);font-weight:700;color:var(--deep);line-height:.95;margin-bottom:.3rem}
+.hero-age{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,7vw,2.5rem);font-style:italic;color:var(--mauve);margin-bottom:.5rem}
+.hero-sub{font-size:.9rem;color:var(--muted);font-weight:300;margin-bottom:2rem}
+.fechas{display:flex;gap:1rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
+.fecha-pill{background:rgba(255,255,255,.75);backdrop-filter:blur(8px);border-radius:50px;padding:.6rem 1.2rem;text-align:center;border:1px solid var(--rose)}
+.fecha-pill .fp-lbl{font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mauve)}
+.fecha-pill .fp-val{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--deep);margin-top:.1rem}
+.countdown{display:flex;gap:.7rem;justify-content:center;margin-bottom:2.5rem}
+.cd-unit{background:rgba(255,255,255,.8);backdrop-filter:blur(8px);border-radius:14px;padding:.7rem .9rem;text-align:center;min-width:62px;border:1px solid rgba(232,196,184,.5)}
+.cd-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--deep);line-height:1}
+.cd-lbl{font-size:.55rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
+.hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;width:100%;max-width:340px}
+.hero-action-btn{background:var(--white);border:1.5px solid var(--rose);border-radius:16px;padding:1rem .8rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif}
+.hero-action-btn:active{transform:scale(.96);background:var(--blush)}
+.hero-action-btn .ha-icon{font-size:1.6rem}
+.hero-action-btn .ha-txt{font-size:.75rem;font-weight:600;color:var(--deep)}
+.hero-action-btn.primary{background:var(--deep);border-color:var(--deep);grid-column:span 2}
+.hero-action-btn.primary .ha-txt{color:#fff}
 
-/* SECTIONS */
-.section{display:none;min-height:100vh;padding:5.5rem 1.2rem 3rem}
-.section.active{display:block}
-.section-inner{max-width:860px;margin:0 auto}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,2.6rem);font-weight:400;color:var(--deep);margin-bottom:.4rem}
-.sec-title em{font-style:italic;color:var(--mauve)}
-.sec-sub{color:var(--muted);font-weight:300;margin-bottom:2rem;font-size:.92rem}
+/* ═══ PAGE HEADER ═══ */
+.page-header{padding:1.4rem 1.2rem .8rem;background:var(--cream);position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(232,196,184,.4)}
+.page-title{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:400;color:var(--deep)}
+.page-title em{font-style:italic;color:var(--mauve)}
+.page-sub{font-size:.8rem;color:var(--muted);margin-top:.2rem}
 
-/* CARD */
-.card{background:var(--white);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow);margin-bottom:1.2rem}
+/* ═══ SCROLL CONTENT ═══ */
+.page-body{padding:1rem 1rem 1.5rem}
 
-/* FORM */
-.fg{margin-bottom:1.1rem}
-.fg label{display:block;font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem}
-.fg input,.fg textarea,.fg select{width:100%;font-family:'Inter',sans-serif;font-size:.93rem;padding:.8rem 1rem;border:1.5px solid var(--rose);border-radius:10px;background:var(--cream);color:var(--text);outline:none;transition:border-color .2s}
-.fg input:focus,.fg textarea:focus{border-color:var(--mauve);background:var(--white)}
-.fg textarea{resize:vertical;min-height:90px}
+/* ═══ CARD ═══ */
+.card{background:var(--white);border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow);margin-bottom:1rem}
 
-/* CANVAS */
-#firma-canvas{border:1.5px solid var(--rose);border-radius:10px;background:#fff;cursor:crosshair;width:100%;height:150px;display:block;touch-action:none}
-.canvas-row{display:flex;gap:.6rem;margin-top:.6rem;flex-wrap:wrap;align-items:center}
-.btn-xs{font-size:.75rem;padding:.45rem 1rem;border-radius:50px;cursor:pointer;border:1.5px solid var(--rose);background:transparent;color:var(--muted);font-family:'Inter',sans-serif}
-.btn-xs:hover{border-color:var(--mauve);color:var(--deep)}
-.color-dot{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color .15s;flex-shrink:0}
-.color-dot.selected{border-color:var(--deep)}
+/* ═══ FORM ═══ */
+.fg{margin-bottom:1rem}
+.fg label{display:block;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.fg input,.fg textarea{width:100%;font-family:'Inter',sans-serif;font-size:1rem;padding:.9rem 1rem;border:1.5px solid var(--rose);border-radius:12px;background:var(--cream);color:var(--text);outline:none;transition:all .2s;-webkit-appearance:none}
+.fg input:focus,.fg textarea:focus{border-color:var(--mauve);background:var(--white);box-shadow:0 0 0 3px rgba(201,169,154,.15)}
+.fg textarea{resize:none;min-height:90px}
 
-/* UPLOAD */
-.upload-area{border:2px dashed var(--rose);border-radius:var(--radius);padding:1.8rem;text-align:center;cursor:pointer;transition:all .2s;background:var(--cream)}
-.upload-area:hover{border-color:var(--mauve);background:var(--blush)}
-.upload-icon{font-size:1.8rem;margin-bottom:.4rem}
-.upload-text{color:var(--muted);font-size:.88rem}
-.preview-img{max-width:180px;max-height:180px;border-radius:10px;margin:.8rem auto 0;display:block;object-fit:cover}
-.preview-video{width:100%;max-height:260px;border-radius:10px;margin-top:.8rem;display:block}
+/* ═══ BUTTONS ═══ */
+.btn{font-family:'Inter',sans-serif;font-size:.9rem;font-weight:600;padding:.95rem 1.8rem;border-radius:50px;cursor:pointer;transition:all .15s;border:none;display:inline-flex;align-items:center;justify-content:center;gap:.4rem;-webkit-appearance:none}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--deep);color:#fff;width:100%;box-shadow:0 4px 16px rgba(107,76,69,.25)}
+.btn-outline{background:transparent;border:1.5px solid var(--mauve);color:var(--deep);width:100%}
+.btn-danger{background:#e74c3c;color:#fff;font-size:.78rem;padding:.4rem .9rem;border-radius:50px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600}
+.btn-edit{background:var(--deep);color:#fff;font-size:.78rem;padding:.4rem .9rem;border-radius:50px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600}
+.btn-save{background:#27ae60;color:#fff;font-size:.78rem;padding:.4rem .9rem;border-radius:50px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600}
 
-/* GRIDS */
-.firmas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-top:1.5rem}
-.firma-card{background:var(--white);border-radius:var(--radius);padding:1.3rem;box-shadow:var(--shadow);border-top:3px solid var(--rose);position:relative}
-.firma-card .fc-nombre{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--deep);margin-bottom:.3rem}
-.firma-card .fc-msg{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:.7rem}
-.firma-card .fc-foto{width:100%;height:130px;object-fit:cover;border-radius:8px;margin-bottom:.7rem;cursor:pointer}
-.firma-card .fc-firma{width:100%;max-height:55px;object-fit:contain;opacity:.55}
-.firma-card .fc-date{font-size:.68rem;color:var(--rose);margin-top:.5rem}
+/* ═══ CANVAS FIRMA ═══ */
+#firma-canvas{border:1.5px solid var(--rose);border-radius:12px;background:#fff;cursor:crosshair;width:100%;height:140px;display:block;touch-action:none}
+.canvas-row{display:flex;gap:.5rem;margin-top:.6rem;align-items:center;flex-wrap:wrap}
+.btn-xs{font-size:.75rem;padding:.4rem .9rem;border-radius:50px;cursor:pointer;border:1.5px solid var(--rose);background:transparent;color:var(--muted);font-family:'Inter',sans-serif;font-weight:500}
+.color-dot{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;transition:border-color .15s;flex-shrink:0}
+.color-dot.sel{border-color:var(--deep) !important}
 
-.galeria-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.8rem;margin-top:1.5rem}
-.galeria-item{aspect-ratio:1;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s;position:relative}
-.galeria-item:hover{transform:scale(1.04)}
-.galeria-item img{width:100%;height:100%;object-fit:cover;display:block}
+/* ═══ UPLOAD ═══ */
+.upload-area{border:2px dashed var(--rose);border-radius:var(--radius);padding:2rem 1rem;text-align:center;cursor:pointer;transition:all .2s;background:var(--cream);active:scale(.98)}
+.upload-area:active{background:var(--blush)}
+.upload-icon{font-size:2.2rem;margin-bottom:.4rem}
+.upload-text{color:var(--muted);font-size:.85rem;font-weight:500}
+.preview-img{max-width:160px;max-height:160px;border-radius:12px;margin:.8rem auto 0;display:block;object-fit:cover}
+.preview-video{width:100%;max-height:240px;border-radius:12px;margin-top:.8rem;display:block}
 
-.deseos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-top:1.5rem}
-.deseo-card{border-radius:10px;padding:1.1rem;box-shadow:0 3px 12px rgba(0,0,0,.07);transform:rotate(var(--rot));transition:transform .2s;position:relative}
-.deseo-card:hover{transform:rotate(0) scale(1.02)}
-.deseo-card .dc-nom{font-weight:600;font-size:.82rem;color:#444;margin-bottom:.35rem}
-.deseo-card .dc-msg{font-size:.85rem;line-height:1.55;color:#333}
+/* ═══ FIRMAS ═══ */
+.firmas-list{display:flex;flex-direction:column;gap:.8rem;margin-top:.5rem}
+.firma-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border-left:4px solid var(--rose)}
+.firma-inner{padding:1.2rem}
+.firma-foto{width:100%;height:160px;object-fit:cover;cursor:pointer;display:block}
+.firma-nombre{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--deep);margin-bottom:.3rem}
+.firma-msg{font-size:.88rem;color:var(--muted);line-height:1.6;margin-bottom:.6rem}
+.firma-svg{width:100%;max-height:50px;object-fit:contain;opacity:.5;margin-top:.4rem}
+.firma-date{font-size:.65rem;color:var(--rose);margin-top:.5rem}
 
-.videos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1.5rem}
-.video-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);position:relative}
-.video-card video{width:100%;aspect-ratio:9/16;object-fit:cover;max-height:280px;display:block}
-.video-card .vc-nom{padding:.7rem;font-size:.82rem;color:var(--muted);font-weight:500}
+/* ═══ GALERÍA ═══ */
+.galeria-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:.5rem}
+.gal-item{aspect-ratio:1;overflow:hidden;cursor:pointer;position:relative;background:var(--blush)}
+.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .2s}
+.gal-item:active img{transform:scale(1.05)}
+.gal-adm{position:absolute;top:4px;right:4px;display:none}
+body.is-admin .gal-adm{display:block}
 
-/* PREMIOS */
-.premios-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem}
-.premio-card{background:var(--white);border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow);text-align:center}
-.premio-emoji{font-size:2.2rem;margin-bottom:.4rem}
-.premio-titulo{font-family:'Playfair Display',serif;font-size:1rem;color:var(--deep);margin-bottom:.9rem;line-height:1.3}
-.premio-bar{background:var(--blush);border-radius:8px;overflow:hidden;margin-bottom:.4rem}
-.premio-bar-fill{height:6px;background:var(--mauve);transition:width .4s;border-radius:8px}
+/* ═══ DESEOS ═══ */
+.deseos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin-top:.5rem}
+.deseo-card{border-radius:14px;padding:1rem;box-shadow:0 3px 12px rgba(0,0,0,.07);position:relative}
+.deseo-nom{font-weight:700;font-size:.8rem;color:#555;margin-bottom:.3rem}
+.deseo-msg{font-size:.85rem;line-height:1.55;color:#333}
 
-/* RAZONES */
-.razones-list{display:flex;flex-direction:column;gap:.8rem;margin-top:1.5rem}
-.razon-item{display:flex;align-items:flex-start;gap:1rem;background:var(--white);border-radius:12px;padding:1rem 1.2rem;box-shadow:var(--shadow);position:relative}
-.razon-num{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--rose);font-weight:600;min-width:2rem;line-height:1.2}
-.razon-text{font-size:.92rem;line-height:1.6}
-.razon-autor{font-size:.72rem;color:var(--muted);margin-top:.2rem}
+/* ═══ VÍDEOS ═══ */
+.videos-list{display:flex;flex-direction:column;gap:.8rem;margin-top:.5rem}
+.video-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.video-card video{width:100%;max-height:55vw;object-fit:cover;display:block;background:#000}
+.video-nom{padding:.8rem 1rem;font-size:.85rem;color:var(--muted);font-weight:600}
 
-/* SORPRESA */
-.sorpresa-lock{text-align:center;padding:3.5rem 2rem;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)}
+/* ═══ PREMIOS ═══ */
+.premios-list{display:flex;flex-direction:column;gap:.8rem;margin-top:.5rem}
+.premio-card{background:var(--white);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow)}
+.premio-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem}
+.premio-emoji{font-size:1.8rem}
+.premio-titulo{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--deep);line-height:1.3}
+.premio-input{width:100%;font-family:'Inter',sans-serif;font-size:.95rem;padding:.8rem 1rem;border:1.5px solid var(--rose);border-radius:10px;background:var(--cream);color:var(--text);outline:none;-webkit-appearance:none}
+.premio-input:focus{border-color:var(--mauve);background:var(--white)}
+.bar-wrap{background:var(--blush);border-radius:8px;overflow:hidden;margin-bottom:.25rem}
+.bar-fill{height:6px;background:var(--mauve);border-radius:8px;transition:width .4s}
+
+/* ═══ RAZONES ═══ */
+.razones-list{display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem}
+.razon-item{background:var(--white);border-radius:var(--radius);padding:1rem 1.2rem;box-shadow:var(--shadow);display:flex;gap:.8rem;align-items:flex-start;position:relative}
+.razon-num{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--rose);font-weight:700;min-width:2rem;line-height:1.1}
+.razon-txt{font-size:.9rem;line-height:1.6}
+.razon-autor{font-size:.7rem;color:var(--muted);margin-top:.2rem}
+
+/* ═══ SORPRESA ═══ */
+.sorpresa-lock{text-align:center;padding:3rem 1.5rem;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)}
 .lock-icon{font-size:3.5rem;margin-bottom:1rem}
 .lock-msg{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--deep);margin-bottom:.4rem}
-.lock-sub{color:var(--muted);font-size:.88rem}
-.sorpresa-revealed{background:linear-gradient(135deg,var(--blush),var(--cream));border-radius:var(--radius);padding:2.5rem;text-align:center;border:1px solid var(--rose)}
-.sorpresa-revealed p{font-family:'Playfair Display',serif;font-size:1.15rem;line-height:1.9;color:var(--deep);font-style:italic;margin-bottom:1rem}
-.sorpresa-revealed .sor-autor{font-family:'Inter',sans-serif;font-size:.82rem;color:var(--muted);font-style:normal}
+.lock-sub{color:var(--muted);font-size:.85rem}
+.sorpresa-open{background:linear-gradient(135deg,var(--blush),var(--cream));border-radius:var(--radius);padding:2rem;text-align:center;border:1px solid var(--rose)}
+.sorpresa-open p{font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.9;color:var(--deep);font-style:italic;margin-bottom:.8rem}
+.sorpresa-open .sor-autor{font-size:.8rem;color:var(--muted)}
 
-/* ADMIN TOOLBAR (sobre cada item) */
-.adm-bar{display:none;gap:.4rem;margin-bottom:.6rem;flex-wrap:wrap;align-items:center;background:rgba(107,76,69,.07);border-radius:8px;padding:.5rem .6rem}
+/* ═══ ADMIN ═══ */
+.adm-bar{display:none;gap:.4rem;padding:.5rem .6rem;background:rgba(107,76,69,.08);border-radius:10px;margin-bottom:.6rem;align-items:center;flex-wrap:wrap}
 body.is-admin .adm-bar{display:flex}
-.adm-bar span{font-size:.7rem;color:var(--muted);font-weight:500;flex:1}
-
-/* EDIT inline */
-.edit-field{width:100%;font-family:'Inter',sans-serif;font-size:.88rem;padding:.5rem .7rem;border:1.5px solid var(--mauve);border-radius:8px;background:#fff;color:var(--text);outline:none;margin-bottom:.4rem;resize:vertical}
-
-/* ADMIN LOGIN OVERLAY */
-#admin-trigger{position:fixed;bottom:0;left:0;width:44px;height:44px;cursor:pointer;z-index:500;background:transparent;border:none}
-.adm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600;align-items:center;justify-content:center}
-.adm-overlay.open{display:flex}
-.adm-box{background:var(--white);border-radius:var(--radius);padding:2rem;width:90%;max-width:360px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
-.adm-box h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--deep);margin-bottom:1.2rem}
-.adm-stat{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid var(--blush);font-size:.86rem}
-.adm-stat:last-child{border:none}
-.adm-count{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--deep);font-weight:600}
-.adm-banner{position:fixed;top:52px;left:0;right:0;z-index:99;background:var(--deep);color:#fff;text-align:center;font-size:.75rem;font-weight:500;padding:.35rem;letter-spacing:.05em;display:none}
+.adm-bar span{font-size:.68rem;color:var(--muted);flex:1}
+.adm-banner{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--deep);color:#fff;text-align:center;font-size:.72rem;font-weight:600;padding:.4rem;letter-spacing:.05em;display:none}
 body.is-admin .adm-banner{display:block}
-body.is-admin nav{top:28px}
-body.is-admin .section{padding-top:6.5rem}
-body.is-admin .hero{padding-top:5rem}
+body.is-admin{padding-top:28px}
+.edit-field{width:100%;font-family:'Inter',sans-serif;font-size:.88rem;padding:.5rem .7rem;border:1.5px solid var(--mauve);border-radius:8px;background:#fff;color:var(--text);outline:none;margin-bottom:.3rem;resize:vertical;-webkit-appearance:none}
 
-/* LIGHTBOX */
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:700;align-items:center;justify-content:center}
+/* ═══ ADMIN MODAL ═══ */
+#admin-trigger{position:fixed;bottom:calc(var(--bar-h) + 4px);left:0;width:44px;height:44px;background:transparent;border:none;z-index:199;cursor:pointer}
+.adm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400;align-items:flex-end;justify-content:center}
+.adm-overlay.open{display:flex}
+.adm-sheet{background:var(--white);border-radius:24px 24px 0 0;padding:1.5rem;width:100%;max-width:500px;box-shadow:0 -8px 40px rgba(0,0,0,.15);padding-bottom:calc(1.5rem + env(safe-area-inset-bottom))}
+.adm-handle{width:40px;height:4px;background:var(--rose);border-radius:4px;margin:0 auto 1.2rem}
+.adm-sheet h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--deep);margin-bottom:1rem}
+.adm-stat{display:flex;justify-content:space-between;align-items:center;padding:.55rem 0;border-bottom:1px solid var(--blush);font-size:.86rem}
+.adm-stat:last-child{border:none}
+.adm-count{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--deep);font-weight:700}
+
+/* ═══ MÚSICA ═══ */
+#music-btn{position:fixed;bottom:calc(var(--bar-h) + 12px);right:1rem;z-index:198;width:44px;height:44px;border-radius:50%;background:var(--deep);color:#fff;border:none;cursor:pointer;font-size:1.1rem;box-shadow:0 4px 16px rgba(107,76,69,.35);display:flex;align-items:center;justify-content:center;transition:all .2s}
+#music-btn:active{transform:scale(.92)}
+
+/* ═══ LIGHTBOX ═══ */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:500;align-items:center;justify-content:center}
 .lightbox.open{display:flex}
-.lightbox img{max-width:92vw;max-height:92vh;border-radius:var(--radius);object-fit:contain}
-.lb-close{position:absolute;top:1.2rem;right:1.2rem;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.4rem;width:42px;height:42px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lightbox img{max-width:96vw;max-height:96vh;border-radius:16px;object-fit:contain}
+.lb-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.3rem;width:42px;height:42px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
 
-/* TOAST */
-.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(120px);background:var(--deep);color:#fff;padding:.85rem 1.8rem;border-radius:50px;font-size:.88rem;font-weight:500;box-shadow:0 8px 30px rgba(0,0,0,.2);transition:transform .3s cubic-bezier(.34,1.56,.64,1);z-index:800;white-space:nowrap}
-.toast.show{transform:translateX(-50%) translateY(0)}
+/* ═══ TOAST ═══ */
+.toast{position:fixed;bottom:calc(var(--bar-h) + 1rem);left:1rem;right:1rem;transform:translateY(120px);background:var(--deep);color:#fff;padding:.85rem 1.2rem;border-radius:14px;font-size:.88rem;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,.2);transition:transform .3s cubic-bezier(.34,1.56,.64,1);z-index:600;text-align:center}
+.toast.show{transform:translateY(0)}
 
-/* MÚSICA */
-#music-btn{position:fixed;bottom:1.2rem;right:1.2rem;z-index:490;width:46px;height:46px;border-radius:50%;background:var(--deep);color:#fff;border:none;cursor:pointer;font-size:1.2rem;box-shadow:0 4px 16px rgba(107,76,69,.35);transition:all .2s;display:flex;align-items:center;justify-content:center}
-#music-btn:hover{transform:scale(1.1);background:var(--text)}
-#yt-frame{display:none}
-
-/* Ocultar badge Netlify */
-[data-netlify-deploy-id],[class*="netlify"]{display:none!important;opacity:0!important;pointer-events:none!important}
-
-/* UTILS */
+/* ═══ UTILS ═══ */
 .loading-box{text-align:center;padding:3rem;color:var(--muted);font-size:.9rem}
 .spinner{width:30px;height:30px;border:3px solid var(--rose);border-top-color:var(--mauve);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto .8rem}
 @keyframes spin{to{transform:rotate(360deg)}}
-.empty-msg{text-align:center;padding:2.5rem;color:var(--muted);font-size:.9rem;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)}
-.empty-msg .em-icon{font-size:2rem;margin-bottom:.5rem}
-.color-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.3rem}
+.empty-msg{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:.9rem}
+.empty-msg .em-icon{font-size:2.5rem;margin-bottom:.5rem}
+.color-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.4rem}
+.sep{height:1px;background:var(--blush);margin:1rem 0}
 
-@media(max-width:580px){
-  .card{padding:1.2rem}
-  .firmas-grid,.premios-grid{grid-template-columns:1fr}
-  .countdown{gap:.6rem}
-  .cd-unit{padding:.7rem .9rem;min-width:60px}
-  .cd-num{font-size:1.6rem}
-}
+[data-netlify-deploy-id],[class*="netlify-badge"]{display:none!important}
 </style>
 </head>
 <body>
 
-<!-- ADMIN BANNER -->
-<div class="adm-banner">👑 Modo administrador activo · Puedes editar y borrar cualquier contenido</div>
+<div class="adm-banner">👑 Modo administrador activo</div>
 
-<!-- NAV -->
-<nav id="main-nav" style="display:none">
-  <button class="nav-btn" onclick="show('s-firmas')">✍️ Firmas</button>
-  <button class="nav-btn" onclick="show('s-galeria')">📸 Galería</button>
-  <button class="nav-btn" onclick="show('s-deseos')">💌 Deseos</button>
-  <button class="nav-btn" onclick="show('s-videos')">🎬 Vídeos</button>
-  <button class="nav-btn" onclick="show('s-premios')">🏆 Premios</button>
-  <button class="nav-btn" onclick="show('s-razones')">💛 18 Razones</button>
-  <button class="nav-btn" onclick="show('s-sorpresa')">🔒 Sorpresa</button>
-  <button class="nav-btn" onclick="show('s-hero')" style="margin-left:auto">🏠</button>
-</nav>
+<!-- ════════ PÁGINAS ════════ -->
 
-<!-- ══ HERO ══ -->
-<div id="s-hero" class="section active hero">
-  <p class="eyebrow">¡Feliz Cumpleaños!</p>
-  <h1>Martina<br><em>cumple 18</em></h1>
-  <p class="hero-sub">Una fecha para recordar siempre 🌸</p>
-  <div class="fecha-doble">
-    <div class="fecha-item"><div class="fecha-label">Cumpleaños</div><div class="fecha-val">10 de Septiembre 2026</div></div>
-    <div class="fecha-item"><div class="fecha-label">La fiesta</div><div class="fecha-val">12 de Septiembre 2026</div></div>
+<!-- HOME -->
+<div id="p-home" class="page active">
+  <div class="hero-tag">✨ Feliz Cumpleaños</div>
+  <div class="hero-name">Martina</div>
+  <div class="hero-age">cumple 18 🎂</div>
+  <p class="hero-sub">Una noche para recordar siempre 🌸</p>
+  <div class="fechas">
+    <div class="fecha-pill"><div class="fp-lbl">Cumpleaños</div><div class="fp-val">10 Sept 2026</div></div>
+    <div class="fecha-pill"><div class="fp-lbl">La fiesta</div><div class="fp-val">12 Sept 2026</div></div>
   </div>
   <div class="countdown">
     <div class="cd-unit"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Días</div></div>
@@ -228,219 +243,284 @@ body.is-admin .hero{padding-top:5rem}
     <div class="cd-unit"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">Min</div></div>
     <div class="cd-unit"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">Seg</div></div>
   </div>
-  <div class="hero-cta">
-    <button class="btn btn-primary" onclick="show('s-firmas')">✍️ Firmar el libro</button>
-    <button class="btn btn-outline" onclick="show('s-deseos')">💌 Escribir un deseo</button>
-    <button class="btn btn-outline" onclick="show('s-galeria')">📸 Subir foto</button>
+  <div class="hero-actions">
+    <button class="hero-action-btn primary" onclick="goTo('firmas')">
+      <span class="ha-icon">✍️</span><span class="ha-txt">Firmar el libro</span>
+    </button>
+    <button class="hero-action-btn" onclick="goTo('deseos')">
+      <span class="ha-icon">💌</span><span class="ha-txt">Dejar deseo</span>
+    </button>
+    <button class="hero-action-btn" onclick="goTo('galeria')">
+      <span class="ha-icon">📸</span><span class="ha-txt">Subir foto</span>
+    </button>
   </div>
 </div>
 
-<!-- ══ FIRMAS ══ -->
-<div id="s-firmas" class="section">
-<div class="section-inner">
-  <h2 class="sec-title">Libro de <em>firmas</em></h2>
-  <p class="sec-sub">Deja tu huella en el día más especial de Martina</p>
-  <div class="card">
-    <div class="fg"><label>Tu nombre *</label><input type="text" id="f-nombre" placeholder="¿Cómo te llamas?"></div>
-    <div class="fg"><label>Dedicatoria para Martina</label><textarea id="f-mensaje" placeholder="Escríbele algo especial..."></textarea></div>
-    <div class="fg">
-      <label>Tu firma (dibuja con el dedo o ratón)</label>
-      <canvas id="firma-canvas"></canvas>
-      <div class="canvas-row">
-        <button class="btn-xs" onclick="clearCanvas()">🗑 Borrar</button>
-        <div class="color-dot selected" style="background:#3a2a26" onclick="setPenColor('#3a2a26',this)"></div>
-        <div class="color-dot" style="background:#c9a99a" onclick="setPenColor('#c9a99a',this)"></div>
-        <div class="color-dot" style="background:#4a7c7e" onclick="setPenColor('#4a7c7e',this)"></div>
-        <div class="color-dot" style="background:#6b4c45" onclick="setPenColor('#6b4c45',this)"></div>
-        <div class="color-dot" style="background:#2c3e7a" onclick="setPenColor('#2c3e7a',this)"></div>
+<!-- FIRMAS -->
+<div id="p-firmas" class="page">
+  <div class="page-header">
+    <div class="page-title">Libro de <em>firmas</em></div>
+    <div class="page-sub">Deja tu huella en el día más especial de Martina</div>
+  </div>
+  <div class="page-body">
+    <div class="card">
+      <div class="fg"><label>Tu nombre *</label><input type="text" id="f-nombre" placeholder="¿Cómo te llamas?" autocomplete="name"></div>
+      <div class="fg"><label>Dedicatoria para Martina</label><textarea id="f-mensaje" placeholder="Escríbele algo especial desde el corazón..."></textarea></div>
+      <div class="fg">
+        <label>Tu firma (dibuja con el dedo)</label>
+        <canvas id="firma-canvas"></canvas>
+        <div class="canvas-row">
+          <button class="btn-xs" onclick="clearCanvas()">🗑 Borrar</button>
+          <div class="color-dot sel" style="background:#3a2a26" onclick="setPenColor('#3a2a26',this)"></div>
+          <div class="color-dot" style="background:#c9a99a" onclick="setPenColor('#c9a99a',this)"></div>
+          <div class="color-dot" style="background:#4a7c7e" onclick="setPenColor('#4a7c7e',this)"></div>
+          <div class="color-dot" style="background:#2c3e7a" onclick="setPenColor('#2c3e7a',this)"></div>
+          <div class="color-dot" style="background:#c0392b" onclick="setPenColor('#c0392b',this)"></div>
+        </div>
       </div>
-    </div>
-    <div class="fg">
-      <label>Foto (opcional)</label>
-      <div class="upload-area" onclick="document.getElementById('f-foto').click()">
-        <input type="file" id="f-foto" accept="image/*" style="display:none" onchange="previewImg(this,'f-foto-prev')">
-        <div class="upload-icon">📷</div><div class="upload-text">Toca para añadir una foto</div>
+      <div class="fg">
+        <label>Foto (opcional)</label>
+        <div class="upload-area" onclick="document.getElementById('f-foto').click()">
+          <input type="file" id="f-foto" accept="image/*" style="display:none" onchange="previewImg(this,'f-foto-prev')">
+          <div class="upload-icon">📷</div>
+          <div class="upload-text">Toca para añadir una foto</div>
+        </div>
+        <img id="f-foto-prev" class="preview-img" style="display:none">
       </div>
-      <img id="f-foto-prev" class="preview-img" style="display:none">
+      <button class="btn btn-primary" onclick="enviarFirma()">Enviar mi firma ✨</button>
     </div>
-    <button class="btn btn-primary btn-full" onclick="enviarFirma()">Enviar mi firma ✨</button>
+    <div class="sep"></div>
+    <div id="firmas-lista"><div class="loading-box"><div class="spinner"></div>Cargando...</div></div>
   </div>
-  <h3 style="font-family:'Playfair Display',serif;color:var(--deep);font-weight:400;font-size:1.3rem;margin:1.5rem 0 .3rem">Todas las firmas</h3>
-  <div id="firmas-lista"><div class="loading-box"><div class="spinner"></div>Cargando...</div></div>
-</div>
 </div>
 
-<!-- ══ GALERÍA ══ -->
-<div id="s-galeria" class="section">
-<div class="section-inner">
-  <h2 class="sec-title">Galería <em>colectiva</em></h2>
-  <p class="sec-sub">Sube tus fotos y construid juntos el álbum del día</p>
-  <div class="card">
-    <div class="fg"><label>Tu nombre *</label><input type="text" id="g-nombre" placeholder="¿Cómo te llamas?"></div>
-    <div class="fg">
-      <label>Tu foto *</label>
-      <div class="upload-area" onclick="document.getElementById('g-foto').click()">
-        <input type="file" id="g-foto" accept="image/*" style="display:none" onchange="previewImg(this,'g-foto-prev')">
-        <div class="upload-icon">🖼️</div><div class="upload-text">Toca para subir una foto</div>
+<!-- GALERÍA -->
+<div id="p-galeria" class="page">
+  <div class="page-header">
+    <div class="page-title">Galería <em>colectiva</em></div>
+    <div class="page-sub">El álbum del día entre todos</div>
+  </div>
+  <div class="page-body">
+    <div class="card">
+      <div class="fg"><label>Tu nombre *</label><input type="text" id="g-nombre" placeholder="¿Cómo te llamas?" autocomplete="name"></div>
+      <div class="fg">
+        <label>Tu foto *</label>
+        <div class="upload-area" onclick="document.getElementById('g-foto').click()">
+          <input type="file" id="g-foto" accept="image/*" style="display:none" onchange="previewImg(this,'g-foto-prev')">
+          <div class="upload-icon">🖼️</div><div class="upload-text">Toca para subir una foto</div>
+        </div>
+        <img id="g-foto-prev" class="preview-img" style="display:none">
       </div>
-      <img id="g-foto-prev" class="preview-img" style="display:none">
+      <button class="btn btn-primary" onclick="enviarGaleria()">Subir mi foto 📸</button>
     </div>
-    <button class="btn btn-primary btn-full" onclick="enviarGaleria()">Subir mi foto 📸</button>
+    <div id="galeria-grid"><div class="loading-box"><div class="spinner"></div>Cargando fotos...</div></div>
   </div>
-  <div id="galeria-grid"><div class="loading-box"><div class="spinner"></div>Cargando fotos...</div></div>
-</div>
 </div>
 
-<!-- ══ DESEOS ══ -->
-<div id="s-deseos" class="section">
-<div class="section-inner">
-  <h2 class="sec-title">Muro de <em>deseos</em></h2>
-  <p class="sec-sub">¿Qué le deseas a Martina para sus 18?</p>
-  <div class="card">
-    <div class="fg"><label>Tu nombre *</label><input type="text" id="d-nombre" placeholder="¿Cómo te llamas?"></div>
-    <div class="fg"><label>Tu deseo *</label><textarea id="d-mensaje" placeholder="Que seas muy feliz y que..."></textarea></div>
-    <div class="fg">
-      <label>Color del post-it</label>
-      <div class="color-row">
-        <div class="color-dot selected" style="background:#fff9c4" onclick="setDeseoColor('#fff9c4',this)"></div>
-        <div class="color-dot" style="background:#ffd6d6" onclick="setDeseoColor('#ffd6d6',this)"></div>
-        <div class="color-dot" style="background:#d6f0d6" onclick="setDeseoColor('#d6f0d6',this)"></div>
-        <div class="color-dot" style="background:#d6e4f7" onclick="setDeseoColor('#d6e4f7',this)"></div>
-        <div class="color-dot" style="background:#f5e6ff" onclick="setDeseoColor('#f5e6ff',this)"></div>
-        <div class="color-dot" style="background:#ffe4c4" onclick="setDeseoColor('#ffe4c4',this)"></div>
+<!-- MÁS (deseos, vídeos, premios, razones, sorpresa) -->
+<div id="p-mas" class="page">
+  <div class="page-header">
+    <div class="page-title">Más <em>opciones</em></div>
+    <div class="page-sub">Deseos, vídeos, premios y más</div>
+  </div>
+  <div class="page-body">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+      <button class="hero-action-btn" onclick="goTo('deseos')" style="border-radius:16px;padding:1.2rem .8rem">
+        <span class="ha-icon">💌</span><span class="ha-txt">Muro de deseos</span>
+      </button>
+      <button class="hero-action-btn" onclick="goTo('videos')" style="border-radius:16px;padding:1.2rem .8rem">
+        <span class="ha-icon">🎬</span><span class="ha-txt">Vídeos</span>
+      </button>
+      <button class="hero-action-btn" onclick="goTo('premios')" style="border-radius:16px;padding:1.2rem .8rem">
+        <span class="ha-icon">🏆</span><span class="ha-txt">Premios</span>
+      </button>
+      <button class="hero-action-btn" onclick="goTo('razones')" style="border-radius:16px;padding:1.2rem .8rem">
+        <span class="ha-icon">💛</span><span class="ha-txt">18 Razones</span>
+      </button>
+      <button class="hero-action-btn" onclick="goTo('sorpresa')" style="border-radius:16px;padding:1.2rem .8rem;grid-column:span 2">
+        <span class="ha-icon">🔒</span><span class="ha-txt">Mensaje sorpresa</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- DESEOS -->
+<div id="p-deseos" class="page">
+  <div class="page-header" style="display:flex;align-items:center;gap:.6rem">
+    <button onclick="goTo('mas')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
+    <div><div class="page-title">Muro de <em>deseos</em></div><div class="page-sub">¿Qué le deseas a Martina?</div></div>
+  </div>
+  <div class="page-body">
+    <div class="card">
+      <div class="fg"><label>Tu nombre *</label><input type="text" id="d-nombre" placeholder="¿Cómo te llamas?" autocomplete="name"></div>
+      <div class="fg"><label>Tu deseo *</label><textarea id="d-mensaje" placeholder="Que seas muy feliz y que..."></textarea></div>
+      <div class="fg">
+        <label>Color del post-it</label>
+        <div class="color-row">
+          <div class="color-dot sel" style="background:#fff9c4" onclick="setDeseoColor('#fff9c4',this)"></div>
+          <div class="color-dot" style="background:#ffd6d6" onclick="setDeseoColor('#ffd6d6',this)"></div>
+          <div class="color-dot" style="background:#d6f0d6" onclick="setDeseoColor('#d6f0d6',this)"></div>
+          <div class="color-dot" style="background:#d6e4f7" onclick="setDeseoColor('#d6e4f7',this)"></div>
+          <div class="color-dot" style="background:#f5e6ff" onclick="setDeseoColor('#f5e6ff',this)"></div>
+          <div class="color-dot" style="background:#ffe4c4" onclick="setDeseoColor('#ffe4c4',this)"></div>
+        </div>
       </div>
+      <button class="btn btn-primary" onclick="enviarDeseo()">Colgar mi deseo 💌</button>
     </div>
-    <button class="btn btn-primary btn-full" onclick="enviarDeseo()">Colgar mi deseo 💌</button>
+    <div id="deseos-grid"><div class="loading-box"><div class="spinner"></div>Cargando...</div></div>
   </div>
-  <div id="deseos-grid"><div class="loading-box"><div class="spinner"></div>Cargando deseos...</div></div>
-</div>
 </div>
 
-<!-- ══ VÍDEOS ══ -->
-<div id="s-videos" class="section">
-<div class="section-inner">
-  <h2 class="sec-title">Vídeos de <em>felicitación</em></h2>
-  <p class="sec-sub">Graba o sube un vídeo de hasta 10 segundos para Martina</p>
-  <div class="card">
-    <div class="fg"><label>Tu nombre *</label><input type="text" id="v-nombre" placeholder="¿Cómo te llamas?"></div>
-    <div class="fg">
-      <label>Tu vídeo (máx. 10 segundos) *</label>
-      <div class="upload-area" onclick="document.getElementById('v-video').click()">
-        <input type="file" id="v-video" accept="video/*" style="display:none" onchange="previewVideo(this)">
-        <div class="upload-icon">🎬</div><div class="upload-text">Toca para subir un vídeo · máx. 10 segundos</div>
+<!-- VÍDEOS -->
+<div id="p-videos" class="page">
+  <div class="page-header" style="display:flex;align-items:center;gap:.6rem">
+    <button onclick="goTo('mas')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
+    <div><div class="page-title">Vídeos de <em>felicitación</em></div><div class="page-sub">Máximo 10 segundos</div></div>
+  </div>
+  <div class="page-body">
+    <div class="card">
+      <div class="fg"><label>Tu nombre *</label><input type="text" id="v-nombre" placeholder="¿Cómo te llamas?" autocomplete="name"></div>
+      <div class="fg">
+        <label>Tu vídeo (máx. 10s) *</label>
+        <div class="upload-area" onclick="document.getElementById('v-video').click()">
+          <input type="file" id="v-video" accept="video/*" style="display:none" onchange="previewVideo(this)">
+          <div class="upload-icon">🎬</div><div class="upload-text">Toca para subir un vídeo</div>
+        </div>
+        <video id="v-preview" class="preview-video" style="display:none" controls playsinline></video>
+        <p id="v-duracion" style="font-size:.78rem;margin-top:.4rem;color:var(--muted)"></p>
       </div>
-      <video id="v-preview" class="preview-video" style="display:none" controls playsinline></video>
-      <p id="v-duracion" style="font-size:.8rem;margin-top:.4rem;color:var(--muted)"></p>
+      <button class="btn btn-primary" onclick="enviarVideo()">Enviar mi vídeo 🎬</button>
     </div>
-    <button class="btn btn-primary btn-full" onclick="enviarVideo()">Enviar mi vídeo 🎬</button>
+    <div id="videos-grid"><div class="loading-box"><div class="spinner"></div>Cargando...</div></div>
   </div>
-  <div id="videos-grid"><div class="loading-box"><div class="spinner"></div>Cargando vídeos...</div></div>
-</div>
 </div>
 
-<!-- ══ PREMIOS ══ -->
-<div id="s-premios" class="section">
-<div class="section-inner">
-  <h2 class="sec-title">Los <em>premios</em> de la noche</h2>
-  <p class="sec-sub">Vota a quién merece cada galardón · resultados en tiempo real</p>
-  <div class="card"><div class="fg"><label>Tu nombre *</label><input type="text" id="p-votante" placeholder="¿Cómo te llamas?"></div></div>
-  <div class="premios-grid" id="premios-grid"></div>
-  <button class="btn btn-primary btn-full" style="margin-top:1.2rem" onclick="enviarVotos()">Enviar mis votos 🏆</button>
-  <div id="premios-resultados" style="margin-top:2rem"></div>
-</div>
-</div>
-
-<!-- ══ RAZONES ══ -->
-<div id="s-razones" class="section">
-<div class="section-inner">
-  <h2 class="sec-title">18 razones para <em>quererte</em></h2>
-  <p class="sec-sub">Cada persona que la conoce tiene una razón. ¿Cuál es la tuya?</p>
-  <div class="card">
-    <div class="fg"><label>Tu nombre *</label><input type="text" id="r-nombre" placeholder="¿Cómo te llamas?"></div>
-    <div class="fg"><label>Tu razón *</label><textarea id="r-razon" placeholder="Porque..."></textarea></div>
-    <button class="btn btn-primary btn-full" onclick="enviarRazon()">Añadir mi razón 💛</button>
+<!-- PREMIOS -->
+<div id="p-premios" class="page">
+  <div class="page-header" style="display:flex;align-items:center;gap:.6rem">
+    <button onclick="goTo('mas')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
+    <div><div class="page-title">Los <em>premios</em></div><div class="page-sub">Vota a los mejores de la noche</div></div>
   </div>
-  <div id="razones-lista"><div class="loading-box"><div class="spinner"></div>Cargando...</div></div>
-</div>
+  <div class="page-body">
+    <div class="card">
+      <div class="fg"><label>Tu nombre *</label><input type="text" id="p-votante" placeholder="¿Cómo te llamas?" autocomplete="name"></div>
+    </div>
+    <div id="premios-lista"></div>
+    <button class="btn btn-primary" style="margin-top:.5rem" onclick="enviarVotos()">Enviar mis votos 🏆</button>
+    <div id="premios-resultados" style="margin-top:1.5rem"></div>
+    <div id="adm-votos-btn" style="display:none;margin-top:.5rem">
+      <button class="btn-danger" style="width:100%;padding:.8rem" onclick="borrarTodosVotos()">🗑 Borrar todos los votos</button>
+    </div>
+  </div>
 </div>
 
-<!-- ══ SORPRESA ══ -->
-<div id="s-sorpresa" class="section">
-<div class="section-inner">
-  <h2 class="sec-title">Mensaje <em>sorpresa</em></h2>
-  <p class="sec-sub">Un mensaje especial que se revelará el día de la fiesta</p>
-  <div id="sorpresa-container"><div class="loading-box"><div class="spinner"></div>Comprobando...</div></div>
-</div>
+<!-- RAZONES -->
+<div id="p-razones" class="page">
+  <div class="page-header" style="display:flex;align-items:center;gap:.6rem">
+    <button onclick="goTo('mas')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
+    <div><div class="page-title">18 razones para <em>quererte</em></div><div class="page-sub">¿Cuál es la tuya?</div></div>
+  </div>
+  <div class="page-body">
+    <div class="card">
+      <div class="fg"><label>Tu nombre *</label><input type="text" id="r-nombre" placeholder="¿Cómo te llamas?" autocomplete="name"></div>
+      <div class="fg"><label>Tu razón *</label><textarea id="r-razon" placeholder="Porque..."></textarea></div>
+      <button class="btn btn-primary" onclick="enviarRazon()">Añadir mi razón 💛</button>
+    </div>
+    <div id="razones-lista"><div class="loading-box"><div class="spinner"></div>Cargando...</div></div>
+  </div>
 </div>
 
-<!-- ══ ADMIN TRIGGER (invisible, esquina inferior derecha) ══ -->
+<!-- SORPRESA -->
+<div id="p-sorpresa" class="page">
+  <div class="page-header" style="display:flex;align-items:center;gap:.6rem">
+    <button onclick="goTo('mas')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
+    <div><div class="page-title">Mensaje <em>sorpresa</em></div><div class="page-sub">Se revela el 12 de septiembre</div></div>
+  </div>
+  <div class="page-body">
+    <div id="sorpresa-container"><div class="loading-box"><div class="spinner"></div>Comprobando...</div></div>
+  </div>
+</div>
+
+<!-- ════════ BOTTOM NAV ════════ -->
+<nav id="bottom-nav">
+  <button class="bnav-btn active" onclick="goTo('home')"><span class="bicon">🏠</span><span class="blbl">Inicio</span></button>
+  <button class="bnav-btn" onclick="goTo('firmas')"><span class="bicon">✍️</span><span class="blbl">Firmas</span></button>
+  <button class="bnav-btn" onclick="goTo('galeria')"><span class="bicon">📸</span><span class="blbl">Fotos</span></button>
+  <button class="bnav-btn" onclick="goTo('mas')"><span class="bicon">⋯</span><span class="blbl">Más</span></button>
+</nav>
+
+<!-- Admin trigger invisible -->
 <button id="admin-trigger" onclick="openAdminModal()" title=""></button>
 
-<!-- ADMIN MODAL -->
+<!-- Admin sheet -->
 <div class="adm-overlay" id="adm-overlay" onclick="closeAdminOverlay(event)">
-  <div class="adm-box" onclick="event.stopPropagation()">
-    <div id="adm-login-section">
-      <h3>🔐 Acceso</h3>
-      <div class="fg" style="margin-top:1rem"><label>Usuario</label><input type="text" id="adm-user" autocomplete="off" placeholder="Usuario"></div>
+  <div class="adm-sheet" onclick="event.stopPropagation()">
+    <div class="adm-handle"></div>
+    <div id="adm-login-s">
+      <h3>🔐 Acceso admin</h3>
+      <div class="fg" style="margin-top:.8rem"><label>Usuario</label><input type="text" id="adm-user" autocomplete="off" placeholder="Usuario"></div>
       <div class="fg"><label>Contraseña</label><input type="password" id="adm-pass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')loginAdmin()"></div>
-      <button class="btn btn-primary btn-full" onclick="loginAdmin()">Entrar</button>
-      <p id="adm-err" style="color:#c0392b;font-size:.8rem;margin-top:.6rem;text-align:center"></p>
+      <button class="btn btn-primary" onclick="loginAdmin()">Entrar</button>
+      <p id="adm-err" style="color:#e74c3c;font-size:.8rem;margin-top:.6rem;text-align:center"></p>
     </div>
-    <div id="adm-panel-section" style="display:none">
+    <div id="adm-panel-s" style="display:none">
       <h3>👑 Panel admin</h3>
-      <div id="adm-stats" style="margin:1rem 0"><div class="loading-box"><div class="spinner"></div></div></div>
-      <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:1rem">
-        <button class="btn btn-outline btn-full" onclick="closeAdminModal();show('s-sorpresa')">✏️ Editar mensaje sorpresa</button>
-        <button class="btn btn-danger btn-full" onclick="logoutAdmin()">Cerrar sesión</button>
+      <div id="adm-stats" style="margin:.8rem 0"><div class="loading-box"><div class="spinner"></div></div></div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem">
+        <button class="btn btn-outline" onclick="closeAdminModal();goTo('sorpresa')">✏️ Editar mensaje sorpresa</button>
+        <button class="btn-danger" style="padding:.85rem;border-radius:50px;font-size:.9rem" onclick="logoutAdmin()">Cerrar sesión</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- LIGHTBOX -->
+<!-- Música -->
+<button id="music-btn" onclick="toggleMusic()" title="Música">🎵</button>
+<audio id="audio-bg" loop preload="none">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lb-close">✕</button>
   <img id="lb-img" src="" alt="">
 </div>
 
-<!-- TOAST -->
+<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script>
-// ══ CONFIG ══
 const SB  = 'https://ksxassjthcofhhskhxht.supabase.co';
 const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzeGFzc2p0aGNvZmhoc2toeGh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NDU5MzAsImV4cCI6MjEwMzQyMTkzMH0.Z5g35FPK_wbC72LMGXy4yQOnA2H0p79zd7cZjpJiRo0';
 const BKT = 'martina18';
 const FIESTA = new Date('2026-09-12T20:00:00');
 const HDR = {'apikey':KEY,'Authorization':`Bearer ${KEY}`,'Content-Type':'application/json','Prefer':'return=representation'};
-
 let isAdmin = false;
 
-// ══ NAV ══
-function show(id){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  const nav=document.getElementById('main-nav');
-  if(id==='s-hero'){nav.style.display='none'}
-  else{
-    nav.style.display='flex';
-    document.querySelectorAll('.nav-btn').forEach(b=>{if(b.onclick&&b.getAttribute('onclick').includes(id))b.classList.add('active')});
-  }
+// ══ NAVEGACIÓN ══
+const PAGES = {'home':'p-home','firmas':'p-firmas','galeria':'p-galeria','mas':'p-mas','deseos':'p-deseos','videos':'p-videos','premios':'p-premios','razones':'p-razones','sorpresa':'p-sorpresa'};
+const NAV_MAP = {'home':0,'firmas':1,'galeria':2,'mas':3,'deseos':3,'videos':3,'premios':3,'razones':3,'sorpresa':3};
+
+function goTo(id){
+  Object.values(PAGES).forEach(p=>{const el=document.getElementById(p);if(el)el.classList.remove('active')});
+  const el=document.getElementById(PAGES[id]);if(el)el.classList.add('active');
+  document.querySelectorAll('.bnav-btn').forEach((b,i)=>b.classList.toggle('active',i===NAV_MAP[id]));
   window.scrollTo(0,0);
-  if(id==='s-firmas')  cargarFirmas();
-  if(id==='s-galeria') cargarGaleria();
-  if(id==='s-deseos')  cargarDeseos();
-  if(id==='s-videos')  cargarVideos();
-  if(id==='s-premios') initPremios();
-  if(id==='s-razones') cargarRazones();
-  if(id==='s-sorpresa')cargarSorpresa();
+  if(id==='firmas')  cargarFirmas();
+  if(id==='galeria') cargarGaleria();
+  if(id==='deseos')  cargarDeseos();
+  if(id==='videos')  cargarVideos();
+  if(id==='premios') initPremios();
+  if(id==='razones') cargarRazones();
+  if(id==='sorpresa')cargarSorpresa();
+  // iniciar música en primer toque
+  startMusicOnce();
 }
 
 // ══ COUNTDOWN ══
 function tick(){
   const diff=FIESTA-new Date();
-  if(diff<=0){document.querySelector('.countdown').innerHTML='<div style="font-family:Playfair Display,serif;font-size:1.8rem;color:var(--deep)">🎉 ¡Es hoy!</div>';return}
+  if(diff<=0){document.querySelector('.countdown').innerHTML='<div style="font-family:Playfair Display,serif;font-size:1.6rem;color:var(--deep)">🎉 ¡Es hoy!</div>';return}
   const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
   document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
   document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
@@ -451,24 +531,21 @@ setInterval(tick,1000);tick();
 
 // ══ TOAST ══
 function toast(msg,ok=true){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.style.background=ok?'var(--deep)':'#c0392b';
+  const t=document.getElementById('toast');t.textContent=msg;t.style.background=ok?'var(--deep)':'#e74c3c';
   t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);
 }
 
 // ══ DB ══
 async function dbGet(table,extra=''){
-  const r=await fetch(`${SB}/rest/v1/${table}?order=created_at.asc${extra}`,{headers:HDR});
-  if(!r.ok){console.error(await r.text());return[]}
-  return r.json();
+  try{const r=await fetch(`${SB}/rest/v1/${table}?order=created_at.asc${extra}`,{headers:HDR});if(!r.ok)return[];return r.json();}catch{return[]}
 }
 async function dbPost(table,body){
   const r=await fetch(`${SB}/rest/v1/${table}`,{method:'POST',headers:HDR,body:JSON.stringify(body)});
-  if(!r.ok)throw new Error(await r.text());
-  return r.json();
+  if(!r.ok)throw new Error(await r.text());return r.json();
 }
 async function dbDelete(table,id){
-  await fetch(`${SB}/rest/v1/${table}?id=eq.${id}`,{method:'DELETE',headers:HDR});
+  const r=await fetch(`${SB}/rest/v1/${table}?id=eq.${id}`,{method:'DELETE',headers:{...HDR,'Prefer':''}});
+  if(!r.ok){const e=await r.text();console.error(e);throw new Error(e);}
 }
 async function dbPatch(table,id,body){
   await fetch(`${SB}/rest/v1/${table}?id=eq.${id}`,{method:'PATCH',headers:HDR,body:JSON.stringify(body)});
@@ -485,99 +562,71 @@ async function upload(file,path){
 function fmt(iso){return new Date(iso).toLocaleDateString('es-ES',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}
 function esc(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
 
+// ══ ADMIN BAR ══
+function admBar(id,table,reloadFn){
+  if(!isAdmin)return'';
+  return`<div class="adm-bar">
+    <span>Admin</span>
+    <button class="btn-edit" onclick="editItem('${id}','${table}','${reloadFn}')">✏️ Editar</button>
+    <button class="btn-danger" onclick="deleteItem('${id}','${table}','${reloadFn}')">🗑 Borrar</button>
+  </div>`;
+}
+async function deleteItem(id,table,reloadFn){
+  if(!confirm('¿Borrar este elemento?'))return;
+  try{await dbDelete(table,id);toast('Eliminado ✅');window[reloadFn]();}
+  catch(e){toast('Error al borrar: '+e.message,false);}
+}
+function editItem(id,table,reloadFn){
+  const card=document.querySelector(`[data-id="${id}"]`);if(!card)return;
+  card.querySelectorAll('[data-field]').forEach(f=>{
+    const val=f.dataset.raw||f.textContent.replace(/^— /,'');
+    const ta=document.createElement('textarea');ta.className='edit-field';ta.value=val;ta.dataset.field=f.dataset.field;ta.rows=2;
+    f.replaceWith(ta);
+  });
+  const bar=card.querySelector('.adm-bar');
+  bar.innerHTML=`<span style="color:var(--deep);font-weight:600">Editando…</span>
+    <button class="btn-save" onclick="saveItem('${id}','${table}','${reloadFn}',this.closest('[data-id]'))">💾 Guardar</button>
+    <button class="btn-xs" onclick="window['${reloadFn}']()">✕</button>`;
+}
+async function saveItem(id,table,reloadFn,card){
+  const body={};card.querySelectorAll('.edit-field[data-field]').forEach(t=>{body[t.dataset.field]=t.value.trim()});
+  await dbPatch(table,id,body);toast('¡Guardado! ✅');window[reloadFn]();
+}
+
 // ══ CANVAS ══
 let drawing=false,lx=0,ly=0,penColor='#3a2a26';
 const cv=document.getElementById('firma-canvas'),cx=cv.getContext('2d');
-function initCV(){cv.width=cv.offsetWidth;cv.height=150;cx.strokeStyle=penColor;cx.lineWidth=2.5;cx.lineCap='round';cx.lineJoin='round'}
+function initCV(){cv.width=cv.offsetWidth;cv.height=140;cx.strokeStyle=penColor;cx.lineWidth=2.8;cx.lineCap='round';cx.lineJoin='round'}
 initCV();window.addEventListener('resize',initCV);
 function pos(e){const r=cv.getBoundingClientRect(),s=e.touches?e.touches[0]:e;return[s.clientX-r.left,s.clientY-r.top]}
 function drawL(e){if(!drawing)return;const[x,y]=pos(e);cx.beginPath();cx.moveTo(lx,ly);cx.lineTo(x,y);cx.stroke();[lx,ly]=[x,y]}
 cv.addEventListener('mousedown',e=>{drawing=true;[lx,ly]=pos(e)});
-cv.addEventListener('mousemove',drawL);
-cv.addEventListener('mouseup',()=>drawing=false);
-cv.addEventListener('mouseleave',()=>drawing=false);
+cv.addEventListener('mousemove',drawL);cv.addEventListener('mouseup',()=>drawing=false);cv.addEventListener('mouseleave',()=>drawing=false);
 cv.addEventListener('touchstart',e=>{e.preventDefault();drawing=true;[lx,ly]=pos(e)},{passive:false});
 cv.addEventListener('touchmove',e=>{e.preventDefault();drawL(e)},{passive:false});
 cv.addEventListener('touchend',()=>drawing=false);
 function clearCanvas(){cx.clearRect(0,0,cv.width,cv.height)}
-function setPenColor(c,el){penColor=c;cx.strokeStyle=c;document.querySelectorAll('#s-firmas .color-dot').forEach(d=>d.classList.remove('selected'));el.classList.add('selected')}
+function setPenColor(c,el){penColor=c;cx.strokeStyle=c;document.querySelectorAll('#p-firmas .color-dot').forEach(d=>d.classList.remove('sel'));el.classList.add('sel')}
 function canvasEmpty(){return!cx.getImageData(0,0,cv.width,cv.height).data.some(v=>v!==0)}
 
 // ══ PREVIEW ══
-function previewImg(input,pid){
-  const f=input.files[0];if(!f)return;
-  const r=new FileReader();r.onload=e=>{const i=document.getElementById(pid);i.src=e.target.result;i.style.display='block'};r.readAsDataURL(f);
-}
+function previewImg(input,pid){const f=input.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{const i=document.getElementById(pid);i.src=e.target.result;i.style.display='block'};r.readAsDataURL(f)}
 function previewVideo(input){
   const f=input.files[0];if(!f)return;
   const v=document.getElementById('v-preview');v.src=URL.createObjectURL(f);v.style.display='block';
-  v.onloadedmetadata=()=>{const el=document.getElementById('v-duracion');if(v.duration>10){el.style.color='#c0392b';el.textContent=`⚠️ Dura ${v.duration.toFixed(1)}s — máx. 10s`}else{el.style.color='var(--muted)';el.textContent=`✅ Duración: ${v.duration.toFixed(1)}s`}};
-}
-
-// ══════════════════════════════
-// ADMIN BARS — renderizado mixto
-// ══════════════════════════════
-function admBar(id,table,onDelete,onEdit){
-  if(!isAdmin)return'';
-  return`<div class="adm-bar">
-    <span>ID: ${id.slice(0,8)}…</span>
-    <button class="btn-edit" onclick="editItem('${id}','${table}')">✏️ Editar</button>
-    <button class="btn-danger" onclick="deleteItem('${id}','${table}','${onDelete}')">🗑 Borrar</button>
-  </div>`;
-}
-
-async function deleteItem(id,table,reloadFn){
-  if(!confirm('¿Seguro que quieres borrar este elemento?'))return;
-  await dbDelete(table,id);
-  toast('Elemento borrado');
-  window[reloadFn]();
-}
-
-// Edit modal genérico
-let editCtx={};
-function editItem(id,table){
-  // buscar datos del elemento en el DOM y abrir un prompt inline
-  const card=document.querySelector(`[data-id="${id}"]`);
-  if(!card)return;
-  const fields=card.querySelectorAll('[data-field]');
-  if(!fields.length){toast('Este elemento no tiene campos editables',false);return}
-  // convertir a inputs
-  fields.forEach(f=>{
-    const val=f.dataset.raw||f.textContent;
-    const tag=f.tagName==='IMG'?null:f.tagName;
-    if(!tag)return;
-    const ta=document.createElement('textarea');
-    ta.className='edit-field';ta.value=val;ta.dataset.field=f.dataset.field;
-    ta.rows=val.length>80?4:2;
-    f.replaceWith(ta);
-  });
-  // cambiar botones del admBar
-  const bar=card.querySelector('.adm-bar');
-  bar.innerHTML=`<span style="color:var(--deep);font-weight:600">Editando…</span>
-    <button class="btn-save" onclick="saveItem('${id}','${table}',this.closest('[data-id]'))">💾 Guardar</button>
-    <button class="btn-xs" onclick="window['cargar${table.charAt(0).toUpperCase()+table.slice(1)}']()">✕ Cancelar</button>`;
-}
-
-async function saveItem(id,table,card){
-  const body={};
-  card.querySelectorAll('.edit-field[data-field]').forEach(t=>{body[t.dataset.field]=t.value.trim()});
-  await dbPatch(table,id,body);
-  toast('¡Guardado! ✅');
-  const fn='cargar'+table.charAt(0).toUpperCase()+table.slice(1);
-  if(window[fn])window[fn]();
+  v.onloadedmetadata=()=>{const el=document.getElementById('v-duracion');if(v.duration>10){el.style.color='#e74c3c';el.textContent=`⚠️ ${v.duration.toFixed(1)}s — máx. 10s`}else{el.style.color='var(--muted)';el.textContent=`✅ Duración: ${v.duration.toFixed(1)}s`}}
 }
 
 // ══ FIRMAS ══
 async function enviarFirma(){
   const nombre=document.getElementById('f-nombre').value.trim();
-  const mensaje=document.getElementById('f-mensaje').value.trim();
   if(!nombre)return toast('¡Escribe tu nombre! 😊',false);
   let foto_url=null;
   const ff=document.getElementById('f-foto').files[0];
-  if(ff){toast('Subiendo foto...');foto_url=await upload(ff,`firmas/${Date.now()}_${ff.name}`).catch(()=>null)}
+  if(ff){toast('Subiendo foto...');try{foto_url=await upload(ff,`firmas/${Date.now()}_${ff.name}`)}catch{}}
   const firma_svg=canvasEmpty()?null:cv.toDataURL('image/png');
   try{
-    await dbPost('firmas',{nombre,mensaje,firma_svg,foto_url});
+    await dbPost('firmas',{nombre,mensaje:document.getElementById('f-mensaje').value.trim(),firma_svg,foto_url});
     toast('¡Firma enviada! 💛');
     document.getElementById('f-nombre').value='';document.getElementById('f-mensaje').value='';clearCanvas();
     document.getElementById('f-foto').value='';document.getElementById('f-foto-prev').style.display='none';
@@ -589,14 +638,16 @@ async function cargarFirmas(){
   c.innerHTML='<div class="loading-box"><div class="spinner"></div>Cargando firmas...</div>';
   const data=await dbGet('firmas');
   if(!data.length){c.innerHTML='<div class="empty-msg"><div class="em-icon">✍️</div>Sé el primero en firmar</div>';return}
-  c.innerHTML='<div class="firmas-grid">'+data.map(f=>`
+  c.innerHTML='<div class="firmas-list">'+data.map(f=>`
     <div class="firma-card" data-id="${f.id}">
-      ${admBar(f.id,'firmas','cargarFirmas','cargarFirmas')}
-      ${f.foto_url?`<img class="fc-foto" src="${f.foto_url}" alt="${esc(f.nombre)}" onclick="openLightbox('${f.foto_url}')">` :''}
-      <div class="fc-nombre" data-field="nombre" data-raw="${esc(f.nombre)}">${esc(f.nombre)}</div>
-      ${f.mensaje?`<div class="fc-msg" data-field="mensaje" data-raw="${esc(f.mensaje)}">${esc(f.mensaje)}</div>`:''}
-      ${f.firma_svg?`<img class="fc-firma" src="${f.firma_svg}" alt="firma">` :''}
-      <div class="fc-date">${fmt(f.created_at)}</div>
+      ${f.foto_url?`<img class="firma-foto" src="${f.foto_url}" alt="${esc(f.nombre)}" onclick="openLightbox('${f.foto_url}')">` :''}
+      <div class="firma-inner">
+        ${admBar(f.id,'firmas','cargarFirmas')}
+        <div class="firma-nombre" data-field="nombre" data-raw="${esc(f.nombre)}">${esc(f.nombre)}</div>
+        ${f.mensaje?`<div class="firma-msg" data-field="mensaje" data-raw="${esc(f.mensaje)}">${esc(f.mensaje)}</div>`:''}
+        ${f.firma_svg?`<img class="firma-svg" src="${f.firma_svg}" alt="firma">` :''}
+        <div class="firma-date">${fmt(f.created_at)}</div>
+      </div>
     </div>`).join('')+'</div>';
 }
 
@@ -619,20 +670,19 @@ async function cargarGaleria(){
   const c=document.getElementById('galeria-grid');
   c.innerHTML='<div class="loading-box"><div class="spinner"></div>Cargando...</div>';
   const data=await dbGet('galeria');
-  if(!data.length){c.innerHTML='<div class="empty-msg"><div class="em-icon">📸</div>¡La galería está esperando tu primera foto!</div>';return}
+  if(!data.length){c.innerHTML='<div class="empty-msg"><div class="em-icon">📸</div>¡La galería espera tu primera foto!</div>';return}
   c.innerHTML='<div class="galeria-grid">'+data.map(g=>`
-    <div class="galeria-item" data-id="${g.id}" style="display:flex;flex-direction:column">
-      ${isAdmin?`<div class="adm-bar" style="display:flex;border-radius:0;border-bottom:1px solid #eee"><span style="font-size:.68rem">${esc(g.nombre)}</span><button class="btn-danger" onclick="deleteItem('${g.id}','galeria','cargarGaleria')">🗑</button></div>`:''}
-      <img src="${g.foto_url}" alt="${esc(g.nombre)}" loading="lazy" onclick="openLightbox('${g.foto_url}')" style="flex:1;width:100%;height:100%;object-fit:cover">
+    <div class="gal-item" data-id="${g.id}">
+      <img src="${g.foto_url}" alt="${esc(g.nombre)}" loading="lazy" onclick="openLightbox('${g.foto_url}')">
+      <div class="gal-adm"><button class="btn-danger" style="font-size:.65rem;padding:.3rem .6rem" onclick="deleteItem('${g.id}','galeria','cargarGaleria')">🗑</button></div>
     </div>`).join('')+'</div>';
 }
 
 // ══ DESEOS ══
 let deseoColor='#fff9c4';
-function setDeseoColor(c,el){deseoColor=c;document.querySelectorAll('#s-deseos .color-dot').forEach(d=>d.classList.remove('selected'));el.classList.add('selected')}
+function setDeseoColor(c,el){deseoColor=c;document.querySelectorAll('#p-deseos .color-dot').forEach(d=>d.classList.remove('sel'));el.classList.add('sel')}
 async function enviarDeseo(){
-  const nombre=document.getElementById('d-nombre').value.trim();
-  const mensaje=document.getElementById('d-mensaje').value.trim();
+  const nombre=document.getElementById('d-nombre').value.trim(),mensaje=document.getElementById('d-mensaje').value.trim();
   if(!nombre||!mensaje)return toast('Rellena tu nombre y deseo',false);
   try{await dbPost('deseos',{nombre,mensaje,color:deseoColor});toast('¡Deseo colgado! 💌');document.getElementById('d-nombre').value='';document.getElementById('d-mensaje').value='';cargarDeseos()}
   catch{toast('Error.',false)}
@@ -642,22 +692,18 @@ async function cargarDeseos(){
   c.innerHTML='<div class="loading-box"><div class="spinner"></div>Cargando deseos...</div>';
   const data=await dbGet('deseos');
   if(!data.length){c.innerHTML='<div class="empty-msg"><div class="em-icon">💌</div>Sé el primero en colgar un deseo</div>';return}
-  const rots=[-2,1,-1.5,2,0,-1,1.5,-2.5,.5];
+  const rots=[-2,1,-1.5,2,0,-1,1.5];
   c.innerHTML='<div class="deseos-grid">'+data.map((d,i)=>`
-    <div class="deseo-card" data-id="${d.id}" style="background:${d.color};--rot:${rots[i%rots.length]}deg">
-      ${isAdmin?`<div class="adm-bar" style="display:flex">
-        <button class="btn-edit" onclick="editItem('${d.id}','deseos')">✏️</button>
-        <button class="btn-danger" onclick="deleteItem('${d.id}','deseos','cargarDeseos')">🗑</button>
-      </div>`:''}
-      <div class="dc-nom" data-field="nombre" data-raw="${esc(d.nombre)}">${esc(d.nombre)}</div>
-      <div class="dc-msg" data-field="mensaje" data-raw="${esc(d.mensaje)}">${esc(d.mensaje)}</div>
+    <div class="deseo-card" data-id="${d.id}" style="background:${d.color};transform:rotate(${rots[i%rots.length]}deg)">
+      ${admBar(d.id,'deseos','cargarDeseos')}
+      <div class="deseo-nom" data-field="nombre" data-raw="${esc(d.nombre)}">${esc(d.nombre)}</div>
+      <div class="deseo-msg" data-field="mensaje" data-raw="${esc(d.mensaje)}">${esc(d.mensaje)}</div>
     </div>`).join('')+'</div>';
 }
 
 // ══ VÍDEOS ══
 async function enviarVideo(){
-  const nombre=document.getElementById('v-nombre').value.trim();
-  const vf=document.getElementById('v-video').files[0];
+  const nombre=document.getElementById('v-nombre').value.trim(),vf=document.getElementById('v-video').files[0];
   if(!nombre)return toast('¡Escribe tu nombre!',false);
   if(!vf)return toast('¡Selecciona un vídeo!',false);
   const vp=document.getElementById('v-preview');
@@ -665,8 +711,7 @@ async function enviarVideo(){
   toast('Subiendo vídeo...');
   try{
     const video_url=await upload(vf,`videos/${Date.now()}_${vf.name}`);
-    await dbPost('videos',{nombre,video_url});
-    toast('¡Vídeo enviado! 🎬');
+    await dbPost('videos',{nombre,video_url});toast('¡Vídeo enviado! 🎬');
     document.getElementById('v-nombre').value='';document.getElementById('v-video').value='';
     document.getElementById('v-preview').style.display='none';document.getElementById('v-duracion').textContent='';
     cargarVideos();
@@ -677,37 +722,30 @@ async function cargarVideos(){
   c.innerHTML='<div class="loading-box"><div class="spinner"></div>Cargando vídeos...</div>';
   const data=await dbGet('videos');
   if(!data.length){c.innerHTML='<div class="empty-msg"><div class="em-icon">🎬</div>¡Sé el primero en enviar un vídeo!</div>';return}
-  c.innerHTML='<div class="videos-grid">'+data.map(v=>`
+  c.innerHTML='<div class="videos-list">'+data.map(v=>`
     <div class="video-card" data-id="${v.id}">
-      ${isAdmin?`<div class="adm-bar" style="display:flex">
-        <span>${esc(v.nombre)}</span>
-        <button class="btn-danger" onclick="deleteItem('${v.id}','videos','cargarVideos')">🗑 Borrar</button>
-      </div>`:''}
       <video src="${v.video_url}" controls playsinline></video>
-      <div class="vc-nom" data-field="nombre" data-raw="${esc(v.nombre)}">De: ${esc(v.nombre)}</div>
+      <div class="video-nom">
+        ${admBar(v.id,'videos','cargarVideos')}
+        <span data-field="nombre" data-raw="${esc(v.nombre)}">De: ${esc(v.nombre)}</span>
+      </div>
     </div>`).join('')+'</div>';
 }
 
 // ══ PREMIOS ══
 const CATS=[
-  {e:'👑',t:'El/La más elegante de la noche'},
-  {e:'💃',t:'El/La mejor bailarín/a'},
-  {e:'😂',t:'El/La más divertido/a'},
-  {e:'🌟',t:'El/La alma de la fiesta'},
-  {e:'📸',t:'El/La más fotogénico/a'},
-  {e:'🎤',t:'El/La más karaokero/a'},
-  {e:'🥂',t:'El/La del mejor brindis'},
-  {e:'🎨',t:'El/La más creativo/a'},
+  {e:'👑',t:'El/La más elegante'},{e:'💃',t:'El/La mejor bailarín/a'},
+  {e:'😂',t:'El/La más divertido/a'},{e:'🌟',t:'El alma de la fiesta'},
+  {e:'📸',t:'El/La más fotogénico/a'},{e:'🎤',t:'El/La más karaokero/a'},
+  {e:'🥂',t:'El mejor brindis'},{e:'🎨',t:'El/La más creativo/a'},
 ];
 function initPremios(){
-  document.getElementById('premios-grid').innerHTML=CATS.map((c,i)=>`
-    <div class="premio-card">
-      <div class="premio-emoji">${c.e}</div>
-      <div class="premio-titulo">${c.t}</div>
-      <input type="text" id="pv-${i}" placeholder="Nombre del ganador/a"
-        style="width:100%;font-family:Inter,sans-serif;font-size:.88rem;padding:.65rem .9rem;border:1.5px solid var(--rose);border-radius:8px;background:var(--cream);color:var(--text);outline:none"
-        onfocus="this.style.borderColor='var(--mauve)'" onblur="this.style.borderColor='var(--rose)'">
+  document.getElementById('premios-lista').innerHTML=CATS.map((c,i)=>`
+    <div class="premio-card" style="margin-bottom:.8rem">
+      <div class="premio-head"><span class="premio-emoji">${c.e}</span><span class="premio-titulo">${c.t}</span></div>
+      <input class="premio-input" type="text" id="pv-${i}" placeholder="Nombre del ganador/a">
     </div>`).join('');
+  if(isAdmin)document.getElementById('adm-votos-btn').style.display='block';
   cargarResultadosPremios();
 }
 async function enviarVotos(){
@@ -715,43 +753,39 @@ async function enviarVotos(){
   if(!votante)return toast('¡Escribe tu nombre!',false);
   const votos=CATS.map((c,i)=>({votante,categoria:c.t,nominado:document.getElementById(`pv-${i}`).value.trim()})).filter(v=>v.nominado);
   if(!votos.length)return toast('¡Vota en al menos una categoría!',false);
-  try{for(const v of votos)await dbPost('votos',v);toast(`¡Votos enviados! 🏆`);CATS.forEach((_,i)=>document.getElementById(`pv-${i}`).value='');cargarResultadosPremios()}
+  try{for(const v of votos)await dbPost('votos',v);toast('¡Votos enviados! 🏆');CATS.forEach((_,i)=>document.getElementById(`pv-${i}`).value='');cargarResultadosPremios()}
   catch{toast('Error al votar.',false)}
 }
 async function cargarResultadosPremios(){
-  const data=await dbGet('votos');
-  const cont=document.getElementById('premios-resultados');
+  const data=await dbGet('votos'),cont=document.getElementById('premios-resultados');
   if(!data.length){cont.innerHTML='';return}
   const porCat={};
   data.forEach(v=>{if(!porCat[v.categoria])porCat[v.categoria]={};porCat[v.categoria][v.nominado]=(porCat[v.categoria][v.nominado]||0)+1});
-  cont.innerHTML=`<h3 style="font-family:'Playfair Display',serif;color:var(--deep);font-weight:400;font-size:1.3rem;margin-bottom:1rem">Resultados en tiempo real 📊</h3>`+
-    `<div class="premios-grid">`+CATS.filter(c=>porCat[c.t]).map(c=>{
+  cont.innerHTML=`<h3 style="font-family:'Playfair Display',serif;color:var(--deep);font-weight:400;font-size:1.2rem;margin-bottom:.8rem">Resultados en tiempo real 📊</h3>`+
+    CATS.filter(c=>porCat[c.t]).map(c=>{
       const vs=Object.entries(porCat[c.t]).sort((a,b)=>b[1]-a[1]),max=vs[0][1];
-      return`<div class="premio-card">
-        <div class="premio-emoji">${c.e}</div>
-        <div class="premio-titulo">${c.t}</div>
+      return`<div class="premio-card" style="margin-bottom:.8rem">
+        <div class="premio-head"><span class="premio-emoji">${c.e}</span><span class="premio-titulo">${c.t}</span></div>
         ${vs.map(([n,cnt],i)=>`
-          <div style="text-align:left;margin-bottom:.5rem">
-            <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:.2rem">
-              <span style="${i===0?'font-weight:600;color:var(--deep)':''}">${i===0?'🥇 ':''}${esc(n)}</span>
+          <div style="margin-bottom:.4rem">
+            <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:.15rem">
+              <span style="${i===0?'font-weight:700;color:var(--deep)':''}">${i===0?'🥇 ':''}${esc(n)}</span>
               <span style="color:var(--muted)">${cnt}</span>
             </div>
-            <div class="premio-bar"><div class="premio-bar-fill" style="width:${Math.round(cnt/max*100)}%"></div></div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:${Math.round(cnt/max*100)}%"></div></div>
           </div>`).join('')}
       </div>`;
-    }).join('')+'</div>'+
-    (isAdmin?`<div style="margin-top:1rem;text-align:right"><button class="btn-danger" onclick="borrarTodosVotos()">🗑 Borrar todos los votos</button></div>`:'');
+    }).join('');
 }
 async function borrarTodosVotos(){
-  if(!confirm('¿Borrar TODOS los votos? Esto no se puede deshacer.'))return;
-  await fetch(`${SB}/rest/v1/votos`,{method:'DELETE',headers:HDR});
+  if(!confirm('¿Borrar TODOS los votos?'))return;
+  await fetch(`${SB}/rest/v1/votos`,{method:'DELETE',headers:{...HDR,'Prefer':''}});
   toast('Votos borrados');cargarResultadosPremios();
 }
 
 // ══ RAZONES ══
 async function enviarRazon(){
-  const autor=document.getElementById('r-nombre').value.trim();
-  const razon=document.getElementById('r-razon').value.trim();
+  const autor=document.getElementById('r-nombre').value.trim(),razon=document.getElementById('r-razon').value.trim();
   if(!autor||!razon)return toast('Rellena tu nombre y razón',false);
   try{await dbPost('razones',{autor,razon});toast('¡Razón añadida! 💛');document.getElementById('r-nombre').value='';document.getElementById('r-razon').value='';cargarRazones()}
   catch{toast('Error.',false)}
@@ -763,10 +797,10 @@ async function cargarRazones(){
   if(!data.length){c.innerHTML='<div class="empty-msg"><div class="em-icon">💛</div>Sé el primero en escribir una razón</div>';return}
   c.innerHTML='<div class="razones-list">'+data.map((r,i)=>`
     <div class="razon-item" data-id="${r.id}">
-      ${admBar(r.id,'razones','cargarRazones','cargarRazones')}
+      ${admBar(r.id,'razones','cargarRazones')}
       <div class="razon-num">${String(i+1).padStart(2,'0')}</div>
       <div>
-        <div class="razon-text" data-field="razon" data-raw="${esc(r.razon)}">${esc(r.razon)}</div>
+        <div class="razon-txt" data-field="razon" data-raw="${esc(r.razon)}">${esc(r.razon)}</div>
         <div class="razon-autor" data-field="autor" data-raw="${esc(r.autor)}">— ${esc(r.autor)}</div>
       </div>
     </div>`).join('')+'</div>';
@@ -778,72 +812,48 @@ async function cargarSorpresa(){
   const hoy=new Date();hoy.setHours(0,0,0,0);
   const fiesta=new Date('2026-09-12');fiesta.setHours(0,0,0,0);
   const data=await dbGet('mensaje_sorpresa');
-
   if(isAdmin){
     c.innerHTML=`<div class="card">
-      <p style="font-size:.78rem;color:var(--mauve);margin-bottom:1rem">👑 Editable solo por administradores</p>
+      <p style="font-size:.75rem;color:var(--mauve);margin-bottom:1rem">👑 Solo visible para administradores</p>
       <div class="fg"><label>De parte de</label><input type="text" id="sor-autor" placeholder="Tu nombre" value="${esc(data[0]?.autor||'')}"></div>
-      <div class="fg"><label>Mensaje para Martina</label><textarea id="sor-texto" style="min-height:140px">${esc(data[0]?.mensaje||'')}</textarea></div>
-      <button class="btn btn-primary btn-full" onclick="guardarSorpresa()">💾 Guardar mensaje secreto</button>
-      ${data.length?'<p style="font-size:.78rem;color:var(--muted);margin-top:.8rem;text-align:center">Ya hay un mensaje — guardar de nuevo lo reemplaza</p>':''}
-    </div>`;
-    return;
+      <div class="fg"><label>Mensaje para Martina</label><textarea id="sor-texto" style="min-height:130px">${esc(data[0]?.mensaje||'')}</textarea></div>
+      <button class="btn btn-primary" onclick="guardarSorpresa()">💾 Guardar mensaje secreto</button>
+      ${data.length?'<p style="font-size:.75rem;color:var(--muted);margin-top:.8rem;text-align:center">Ya hay un mensaje guardado — guardar de nuevo lo reemplaza</p>':''}
+    </div>`;return;
   }
   if(hoy<fiesta){
     const diff=fiesta-new Date(),d=Math.floor(diff/86400000);
-    c.innerHTML=`<div class="sorpresa-lock"><div class="lock-icon">🔒</div><div class="lock-msg">Este mensaje se revelará el 12 de septiembre</div><div class="lock-sub">Faltan ${d} días para la fiesta 🎉</div></div>`;
-    return;
+    c.innerHTML=`<div class="sorpresa-lock"><div class="lock-icon">🔒</div><div class="lock-msg">Se revela el 12 de septiembre</div><div class="lock-sub">Faltan ${d} días 🎉</div></div>`;return;
   }
   if(!data.length){c.innerHTML='<div class="empty-msg"><div class="em-icon">🎁</div>El mensaje sorpresa está en camino…</div>';return}
-  c.innerHTML=data.map(m=>`<div class="sorpresa-revealed"><div style="font-size:2.5rem;margin-bottom:1rem">🎁</div><p>${esc(m.mensaje)}</p><div class="sor-autor">— Con todo el amor, ${esc(m.autor)}</div></div>`).join('');
+  c.innerHTML=data.map(m=>`<div class="sorpresa-open"><div style="font-size:2.5rem;margin-bottom:1rem">🎁</div><p>${esc(m.mensaje)}</p><div class="sor-autor">— Con todo el amor, ${esc(m.autor)}</div></div>`).join('');
 }
 async function guardarSorpresa(){
-  const autor=document.getElementById('sor-autor').value.trim();
-  const mensaje=document.getElementById('sor-texto').value.trim();
+  const autor=document.getElementById('sor-autor').value.trim(),mensaje=document.getElementById('sor-texto').value.trim();
   if(!autor||!mensaje)return toast('Rellena autor y mensaje',false);
   await fetch(`${SB}/rest/v1/mensaje_sorpresa`,{method:'DELETE',headers:{...HDR,'Prefer':''}});
-  await dbPost('mensaje_sorpresa',{autor,mensaje});
-  toast('¡Mensaje guardado en secreto! 🔒');
+  await dbPost('mensaje_sorpresa',{autor,mensaje});toast('¡Mensaje guardado en secreto! 🔒');
 }
 
 // ══ ADMIN ══
 function openAdminModal(){
   document.getElementById('adm-overlay').classList.add('open');
-  document.getElementById('adm-login-section').style.display=isAdmin?'none':'block';
-  document.getElementById('adm-panel-section').style.display=isAdmin?'block':'none';
-  document.getElementById('adm-user').value='';document.getElementById('adm-pass').value='';document.getElementById('adm-err').textContent='';
-  if(isAdmin)loadAdminStats();
+  if(!isAdmin){document.getElementById('adm-login-s').style.display='block';document.getElementById('adm-panel-s').style.display='none';document.getElementById('adm-user').value='';document.getElementById('adm-pass').value='';document.getElementById('adm-err').textContent=''}
+  else{document.getElementById('adm-login-s').style.display='none';document.getElementById('adm-panel-s').style.display='block';loadAdminStats()}
 }
 function closeAdminModal(){document.getElementById('adm-overlay').classList.remove('open')}
 function closeAdminOverlay(e){if(e.target===document.getElementById('adm-overlay'))closeAdminModal()}
 async function loginAdmin(){
   if(document.getElementById('adm-user').value==='Martina18'&&document.getElementById('adm-pass').value==='10092008'){
-    isAdmin=true;
-    document.body.classList.add('is-admin');
-    document.getElementById('adm-login-section').style.display='none';
-    document.getElementById('adm-panel-section').style.display='block';
+    isAdmin=true;document.body.classList.add('is-admin');
+    document.getElementById('adm-login-s').style.display='none';document.getElementById('adm-panel-s').style.display='block';
     loadAdminStats();
-    // recargar sección activa para mostrar controles
-    const active=document.querySelector('.section.active');
-    if(active&&active.id!=='s-hero'){
-      const id=active.id;
-      document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      if(id==='s-firmas')cargarFirmas();
-      if(id==='s-galeria')cargarGaleria();
-      if(id==='s-deseos')cargarDeseos();
-      if(id==='s-videos')cargarVideos();
-      if(id==='s-premios')initPremios();
-      if(id==='s-razones')cargarRazones();
-      if(id==='s-sorpresa')cargarSorpresa();
-    }
+    // recargar página activa
+    const active=document.querySelector('.page.active');
+    if(active){const id=Object.keys(PAGES).find(k=>PAGES[k]===active.id);if(id&&id!=='home'&&id!=='mas')goTo(id)}
   }else{document.getElementById('adm-err').textContent='Usuario o contraseña incorrectos'}
 }
-function logoutAdmin(){
-  isAdmin=false;document.body.classList.remove('is-admin');closeAdminModal();
-  const active=document.querySelector('.section.active');
-  if(active&&active.id!=='s-hero'){show(active.id)}
-}
+function logoutAdmin(){isAdmin=false;document.body.classList.remove('is-admin');closeAdminModal();document.getElementById('adm-votos-btn').style.display='none'}
 async function loadAdminStats(){
   const [nf,ng,nd,nv,np,nr]=await Promise.all([dbCount('firmas'),dbCount('galeria'),dbCount('deseos'),dbCount('videos'),dbCount('votos'),dbCount('razones')]);
   document.getElementById('adm-stats').innerHTML=`
@@ -855,50 +865,31 @@ async function loadAdminStats(){
     <div class="adm-stat"><span>💛 Razones</span><span class="adm-count">${nr}</span></div>`;
 }
 
+// ══ MÚSICA ══
+const audio = document.getElementById('audio-bg');
+let musicStarted = false;
+
+function startMusicOnce(){
+  if(musicStarted)return;
+  audio.volume = 0.4;
+  audio.play().then(()=>{musicStarted=true;document.getElementById('music-btn').textContent='🎵'}).catch(()=>{});
+}
+
+function toggleMusic(){
+  if(audio.paused){
+    audio.play();document.getElementById('music-btn').textContent='🎵';
+  }else{
+    audio.pause();document.getElementById('music-btn').textContent='🔇';
+  }
+  startMusicOnce();
+}
+
+document.addEventListener('click',startMusicOnce,{once:true});
+document.addEventListener('touchstart',startMusicOnce,{once:true});
+
 // ══ LIGHTBOX ══
 function openLightbox(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open')}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
-
-// ══ MÚSICA ══
-let musicPlaying = false;
-
-function getFrame(){ return document.getElementById('yt-frame'); }
-function getMusicBtn(){ return document.getElementById('music-btn'); }
-
-function toggleMusic(){
-  const frame = getFrame();
-  if(!frame) return;
-  if(musicPlaying){
-    frame.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
-    getMusicBtn().textContent = '🔇';
-  } else {
-    frame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*');
-    getMusicBtn().textContent = '🎵';
-  }
-  musicPlaying = !musicPlaying;
-}
-
-// Autoplay tras primera interacción del usuario (requisito de navegadores)
-function startMusicOnce(){
-  if(musicPlaying) return;
-  const frame = getFrame();
-  if(!frame || !frame.contentWindow) return;
-  try {
-    frame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*');
-    musicPlaying = true;
-    getMusicBtn().textContent = '🎵';
-  } catch(e){}
-  document.removeEventListener('click', startMusicOnce);
-  document.removeEventListener('touchstart', startMusicOnce);
-}
-document.addEventListener('click', startMusicOnce);
-document.addEventListener('touchstart', startMusicOnce);
 </script>
-<!-- MÚSICA -->
-<button id="music-btn" onclick="toggleMusic()" title="Música">🎵</button>
-<iframe id="yt-frame" width="0" height="0"
-  src="https://www.youtube.com/embed/kbpBEFEPGsI?autoplay=1&loop=1&playlist=kbpBEFEPGsI&controls=0&mute=0&enablejsapi=1"
-  allow="autoplay" frameborder="0"></iframe>
-
 </body>
 </html>
