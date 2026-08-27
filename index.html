@@ -16,7 +16,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overscroll-behavior:none}
-body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);padding-bottom:var(--bar-h)}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text)}
 
 /* ═══ BOTTOM NAV (tipo app) ═══ */
 #bottom-nav{
@@ -40,12 +40,12 @@ body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);pa
 .bnav-btn.active::after{opacity:1}
 
 /* ═══ PAGES ═══ */
-.page{display:none;min-height:calc(100vh - var(--bar-h));padding:0}
+.page{display:none;min-height:100vh;padding:0}
 .page.active{display:block}
 
 /* ═══ HERO ═══ */
 #p-home{
-  min-height:calc(100vh - var(--bar-h));
+  min-height:100vh;
   background:linear-gradient(170deg,var(--cream) 0%,var(--blush) 60%,var(--rose) 100%);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:2rem 1.5rem;position:relative;overflow:hidden;
@@ -67,11 +67,11 @@ body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);pa
 .cd-unit{background:rgba(255,255,255,.8);backdrop-filter:blur(8px);border-radius:14px;padding:.7rem .9rem;text-align:center;min-width:62px;border:1px solid rgba(232,196,184,.5)}
 .cd-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--deep);line-height:1}
 .cd-lbl{font-size:.55rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
-.hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;width:100%;max-width:340px}
-.hero-action-btn{background:var(--white);border:1.5px solid var(--rose);border-radius:16px;padding:1rem .8rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif}
+.hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;width:100%;max-width:380px}
+.hero-action-btn{background:var(--white);border:1.5px solid var(--rose);border-radius:16px;padding:1.1rem .8rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif}
 .hero-action-btn:active{transform:scale(.96);background:var(--blush)}
-.hero-action-btn .ha-icon{font-size:1.6rem}
-.hero-action-btn .ha-txt{font-size:.75rem;font-weight:600;color:var(--deep)}
+.hero-action-btn .ha-icon{font-size:1.7rem}
+.hero-action-btn .ha-txt{font-size:.75rem;font-weight:600;color:var(--deep);text-align:center}
 .hero-action-btn.primary{background:var(--deep);border-color:var(--deep);grid-column:span 2}
 .hero-action-btn.primary .ha-txt{color:#fff}
 
@@ -246,10 +246,16 @@ body.is-admin{padding-top:28px}
       <span class="ha-icon">✍️</span><span class="ha-txt">Firmar el libro</span>
     </button>
     <button class="hero-action-btn" onclick="goTo('deseos')">
-      <span class="ha-icon">💌</span><span class="ha-txt">Dejar deseo</span>
+      <span class="ha-icon">💌</span><span class="ha-txt">Deja un deseo</span>
     </button>
-    <button class="hero-action-btn" onclick="goTo('galeria')">
-      <span class="ha-icon">📸</span><span class="ha-txt">Subir foto</span>
+    <button class="hero-action-btn" onclick="goTo('premios')">
+      <span class="ha-icon">🏆</span><span class="ha-txt">Premios</span>
+    </button>
+    <button class="hero-action-btn" onclick="goTo('razones')">
+      <span class="ha-icon">💛</span><span class="ha-txt">18 Razones</span>
+    </button>
+    <button class="hero-action-btn" onclick="goTo('sorpresa')" style="grid-column:span 2">
+      <span class="ha-icon">🔒</span><span class="ha-txt">Mensaje sorpresa</span>
     </button>
   </div>
 </div>
@@ -345,7 +351,7 @@ body.is-admin{padding-top:28px}
 <!-- DESEOS -->
 <div id="p-deseos" class="page">
   <div class="page-header" style="display:flex;align-items:center;gap:.6rem">
-    <button onclick="goTo('mas')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
+    <button onclick="goTo('home')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
     <div><div class="page-title">Muro de <em>deseos</em></div><div class="page-sub">¿Qué le deseas a Martina?</div></div>
   </div>
   <div class="page-body">
@@ -372,7 +378,7 @@ body.is-admin{padding-top:28px}
 <!-- VÍDEOS -->
 <div id="p-videos" class="page">
   <div class="page-header" style="display:flex;align-items:center;gap:.6rem">
-    <button onclick="goTo('mas')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
+    <button onclick="goTo('home')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
     <div><div class="page-title">Vídeos de <em>felicitación</em></div><div class="page-sub">Máximo 10 segundos</div></div>
   </div>
   <div class="page-body">
@@ -396,7 +402,7 @@ body.is-admin{padding-top:28px}
 <!-- PREMIOS -->
 <div id="p-premios" class="page">
   <div class="page-header" style="display:flex;align-items:center;gap:.6rem">
-    <button onclick="goTo('mas')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
+    <button onclick="goTo('home')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
     <div><div class="page-title">Los <em>premios</em></div><div class="page-sub">Vota a los mejores de la noche</div></div>
   </div>
   <div class="page-body">
@@ -415,7 +421,7 @@ body.is-admin{padding-top:28px}
 <!-- RAZONES -->
 <div id="p-razones" class="page">
   <div class="page-header" style="display:flex;align-items:center;gap:.6rem">
-    <button onclick="goTo('mas')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
+    <button onclick="goTo('home')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
     <div><div class="page-title">18 razones para <em>quererte</em></div><div class="page-sub">¿Cuál es la tuya?</div></div>
   </div>
   <div class="page-body">
@@ -431,7 +437,7 @@ body.is-admin{padding-top:28px}
 <!-- SORPRESA -->
 <div id="p-sorpresa" class="page">
   <div class="page-header" style="display:flex;align-items:center;gap:.6rem">
-    <button onclick="goTo('mas')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
+    <button onclick="goTo('home')" style="background:none;border:none;font-size:1.3rem;cursor:pointer;padding:.2rem">←</button>
     <div><div class="page-title">Mensaje <em>sorpresa</em></div><div class="page-sub">Se revela el 12 de septiembre</div></div>
   </div>
   <div class="page-body">
@@ -440,11 +446,11 @@ body.is-admin{padding-top:28px}
 </div>
 
 <!-- ════════ BOTTOM NAV ════════ -->
-<nav id="bottom-nav">
+<nav id="bottom-nav" style="display:none">
   <button class="bnav-btn active" onclick="goTo('home')"><span class="bicon">🏠</span><span class="blbl">Inicio</span></button>
   <button class="bnav-btn" onclick="goTo('firmas')"><span class="bicon">✍️</span><span class="blbl">Firmas</span></button>
   <button class="bnav-btn" onclick="goTo('galeria')"><span class="bicon">📸</span><span class="blbl">Fotos</span></button>
-  <button class="bnav-btn" onclick="goTo('mas')"><span class="bicon">⋯</span><span class="blbl">Más</span></button>
+  <button class="bnav-btn" onclick="goTo('home')"><span class="bicon">⋯</span><span class="blbl">Más</span></button>
 </nav>
 
 <!-- Admin trigger invisible -->
@@ -492,8 +498,8 @@ const HDR = {'apikey':KEY,'Authorization':`Bearer ${KEY}`,'Content-Type':'applic
 let isAdmin = false;
 
 // ══ NAVEGACIÓN ══
-const PAGES = {'home':'p-home','firmas':'p-firmas','galeria':'p-galeria','mas':'p-mas','deseos':'p-deseos','videos':'p-videos','premios':'p-premios','razones':'p-razones','sorpresa':'p-sorpresa'};
-const NAV_MAP = {'home':0,'firmas':1,'galeria':2,'mas':3,'deseos':3,'videos':3,'premios':3,'razones':3,'sorpresa':3};
+const PAGES = {'home':'p-home','firmas':'p-firmas','deseos':'p-deseos','premios':'p-premios','razones':'p-razones','sorpresa':'p-sorpresa','galeria':'p-galeria','videos':'p-videos'};
+const NAV_MAP = {'home':0,'firmas':0,'deseos':0,'premios':0,'razones':0,'sorpresa':0,'galeria':0,'videos':0};
 
 function goTo(id){
   Object.values(PAGES).forEach(p=>{const el=document.getElementById(p);if(el)el.classList.remove('active')});
