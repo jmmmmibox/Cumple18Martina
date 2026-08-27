@@ -195,9 +195,7 @@ body.is-admin{padding-top:28px}
 .adm-stat:last-child{border:none}
 .adm-count{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--deep);font-weight:700}
 
-/* ═══ MÚSICA ═══ */
-#music-btn{position:fixed;bottom:calc(var(--bar-h) + 12px);right:1rem;z-index:198;width:44px;height:44px;border-radius:50%;background:var(--deep);color:#fff;border:none;cursor:pointer;font-size:1.1rem;box-shadow:0 4px 16px rgba(107,76,69,.35);display:flex;align-items:center;justify-content:center;transition:all .2s}
-#music-btn:active{transform:scale(.92)}
+
 
 /* ═══ LIGHTBOX ═══ */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:500;align-items:center;justify-content:center}
@@ -474,11 +472,7 @@ body.is-admin{padding-top:28px}
   </div>
 </div>
 
-<!-- Música -->
-<button id="music-btn" onclick="toggleMusic()" title="Música">🎵</button>
-<audio id="audio-bg" loop preload="none">
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
+
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -513,8 +507,6 @@ function goTo(id){
   if(id==='premios') initPremios();
   if(id==='razones') cargarRazones();
   if(id==='sorpresa')cargarSorpresa();
-  // iniciar música en primer toque
-  startMusicOnce();
 }
 
 // ══ COUNTDOWN ══
@@ -865,27 +857,7 @@ async function loadAdminStats(){
     <div class="adm-stat"><span>💛 Razones</span><span class="adm-count">${nr}</span></div>`;
 }
 
-// ══ MÚSICA ══
-const audio = document.getElementById('audio-bg');
-let musicStarted = false;
 
-function startMusicOnce(){
-  if(musicStarted)return;
-  audio.volume = 0.4;
-  audio.play().then(()=>{musicStarted=true;document.getElementById('music-btn').textContent='🎵'}).catch(()=>{});
-}
-
-function toggleMusic(){
-  if(audio.paused){
-    audio.play();document.getElementById('music-btn').textContent='🎵';
-  }else{
-    audio.pause();document.getElementById('music-btn').textContent='🔇';
-  }
-  startMusicOnce();
-}
-
-document.addEventListener('click',startMusicOnce,{once:true});
-document.addEventListener('touchstart',startMusicOnce,{once:true});
 
 // ══ LIGHTBOX ══
 function openLightbox(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open')}
