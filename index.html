@@ -7,1167 +7,921 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #fdfaf6;
-    --blush: #f5e6e0;
-    --rose: #e8c4b8;
-    --mauve: #c9a99a;
-    --deep: #6b4c45;
-    --text: #3a2a26;
-    --muted: #9a7b74;
-    --white: #ffffff;
-    --shadow: 0 4px 24px rgba(107,76,69,0.08);
-    --radius: 16px;
-  }
+:root {
+  --cream: #fdfaf6; --blush: #f5e6e0; --rose: #e8c4b8;
+  --mauve: #c9a99a; --deep: #6b4c45; --text: #3a2a26;
+  --muted: #9a7b74; --white: #ffffff;
+  --shadow: 0 4px 24px rgba(107,76,69,0.10); --radius: 16px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(253,250,246,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rose);
+  display: flex; align-items: center; overflow-x: auto; scrollbar-width: none;
+}
+nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  background: none; border: none; font-family: 'Inter', sans-serif;
+  font-size: 0.78rem; font-weight: 500; color: var(--muted); cursor: pointer;
+  padding: 1.1rem 0.9rem; white-space: nowrap;
+  border-bottom: 2px solid transparent; transition: all .2s; flex-shrink: 0;
+}
+.nav-btn.active, .nav-btn:hover { color: var(--deep); border-bottom-color: var(--mauve); }
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    min-height: 100vh;
-  }
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 4rem 2rem; background: linear-gradient(160deg, var(--cream) 0%, var(--blush) 100%);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,196,184,0.3) 0%, transparent 70%);
+}
+.hero > * { position: relative; z-index: 1; }
+.eyebrow {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--mauve); margin-bottom: 1.2rem;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 11vw, 6.5rem); font-weight: 400; line-height: 1.05;
+  color: var(--deep); margin-bottom: 0.4rem;
+}
+.hero h1 em { font-style: italic; color: var(--mauve); }
+.hero-sub { font-size: 1.1rem; color: var(--muted); font-weight: 300; margin-bottom: 2.5rem; }
+.fecha-doble { display: flex; gap: 2rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
+.fecha-item { text-align: center; }
+.fecha-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mauve); margin-bottom: 0.3rem; }
+.fecha-val { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--deep); }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(253,250,246,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--rose);
-    padding: 0 1.5rem;
-    display: flex; align-items: center; gap: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  nav::-webkit-scrollbar { display: none; }
-  .nav-btn {
-    background: none; border: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.78rem; font-weight: 500;
-    color: var(--muted); cursor: pointer;
-    padding: 1.1rem 1rem;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: all .2s;
-  }
-  .nav-btn.active, .nav-btn:hover {
-    color: var(--deep);
-    border-bottom-color: var(--mauve);
-  }
+/* COUNTDOWN */
+.countdown { display: flex; gap: 1rem; justify-content: center; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.cd-unit { text-align: center; background: var(--white); border-radius: var(--radius); padding: 0.9rem 1.2rem; box-shadow: var(--shadow); min-width: 72px; }
+.cd-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 600; color: var(--deep); line-height: 1; }
+.cd-lbl { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+.hero-cta { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 6rem 2rem 4rem;
-    background: linear-gradient(160deg, var(--cream) 0%, var(--blush) 100%);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,196,184,0.3) 0%, transparent 70%);
-  }
-  .hero-eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.75rem; font-weight: 500;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--mauve);
-    margin-bottom: 1.5rem;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3.5rem, 12vw, 7rem);
-    font-weight: 400;
-    line-height: 1;
-    color: var(--deep);
-    margin-bottom: 0.5rem;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--mauve);
-  }
-  .hero-sub {
-    font-size: clamp(1rem, 3vw, 1.3rem);
-    color: var(--muted);
-    font-weight: 300;
-    margin-bottom: 3rem;
-  }
+/* BUTTONS */
+.btn { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; padding: 0.85rem 1.8rem; border-radius: 50px; cursor: pointer; transition: all .2s; border: none; display: inline-block; }
+.btn-primary { background: var(--deep); color: var(--white); }
+.btn-primary:hover { background: var(--text); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(107,76,69,0.25); }
+.btn-outline { background: transparent; border: 1.5px solid var(--mauve); color: var(--deep); }
+.btn-outline:hover { background: var(--blush); }
+.btn-full { width: 100%; text-align: center; }
+.btn-danger { background: #c0392b; color: white; }
+.btn-danger:hover { background: #a93226; }
 
-  /* CUENTA ATRÁS */
-  .countdown {
-    display: flex; gap: 1.5rem; justify-content: center;
-    margin-bottom: 3rem; flex-wrap: wrap;
-  }
-  .countdown-unit {
-    text-align: center;
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 1rem 1.5rem;
-    box-shadow: var(--shadow);
-    min-width: 80px;
-  }
-  .countdown-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem; font-weight: 600;
-    color: var(--deep); line-height: 1;
-  }
-  .countdown-label {
-    font-size: 0.65rem; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--muted);
-    margin-top: 0.3rem;
-  }
-  .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
-  }
-  .btn {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem; font-weight: 500;
-    padding: 0.85rem 2rem;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all .2s;
-    text-decoration: none;
-    border: none;
-  }
-  .btn-primary {
-    background: var(--deep);
-    color: var(--white);
-  }
-  .btn-primary:hover { background: var(--text); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(107,76,69,0.25); }
-  .btn-outline {
-    background: transparent;
-    border: 1.5px solid var(--mauve);
-    color: var(--deep);
-  }
-  .btn-outline:hover { background: var(--blush); transform: translateY(-1px); }
+/* SECTIONS */
+.section { display: none; min-height: 100vh; padding: 5.5rem 1.2rem 3rem; }
+.section.active { display: block; }
+.section-inner { max-width: 860px; margin: 0 auto; }
+.sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 400; color: var(--deep); margin-bottom: 0.4rem; }
+.sec-title em { font-style: italic; color: var(--mauve); }
+.sec-sub { color: var(--muted); font-weight: 300; margin-bottom: 2rem; font-size: 0.92rem; }
 
-  /* SECCIONES */
-  .section {
-    display: none;
-    min-height: 100vh;
-    padding: 7rem 1.5rem 4rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .section.active { display: block; }
+/* CARD */
+.card { background: var(--white); border-radius: var(--radius); padding: 1.6rem; box-shadow: var(--shadow); margin-bottom: 1.2rem; }
 
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 6vw, 3rem);
-    font-weight: 400;
-    color: var(--deep);
-    margin-bottom: 0.5rem;
-  }
-  .section-title em { font-style: italic; color: var(--mauve); }
-  .section-sub {
-    color: var(--muted); font-weight: 300;
-    margin-bottom: 2.5rem; font-size: 0.95rem;
-  }
+/* FORM */
+.fg { margin-bottom: 1.1rem; }
+.fg label { display: block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.45rem; }
+.fg input, .fg textarea, .fg select {
+  width: 100%; font-family: 'Inter', sans-serif; font-size: 0.93rem;
+  padding: 0.8rem 1rem; border: 1.5px solid var(--rose); border-radius: 10px;
+  background: var(--cream); color: var(--text); outline: none; transition: border-color .2s;
+}
+.fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--mauve); background: var(--white); }
+.fg textarea { resize: vertical; min-height: 90px; }
 
-  /* CARD */
-  .card {
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 2rem;
-    box-shadow: var(--shadow);
-    margin-bottom: 1.5rem;
-  }
+/* CANVAS */
+#firma-canvas {
+  border: 1.5px solid var(--rose); border-radius: 10px; background: #fff;
+  cursor: crosshair; width: 100%; height: 150px; display: block; touch-action: none;
+}
+.canvas-row { display: flex; gap: 0.6rem; margin-top: 0.6rem; flex-wrap: wrap; align-items: center; }
+.btn-xs { font-size: 0.75rem; padding: 0.45rem 1rem; border-radius: 50px; cursor: pointer; border: 1.5px solid var(--rose); background: transparent; color: var(--muted); font-family: 'Inter', sans-serif; }
+.btn-xs:hover { border-color: var(--mauve); color: var(--deep); }
+.color-dot { width: 26px; height: 26px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: border-color .15s; flex-shrink: 0; }
+.color-dot.selected { border-color: var(--deep); }
 
-  /* FORM ELEMENTS */
-  .form-group { margin-bottom: 1.2rem; }
-  label {
-    display: block;
-    font-size: 0.78rem; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 0.5rem;
-  }
-  input[type="text"], textarea {
-    width: 100%;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    padding: 0.85rem 1rem;
-    border: 1.5px solid var(--rose);
-    border-radius: 10px;
-    background: var(--cream);
-    color: var(--text);
-    outline: none;
-    transition: border-color .2s;
-  }
-  input[type="text"]:focus, textarea:focus { border-color: var(--mauve); }
-  textarea { resize: vertical; min-height: 100px; }
+/* UPLOAD */
+.upload-area {
+  border: 2px dashed var(--rose); border-radius: var(--radius);
+  padding: 1.8rem; text-align: center; cursor: pointer; transition: all .2s; background: var(--cream);
+}
+.upload-area:hover { border-color: var(--mauve); background: var(--blush); }
+.upload-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+.upload-text { color: var(--muted); font-size: 0.88rem; }
+.preview-img { max-width: 180px; max-height: 180px; border-radius: 10px; margin: 0.8rem auto 0; display: block; object-fit: cover; }
+.preview-video { width: 100%; max-height: 260px; border-radius: 10px; margin-top: 0.8rem; display: block; }
 
-  /* CANVAS FIRMA */
-  #firma-canvas {
-    border: 1.5px solid var(--rose);
-    border-radius: 10px;
-    background: var(--white);
-    cursor: crosshair;
-    width: 100%;
-    max-width: 500px;
-    height: 160px;
-    display: block;
-    touch-action: none;
-  }
-  .canvas-actions {
-    display: flex; gap: 0.8rem; margin-top: 0.8rem; flex-wrap: wrap;
-  }
-  .btn-sm {
-    font-size: 0.78rem; padding: 0.5rem 1.2rem;
-    border-radius: 50px; cursor: pointer; border: none;
-    font-family: 'Inter', sans-serif; font-weight: 500;
-  }
-  .btn-sm-outline {
-    background: transparent; border: 1.5px solid var(--rose);
-    color: var(--muted);
-  }
-  .btn-sm-outline:hover { border-color: var(--mauve); color: var(--deep); }
+/* GRIDS */
+.firmas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.firma-card { background: var(--white); border-radius: var(--radius); padding: 1.3rem; box-shadow: var(--shadow); border-top: 3px solid var(--rose); }
+.firma-card .fc-nombre { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--deep); margin-bottom: 0.3rem; }
+.firma-card .fc-msg { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.7rem; }
+.firma-card .fc-foto { width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 0.7rem; cursor: pointer; }
+.firma-card .fc-firma { width: 100%; max-height: 55px; object-fit: contain; opacity: 0.55; }
+.firma-card .fc-date { font-size: 0.68rem; color: var(--rose); margin-top: 0.5rem; }
 
-  /* FOTO UPLOAD */
-  .upload-area {
-    border: 2px dashed var(--rose);
-    border-radius: var(--radius);
-    padding: 2rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all .2s;
-    background: var(--cream);
-  }
-  .upload-area:hover { border-color: var(--mauve); background: var(--blush); }
-  .upload-area input { display: none; }
-  .upload-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-  .upload-text { color: var(--muted); font-size: 0.9rem; }
-  .preview-img {
-    max-width: 200px; max-height: 200px;
-    border-radius: 10px; margin: 1rem auto;
-    display: block; object-fit: cover;
-  }
+.galeria-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.8rem; margin-top: 1.5rem; }
+.galeria-item { aspect-ratio: 1; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); cursor: pointer; transition: transform .2s; }
+.galeria-item:hover { transform: scale(1.04); }
+.galeria-item img { width: 100%; height: 100%; object-fit: cover; }
 
-  /* FIRMAS LISTA */
-  .firmas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.2rem;
-    margin-top: 2rem;
-  }
-  .firma-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    box-shadow: var(--shadow);
-    border-top: 3px solid var(--rose);
-  }
-  .firma-card .nombre {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem; color: var(--deep);
-    margin-bottom: 0.4rem;
-  }
-  .firma-card .mensaje {
-    font-size: 0.88rem; color: var(--muted);
-    line-height: 1.6; margin-bottom: 0.8rem;
-  }
-  .firma-card img.foto {
-    width: 100%; height: 140px;
-    object-fit: cover; border-radius: 8px;
-    margin-bottom: 0.8rem;
-  }
-  .firma-card img.svg-firma {
-    width: 100%; max-height: 60px;
-    object-fit: contain; opacity: 0.6;
-  }
+.deseos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.deseo-card { border-radius: 10px; padding: 1.1rem; box-shadow: 0 3px 12px rgba(0,0,0,0.07); transform: rotate(var(--rot)); transition: transform .2s; }
+.deseo-card:hover { transform: rotate(0deg) scale(1.02); }
+.deseo-card .dc-nom { font-weight: 600; font-size: 0.82rem; color: #444; margin-bottom: 0.35rem; }
+.deseo-card .dc-msg { font-size: 0.85rem; line-height: 1.55; color: #333; }
 
-  /* MURO DE DESEOS */
-  .deseos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-  .deseo-card {
-    border-radius: 12px;
-    padding: 1.2rem;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-    transform: rotate(var(--rotate));
-    transition: transform .2s;
-  }
-  .deseo-card:hover { transform: rotate(0deg) scale(1.02); }
-  .deseo-card .dnombre {
-    font-weight: 500; font-size: 0.85rem;
-    color: var(--deep); margin-bottom: 0.4rem;
-  }
-  .deseo-card .dmsg {
-    font-size: 0.88rem; line-height: 1.6; color: var(--text);
-  }
+.videos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.video-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.video-card video { width: 100%; aspect-ratio: 9/16; object-fit: cover; max-height: 280px; display: block; }
+.video-card .vc-nom { padding: 0.7rem; font-size: 0.82rem; color: var(--muted); font-weight: 500; }
 
-  /* GALERÍA */
-  .galeria-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-  .galeria-item {
-    aspect-ratio: 1;
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    cursor: pointer;
-    transition: transform .2s;
-  }
-  .galeria-item:hover { transform: scale(1.03); }
-  .galeria-item img {
-    width: 100%; height: 100%; object-fit: cover;
-  }
+/* PREMIOS */
+.premios-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+.premio-card { background: var(--white); border-radius: var(--radius); padding: 1.4rem; box-shadow: var(--shadow); text-align: center; }
+.premio-emoji { font-size: 2.2rem; margin-bottom: 0.4rem; }
+.premio-titulo { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--deep); margin-bottom: 0.9rem; line-height: 1.3; }
+.premio-bar { background: var(--blush); border-radius: 8px; overflow: hidden; margin-bottom: 0.4rem; }
+.premio-bar-fill { height: 6px; background: var(--mauve); transition: width .4s; border-radius: 8px; }
+.premio-resultado { font-size: 0.78rem; color: var(--muted); }
+.ganador-badge { display: inline-block; background: var(--deep); color: white; font-size: 0.72rem; padding: 0.2rem 0.7rem; border-radius: 50px; margin-top: 0.4rem; }
 
-  /* PREMIOS */
-  .premios-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
-  }
-  .premio-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    box-shadow: var(--shadow);
-    text-align: center;
-  }
-  .premio-emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
-  .premio-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem; color: var(--deep);
-    margin-bottom: 1rem;
-  }
-  .premio-input {
-    width: 100%; font-family: 'Inter', sans-serif;
-    font-size: 0.9rem; padding: 0.7rem 1rem;
-    border: 1.5px solid var(--rose); border-radius: 8px;
-    background: var(--cream); color: var(--text); outline: none;
-    margin-bottom: 0.6rem;
-  }
-  .premio-input:focus { border-color: var(--mauve); }
-  .premio-resultado {
-    font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem;
-  }
-  .ganador {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem; color: var(--deep); font-weight: 600;
-  }
+/* RAZONES */
+.razones-list { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
+.razon-item { display: flex; align-items: flex-start; gap: 1rem; background: var(--white); border-radius: 12px; padding: 1rem 1.2rem; box-shadow: var(--shadow); }
+.razon-num { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--rose); font-weight: 600; min-width: 2rem; line-height: 1.2; }
+.razon-text { font-size: 0.92rem; line-height: 1.6; }
+.razon-autor { font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
 
-  /* RAZONES */
-  .razones-list {
-    display: flex; flex-direction: column; gap: 0.8rem;
-    margin-top: 2rem;
-  }
-  .razon-item {
-    display: flex; align-items: flex-start; gap: 1rem;
-    background: var(--white); border-radius: 12px;
-    padding: 1rem 1.2rem; box-shadow: var(--shadow);
-  }
-  .razon-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem; color: var(--rose); font-weight: 600;
-    min-width: 2rem; line-height: 1.2;
-  }
-  .razon-text { font-size: 0.95rem; line-height: 1.6; }
-  .razon-autor { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+/* SORPRESA */
+.sorpresa-lock { text-align: center; padding: 3.5rem 2rem; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); }
+.lock-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+.lock-msg { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--deep); margin-bottom: 0.4rem; }
+.lock-sub { color: var(--muted); font-size: 0.88rem; }
+.sorpresa-revealed { background: linear-gradient(135deg, var(--blush), var(--cream)); border-radius: var(--radius); padding: 2.5rem; text-align: center; border: 1px solid var(--rose); }
+.sorpresa-revealed p { font-family: 'Playfair Display', serif; font-size: 1.15rem; line-height: 1.9; color: var(--deep); font-style: italic; margin-bottom: 1rem; }
+.sorpresa-revealed .sor-autor { font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--muted); font-style: normal; }
 
-  /* SORPRESA */
-  .sorpresa-lock {
-    text-align: center; padding: 4rem 2rem;
-  }
-  .lock-icon { font-size: 4rem; margin-bottom: 1rem; }
-  .lock-msg {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem; color: var(--deep); margin-bottom: 0.5rem;
-  }
-  .lock-sub { color: var(--muted); font-size: 0.9rem; }
-  .sorpresa-msg {
-    background: linear-gradient(135deg, var(--blush), var(--cream));
-    border-radius: var(--radius);
-    padding: 2.5rem;
-    text-align: center;
-    border: 1px solid var(--rose);
-  }
-  .sorpresa-msg p {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem; line-height: 1.8;
-    color: var(--deep); font-style: italic;
-    margin-bottom: 1rem;
-  }
-  .sorpresa-msg .autor {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem; color: var(--muted);
-    font-style: normal;
-  }
+/* ADMIN */
+#admin-trigger { position: fixed; bottom: 0; right: 0; width: 40px; height: 40px; cursor: pointer; z-index: 500; background: transparent; border: none; }
+.admin-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 600; align-items: center; justify-content: center; }
+.admin-overlay.open { display: flex; }
+.admin-box { background: var(--white); border-radius: var(--radius); padding: 2rem; width: 90%; max-width: 380px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+.admin-box h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--deep); margin-bottom: 1.2rem; }
+.admin-panel { display: none; }
+.admin-panel.open { display: block; }
+.admin-stat { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 0; border-bottom: 1px solid var(--blush); font-size: 0.88rem; }
+.admin-stat:last-child { border: none; }
+.admin-count { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--deep); font-weight: 600; }
+.admin-actions { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.2rem; }
 
-  /* TOAST */
-  .toast {
-    position: fixed; bottom: 2rem; left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: var(--deep); color: var(--white);
-    padding: 0.9rem 2rem; border-radius: 50px;
-    font-size: 0.9rem; font-weight: 500;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-    transition: transform .3s cubic-bezier(.34,1.56,.64,1);
-    z-index: 999;
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
+/* LIGHTBOX */
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 700; align-items: center; justify-content: center; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 92vw; max-height: 92vh; border-radius: var(--radius); object-fit: contain; }
+.lb-close { position: absolute; top: 1.2rem; right: 1.2rem; background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.4rem; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-  /* LOADING */
-  .loading {
-    text-align: center; padding: 3rem;
-    color: var(--muted); font-size: 0.9rem;
-  }
-  .spinner {
-    width: 32px; height: 32px;
-    border: 3px solid var(--rose);
-    border-top-color: var(--mauve);
-    border-radius: 50%;
-    animation: spin .8s linear infinite;
-    margin: 0 auto 1rem;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
+/* TOAST */
+.toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(120px); background: var(--deep); color: var(--white); padding: 0.85rem 1.8rem; border-radius: 50px; font-size: 0.88rem; font-weight: 500; box-shadow: 0 8px 30px rgba(0,0,0,0.2); transition: transform .3s cubic-bezier(.34,1.56,.64,1); z-index: 800; white-space: nowrap; }
+.toast.show { transform: translateX(-50%) translateY(0); }
 
-  /* VIDEO */
-  .video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.2rem; margin-top: 2rem;
-  }
-  .video-item {
-    background: var(--white); border-radius: var(--radius);
-    overflow: hidden; box-shadow: var(--shadow);
-  }
-  .video-item video {
-    width: 100%; aspect-ratio: 9/16; object-fit: cover;
-    max-height: 300px;
-  }
-  .video-item .vnombre {
-    padding: 0.8rem; font-size: 0.85rem;
-    color: var(--muted); font-weight: 500;
-  }
+/* LOADING / EMPTY */
+.loading-box { text-align: center; padding: 3rem; color: var(--muted); font-size: 0.9rem; }
+.spinner { width: 30px; height: 30px; border: 3px solid var(--rose); border-top-color: var(--mauve); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 0.8rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.empty-msg { text-align: center; padding: 2.5rem; color: var(--muted); font-size: 0.9rem; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); }
+.empty-msg .em-icon { font-size: 2rem; margin-bottom: 0.5rem; }
 
-  /* LIGHTBOX */
-  .lightbox {
-    display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.85); z-index: 200;
-    align-items: center; justify-content: center;
-  }
-  .lightbox.open { display: flex; }
-  .lightbox img {
-    max-width: 90vw; max-height: 90vh;
-    border-radius: var(--radius);
-    object-fit: contain;
-  }
-  .lightbox-close {
-    position: absolute; top: 1.5rem; right: 1.5rem;
-    background: rgba(255,255,255,0.15); border: none;
-    color: white; font-size: 1.5rem; width: 44px; height: 44px;
-    border-radius: 50%; cursor: pointer; display: flex;
-    align-items: center; justify-content: center;
-  }
+/* COLOR PALETTE */
+.color-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.3rem; }
 
-  /* HERO section always shown */
-  #hero-section { display: flex; }
-  .sections-wrapper { padding-top: 0; }
-
-  @media (max-width: 600px) {
-    .card { padding: 1.5rem; }
-    .firmas-grid, .premios-grid { grid-template-columns: 1fr; }
-    .countdown { gap: 0.8rem; }
-    .countdown-unit { padding: 0.8rem 1rem; min-width: 65px; }
-    .countdown-num { font-size: 1.8rem; }
-  }
+@media (max-width: 580px) {
+  .card { padding: 1.2rem; }
+  .firmas-grid, .premios-grid { grid-template-columns: 1fr; }
+  .countdown { gap: 0.6rem; }
+  .cd-unit { padding: 0.7rem 0.9rem; min-width: 60px; }
+  .cd-num { font-size: 1.6rem; }
+  .fecha-doble { gap: 1.2rem; }
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- NAV (oculta en hero) -->
 <nav id="main-nav" style="display:none;">
-  <button class="nav-btn" onclick="showSection('firmas')">✍️ Firmas</button>
-  <button class="nav-btn" onclick="showSection('galeria')">📸 Galería</button>
-  <button class="nav-btn" onclick="showSection('deseos')">💌 Deseos</button>
-  <button class="nav-btn" onclick="showSection('videos')">🎬 Vídeos</button>
-  <button class="nav-btn" onclick="showSection('premios')">🏆 Premios</button>
-  <button class="nav-btn" onclick="showSection('razones')">💛 18 Razones</button>
-  <button class="nav-btn" onclick="showSection('sorpresa')">🔒 Sorpresa</button>
-  <button class="nav-btn" onclick="showSection('hero-section')" style="margin-left:auto;">← Inicio</button>
+  <button class="nav-btn" onclick="show('s-firmas')">✍️ Firmas</button>
+  <button class="nav-btn" onclick="show('s-galeria')">📸 Galería</button>
+  <button class="nav-btn" onclick="show('s-deseos')">💌 Deseos</button>
+  <button class="nav-btn" onclick="show('s-videos')">🎬 Vídeos</button>
+  <button class="nav-btn" onclick="show('s-premios')">🏆 Premios</button>
+  <button class="nav-btn" onclick="show('s-razones')">💛 18 Razones</button>
+  <button class="nav-btn" onclick="show('s-sorpresa')">🔒 Sorpresa</button>
+  <button class="nav-btn" onclick="show('s-hero')" style="margin-left:auto;">🏠</button>
 </nav>
 
-<!-- HERO -->
-<div id="hero-section" class="hero section active">
-  <p class="hero-eyebrow">12 · Septiembre · 2026</p>
+<!-- ═══════════ HERO ═══════════ -->
+<div id="s-hero" class="section active hero">
+  <p class="eyebrow">¡Feliz Cumpleaños!</p>
   <h1>Martina<br><em>cumple 18</em></h1>
-  <p class="hero-sub">Una noche para recordar siempre 🌸</p>
+  <p class="hero-sub">Una fecha para recordar siempre 🌸</p>
 
-  <div class="countdown" id="countdown">
-    <div class="countdown-unit"><div class="countdown-num" id="cd-dias">--</div><div class="countdown-label">Días</div></div>
-    <div class="countdown-unit"><div class="countdown-num" id="cd-horas">--</div><div class="countdown-label">Horas</div></div>
-    <div class="countdown-unit"><div class="countdown-num" id="cd-min">--</div><div class="countdown-label">Min</div></div>
-    <div class="countdown-unit"><div class="countdown-num" id="cd-seg">--</div><div class="countdown-label">Seg</div></div>
+  <div class="fecha-doble">
+    <div class="fecha-item">
+      <div class="fecha-label">Cumpleaños</div>
+      <div class="fecha-val">10 de Septiembre 2026</div>
+    </div>
+    <div class="fecha-item">
+      <div class="fecha-label">La fiesta</div>
+      <div class="fecha-val">12 de Septiembre 2026</div>
+    </div>
+  </div>
+
+  <div class="countdown">
+    <div class="cd-unit"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Días</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">Horas</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">Min</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">Seg</div></div>
   </div>
 
   <div class="hero-cta">
-    <button class="btn btn-primary" onclick="showSection('firmas')">✍️ Dejar mi firma</button>
-    <button class="btn btn-outline" onclick="showSection('deseos')">💌 Escribir un deseo</button>
+    <button class="btn btn-primary" onclick="show('s-firmas')">✍️ Firmar el libro</button>
+    <button class="btn btn-outline" onclick="show('s-deseos')">💌 Escribir un deseo</button>
+    <button class="btn btn-outline" onclick="show('s-galeria')">📸 Subir foto</button>
   </div>
 </div>
 
-<!-- FIRMAS -->
-<div id="firmas" class="section">
-  <h2 class="section-title">Libro de <em>firmas</em></h2>
-  <p class="section-sub">Deja tu huella en el día más especial de Martina</p>
+<!-- ═══════════ FIRMAS ═══════════ -->
+<div id="s-firmas" class="section">
+<div class="section-inner">
+  <h2 class="sec-title">Libro de <em>firmas</em></h2>
+  <p class="sec-sub">Deja tu huella en el día más especial de Martina</p>
 
   <div class="card">
-    <div class="form-group">
-      <label>Tu nombre</label>
-      <input type="text" id="firma-nombre" placeholder="¿Cómo te llamas?">
-    </div>
-    <div class="form-group">
-      <label>Tu mensaje para Martina</label>
-      <textarea id="firma-mensaje" placeholder="Escríbele algo especial..."></textarea>
-    </div>
-    <div class="form-group">
+    <div class="fg"><label>Tu nombre *</label><input type="text" id="f-nombre" placeholder="¿Cómo te llamas?"></div>
+    <div class="fg"><label>Dedicatoria para Martina</label><textarea id="f-mensaje" placeholder="Escríbele algo especial desde el corazón..."></textarea></div>
+    <div class="fg">
       <label>Tu firma (dibuja con el dedo o ratón)</label>
       <canvas id="firma-canvas"></canvas>
-      <div class="canvas-actions">
-        <button class="btn-sm btn-sm-outline" onclick="clearCanvas()">Borrar firma</button>
-        <select id="firma-color" onchange="cambiarColor(this.value)" style="border:1.5px solid var(--rose);border-radius:8px;padding:0.4rem 0.8rem;background:var(--cream);color:var(--text);font-family:'Inter',sans-serif;cursor:pointer;">
-          <option value="#3a2a26">Negro</option>
-          <option value="#c9a99a">Rosa</option>
-          <option value="#6b4c45">Marrón</option>
-          <option value="#4a7c7e">Verde azulado</option>
-        </select>
+      <div class="canvas-row">
+        <button class="btn-xs" onclick="clearCanvas()">🗑 Borrar</button>
+        <div class="color-dot selected" style="background:#3a2a26" onclick="setPenColor('#3a2a26',this)" title="Negro"></div>
+        <div class="color-dot" style="background:#c9a99a" onclick="setPenColor('#c9a99a',this)" title="Rosa"></div>
+        <div class="color-dot" style="background:#4a7c7e" onclick="setPenColor('#4a7c7e',this)" title="Verde azulado"></div>
+        <div class="color-dot" style="background:#6b4c45" onclick="setPenColor('#6b4c45',this)" title="Marrón"></div>
+        <div class="color-dot" style="background:#2c3e7a" onclick="setPenColor('#2c3e7a',this)" title="Azul"></div>
       </div>
     </div>
-    <div class="form-group">
+    <div class="fg">
       <label>Foto (opcional)</label>
-      <div class="upload-area" onclick="document.getElementById('firma-foto-input').click()">
-        <input type="file" id="firma-foto-input" accept="image/*" onchange="previewFirmaFoto(this)">
+      <div class="upload-area" onclick="document.getElementById('f-foto').click()">
+        <input type="file" id="f-foto" accept="image/*" style="display:none" onchange="previewImg(this,'f-foto-prev')">
         <div class="upload-icon">📷</div>
         <div class="upload-text">Toca para añadir una foto</div>
       </div>
-      <img id="firma-foto-preview" class="preview-img" style="display:none;">
+      <img id="f-foto-prev" class="preview-img" style="display:none">
     </div>
-    <button class="btn btn-primary" onclick="enviarFirma()" style="width:100%;">Enviar mi firma ✨</button>
+    <button class="btn btn-primary btn-full" onclick="enviarFirma()">Enviar mi firma ✨</button>
   </div>
 
-  <h3 style="font-family:'Playfair Display',serif;color:var(--deep);margin:2rem 0 0.5rem;font-weight:400;font-size:1.4rem;">Firmas de todos</h3>
-  <div id="firmas-lista" class="firmas-grid"><div class="loading"><div class="spinner"></div>Cargando firmas...</div></div>
+  <h3 style="font-family:'Playfair Display',serif;color:var(--deep);font-weight:400;font-size:1.3rem;margin:1.5rem 0 0.3rem;">Todas las firmas</h3>
+  <div id="firmas-lista"><div class="loading-box"><div class="spinner"></div>Cargando...</div></div>
+</div>
 </div>
 
-<!-- GALERÍA -->
-<div id="galeria" class="section">
-  <h2 class="section-title">Galería <em>colectiva</em></h2>
-  <p class="section-sub">Sube tus fotos y crea el álbum del día con todos</p>
+<!-- ═══════════ GALERÍA ═══════════ -->
+<div id="s-galeria" class="section">
+<div class="section-inner">
+  <h2 class="sec-title">Galería <em>colectiva</em></h2>
+  <p class="sec-sub">Sube tus fotos y construid juntos el álbum del día</p>
 
   <div class="card">
-    <div class="form-group">
-      <label>Tu nombre</label>
-      <input type="text" id="galeria-nombre" placeholder="¿Cómo te llamas?">
-    </div>
-    <div class="form-group">
-      <label>Tu foto</label>
-      <div class="upload-area" onclick="document.getElementById('galeria-foto-input').click()">
-        <input type="file" id="galeria-foto-input" accept="image/*" onchange="previewGaleriaFoto(this)">
+    <div class="fg"><label>Tu nombre *</label><input type="text" id="g-nombre" placeholder="¿Cómo te llamas?"></div>
+    <div class="fg">
+      <label>Tu foto *</label>
+      <div class="upload-area" onclick="document.getElementById('g-foto').click()">
+        <input type="file" id="g-foto" accept="image/*" style="display:none" onchange="previewImg(this,'g-foto-prev')">
         <div class="upload-icon">🖼️</div>
-        <div class="upload-text">Toca para subir tu foto</div>
+        <div class="upload-text">Toca para subir una foto</div>
       </div>
-      <img id="galeria-foto-preview" class="preview-img" style="display:none;">
+      <img id="g-foto-prev" class="preview-img" style="display:none">
     </div>
-    <button class="btn btn-primary" onclick="enviarGaleria()" style="width:100%;">Subir foto 📸</button>
+    <button class="btn btn-primary btn-full" onclick="enviarGaleria()">Subir mi foto 📸</button>
   </div>
 
-  <div id="galeria-grid" class="galeria-grid"><div class="loading"><div class="spinner"></div>Cargando fotos...</div></div>
+  <div id="galeria-grid"><div class="loading-box"><div class="spinner"></div>Cargando fotos...</div></div>
+</div>
 </div>
 
-<!-- DESEOS -->
-<div id="deseos" class="section">
-  <h2 class="section-title">Muro de <em>deseos</em></h2>
-  <p class="section-sub">¿Qué le deseas a Martina para sus 18?</p>
+<!-- ═══════════ DESEOS ═══════════ -->
+<div id="s-deseos" class="section">
+<div class="section-inner">
+  <h2 class="sec-title">Muro de <em>deseos</em></h2>
+  <p class="sec-sub">¿Qué le deseas a Martina para sus 18? Cuélgalo aquí</p>
 
   <div class="card">
-    <div class="form-group">
-      <label>Tu nombre</label>
-      <input type="text" id="deseo-nombre" placeholder="¿Cómo te llamas?">
-    </div>
-    <div class="form-group">
-      <label>Tu deseo</label>
-      <textarea id="deseo-msg" placeholder="Que te deseo con todo mi corazón..."></textarea>
-    </div>
-    <div class="form-group">
+    <div class="fg"><label>Tu nombre *</label><input type="text" id="d-nombre" placeholder="¿Cómo te llamas?"></div>
+    <div class="fg"><label>Tu deseo *</label><textarea id="d-mensaje" placeholder="Que seas muy feliz y que..."></textarea></div>
+    <div class="fg">
       <label>Color del post-it</label>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-        <button onclick="selectColor('#fff9c4')" style="width:36px;height:36px;background:#fff9c4;border:2px solid #ccc;border-radius:50%;cursor:pointer;" title="Amarillo"></button>
-        <button onclick="selectColor('#ffd6d6')" style="width:36px;height:36px;background:#ffd6d6;border:2px solid #ccc;border-radius:50%;cursor:pointer;" title="Rosa"></button>
-        <button onclick="selectColor('#d6f0d6')" style="width:36px;height:36px;background:#d6f0d6;border:2px solid #ccc;border-radius:50%;cursor:pointer;" title="Verde"></button>
-        <button onclick="selectColor('#d6e4f7')" style="width:36px;height:36px;background:#d6e4f7;border:2px solid #ccc;border-radius:50%;cursor:pointer;" title="Azul"></button>
-        <button onclick="selectColor('#f5e6ff')" style="width:36px;height:36px;background:#f5e6ff;border:2px solid #ccc;border-radius:50%;cursor:pointer;" title="Lila"></button>
+      <div class="color-row">
+        <div class="color-dot selected" style="background:#fff9c4" onclick="setDeseoColor('#fff9c4',this)" title="Amarillo"></div>
+        <div class="color-dot" style="background:#ffd6d6" onclick="setDeseoColor('#ffd6d6',this)" title="Rosa"></div>
+        <div class="color-dot" style="background:#d6f0d6" onclick="setDeseoColor('#d6f0d6',this)" title="Verde"></div>
+        <div class="color-dot" style="background:#d6e4f7" onclick="setDeseoColor('#d6e4f7',this)" title="Azul"></div>
+        <div class="color-dot" style="background:#f5e6ff" onclick="setDeseoColor('#f5e6ff',this)" title="Lila"></div>
+        <div class="color-dot" style="background:#ffe4c4" onclick="setDeseoColor('#ffe4c4',this)" title="Naranja"></div>
       </div>
-      <input type="hidden" id="deseo-color" value="#fff9c4">
     </div>
-    <button class="btn btn-primary" onclick="enviarDeseo()" style="width:100%;">Colgar mi deseo 💌</button>
+    <button class="btn btn-primary btn-full" onclick="enviarDeseo()">Colgar mi deseo 💌</button>
   </div>
 
-  <div id="deseos-grid" class="deseos-grid"><div class="loading"><div class="spinner"></div>Cargando deseos...</div></div>
+  <div id="deseos-grid"><div class="loading-box"><div class="spinner"></div>Cargando deseos...</div></div>
+</div>
 </div>
 
-<!-- VÍDEOS -->
-<div id="videos" class="section">
-  <h2 class="section-title">Vídeos de <em>felicitación</em></h2>
-  <p class="section-sub">Graba un vídeo de hasta 10 segundos para Martina</p>
+<!-- ═══════════ VÍDEOS ═══════════ -->
+<div id="s-videos" class="section">
+<div class="section-inner">
+  <h2 class="sec-title">Vídeos de <em>felicitación</em></h2>
+  <p class="sec-sub">Graba o sube un vídeo de hasta 10 segundos para Martina</p>
 
   <div class="card">
-    <div class="form-group">
-      <label>Tu nombre</label>
-      <input type="text" id="video-nombre" placeholder="¿Cómo te llamas?">
-    </div>
-    <div class="form-group">
-      <label>Tu vídeo (máx. 10 segundos)</label>
-      <div class="upload-area" onclick="document.getElementById('video-input').click()">
-        <input type="file" id="video-input" accept="video/*" onchange="previewVideo(this)">
+    <div class="fg"><label>Tu nombre *</label><input type="text" id="v-nombre" placeholder="¿Cómo te llamas?"></div>
+    <div class="fg">
+      <label>Tu vídeo (máx. 10 segundos) *</label>
+      <div class="upload-area" onclick="document.getElementById('v-video').click()">
+        <input type="file" id="v-video" accept="video/*" style="display:none" onchange="previewVideo(this)">
         <div class="upload-icon">🎬</div>
-        <div class="upload-text">Toca para subir tu vídeo (máx. 10 seg)</div>
+        <div class="upload-text">Toca para subir un vídeo · máx. 10 segundos</div>
       </div>
-      <video id="video-preview" style="display:none;width:100%;max-height:300px;border-radius:10px;margin-top:1rem;" controls></video>
-      <p id="video-duracion-msg" style="color:var(--muted);font-size:0.8rem;margin-top:0.4rem;"></p>
+      <video id="v-preview" class="preview-video" style="display:none" controls playsinline></video>
+      <p id="v-duracion" style="font-size:0.8rem;margin-top:0.4rem;color:var(--muted);"></p>
     </div>
-    <button class="btn btn-primary" onclick="enviarVideo()" style="width:100%;">Enviar vídeo 🎬</button>
+    <button class="btn btn-primary btn-full" onclick="enviarVideo()">Enviar mi vídeo 🎬</button>
   </div>
 
-  <div id="videos-grid" class="video-grid"><div class="loading"><div class="spinner"></div>Cargando vídeos...</div></div>
+  <div id="videos-grid"><div class="loading-box"><div class="spinner"></div>Cargando vídeos...</div></div>
+</div>
 </div>
 
-<!-- PREMIOS -->
-<div id="premios" class="section">
-  <h2 class="section-title">Los <em>premios</em></h2>
-  <p class="section-sub">Vota a quién merece cada premio de la noche</p>
+<!-- ═══════════ PREMIOS ═══════════ -->
+<div id="s-premios" class="section">
+<div class="section-inner">
+  <h2 class="sec-title">Los <em>premios</em> de la noche</h2>
+  <p class="sec-sub">Vota a quién merece cada galardón · los resultados son en tiempo real</p>
 
-  <div class="form-group card" style="margin-bottom:1.5rem;">
-    <label>Tu nombre (para votar)</label>
-    <input type="text" id="votante-nombre" placeholder="¿Cómo te llamas?" style="margin-top:0.5rem;">
+  <div class="card">
+    <div class="fg"><label>Tu nombre *</label><input type="text" id="p-votante" placeholder="¿Cómo te llamas?"></div>
   </div>
 
   <div class="premios-grid" id="premios-grid"></div>
 
-  <button class="btn btn-primary" onclick="enviarVotos()" style="margin-top:1.5rem;width:100%;">Enviar mis votos 🏆</button>
+  <button class="btn btn-primary btn-full" style="margin-top:1.2rem;" onclick="enviarVotos()">Enviar mis votos 🏆</button>
 
-  <div id="resultados-premios" style="margin-top:2rem;"></div>
+  <div id="premios-resultados" style="margin-top:2rem;"></div>
+</div>
 </div>
 
-<!-- RAZONES -->
-<div id="razones" class="section">
-  <h2 class="section-title">18 razones para <em>quererte</em></h2>
-  <p class="section-sub">Cada persona que la conoce tiene una razón. ¿Cuál es la tuya?</p>
+<!-- ═══════════ RAZONES ═══════════ -->
+<div id="s-razones" class="section">
+<div class="section-inner">
+  <h2 class="sec-title">18 razones para <em>quererte</em></h2>
+  <p class="sec-sub">Cada persona que la conoce tiene una razón. ¿Cuál es la tuya?</p>
 
   <div class="card">
-    <div class="form-group">
-      <label>Tu nombre</label>
-      <input type="text" id="razon-nombre" placeholder="¿Cómo te llamas?">
-    </div>
-    <div class="form-group">
-      <label>Tu razón para querer a Martina</label>
-      <textarea id="razon-texto" placeholder="Porque..."></textarea>
-    </div>
-    <button class="btn btn-primary" onclick="enviarRazon()" style="width:100%;">Añadir mi razón 💛</button>
+    <div class="fg"><label>Tu nombre *</label><input type="text" id="r-nombre" placeholder="¿Cómo te llamas?"></div>
+    <div class="fg"><label>Tu razón para querer a Martina *</label><textarea id="r-razon" placeholder="Porque..."></textarea></div>
+    <button class="btn btn-primary btn-full" onclick="enviarRazon()">Añadir mi razón 💛</button>
   </div>
 
-  <div id="razones-lista" class="razones-list"><div class="loading"><div class="spinner"></div>Cargando razones...</div></div>
+  <div id="razones-lista"><div class="loading-box"><div class="spinner"></div>Cargando...</div></div>
+</div>
 </div>
 
-<!-- SORPRESA -->
-<div id="sorpresa" class="section">
-  <h2 class="section-title">Mensaje <em>sorpresa</em></h2>
-  <p class="section-sub">Un mensaje especial que se revelará el día de la fiesta</p>
+<!-- ═══════════ SORPRESA ═══════════ -->
+<div id="s-sorpresa" class="section">
+<div class="section-inner">
+  <h2 class="sec-title">Mensaje <em>sorpresa</em></h2>
+  <p class="sec-sub">Un mensaje especial que se revelará el día de la fiesta</p>
+  <div id="sorpresa-container"><div class="loading-box"><div class="spinner"></div>Comprobando...</div></div>
+</div>
+</div>
 
-  <div id="sorpresa-container">
-    <div class="loading"><div class="spinner"></div>Comprobando...</div>
-  </div>
+<!-- ═══════════ ADMIN (oculto) ═══════════ -->
+<!-- Zona invisible esquina inferior derecha: 40x40px -->
+<button id="admin-trigger" onclick="openAdmin()" title=""></button>
 
-  <div class="card" style="margin-top:2rem;" id="sorpresa-form-admin">
-    <p style="font-size:0.8rem;color:var(--muted);margin-bottom:1rem;">👑 Área para escribir el mensaje sorpresa (solo organizadores)</p>
-    <div class="form-group">
-      <label>De parte de</label>
-      <input type="text" id="sorpresa-autor" placeholder="Tu nombre">
+<div class="admin-overlay" id="admin-overlay" onclick="closeAdminOverlay(event)">
+  <div class="admin-box" onclick="event.stopPropagation()">
+    <!-- LOGIN -->
+    <div id="admin-login">
+      <h3>🔐 Acceso</h3>
+      <div class="fg"><label>Usuario</label><input type="text" id="adm-user" placeholder="Usuario" autocomplete="off"></div>
+      <div class="fg"><label>Contraseña</label><input type="password" id="adm-pass" placeholder="Contraseña"></div>
+      <button class="btn btn-primary btn-full" onclick="loginAdmin()">Entrar</button>
+      <p id="adm-error" style="color:#c0392b;font-size:0.8rem;margin-top:0.6rem;text-align:center;"></p>
     </div>
-    <div class="form-group">
-      <label>Mensaje para Martina</label>
-      <textarea id="sorpresa-texto" placeholder="Martina, este mensaje ha esperado hasta hoy para decirte que..." style="min-height:150px;"></textarea>
+    <!-- PANEL -->
+    <div class="admin-panel" id="admin-panel">
+      <h3>👑 Panel de administración</h3>
+      <div id="admin-stats">
+        <div class="loading-box"><div class="spinner"></div></div>
+      </div>
+      <div class="admin-actions">
+        <button class="btn btn-outline" onclick="show('s-sorpresa');closeAdmin()">✏️ Editar mensaje sorpresa</button>
+        <button class="btn btn-danger" onclick="closeAdmin()">Cerrar</button>
+      </div>
     </div>
-    <button class="btn btn-primary" onclick="guardarSorpresa()" style="width:100%;">Guardar mensaje secreto 🔒</button>
   </div>
 </div>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightbox-img" src="" alt="">
+  <button class="lb-close">✕</button>
+  <img id="lb-img" src="" alt="">
 </div>
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
-const SUPABASE_URL = 'https://ksxassjthcofhhskhxht.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzeGFzc2p0aGNvZmhoc2toeGh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NDU5MzAsImV4cCI6MjEwMzQyMTkzMH0.Z5g35FPK_wbC72LMGXy4yQOnA2H0p79zd7cZjpJiRo0';
-const BUCKET = 'martina18';
-const FIESTA_DATE = new Date('2026-09-12T20:00:00');
+// ═══════ CONFIG ═══════
+const SB_URL  = 'https://ksxassjthcofhhskhxht.supabase.co';
+const SB_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzeGFzc2p0aGNvZmhoc2toeGh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NDU5MzAsImV4cCI6MjEwMzQyMTkzMH0.Z5g35FPK_wbC72LMGXy4yQOnA2H0p79zd7cZjpJiRo0';
+const BUCKET  = 'martina18';
+const FIESTA  = new Date('2026-09-12T20:00:00');
+const CUMPLE  = new Date('2026-09-10T00:00:00');
+const ADM_USR = 'Martina18';
+const ADM_PWD = '10092008';
 
-const headers = {
-  'apikey': SUPABASE_KEY,
-  'Authorization': `Bearer ${SUPABASE_KEY}`,
+const HDR = {
+  'apikey': SB_KEY,
+  'Authorization': `Bearer ${SB_KEY}`,
   'Content-Type': 'application/json',
   'Prefer': 'return=representation'
 };
 
-// ======= NAVEGACIÓN =======
-function showSection(id) {
+// ═══════ NAV ═══════
+function show(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   const nav = document.getElementById('main-nav');
-  if (id === 'hero-section') {
-    nav.style.display = 'none';
-  } else {
+  if (id === 's-hero') { nav.style.display = 'none'; }
+  else {
     nav.style.display = 'flex';
     document.querySelectorAll('.nav-btn').forEach(b => {
-      if (b.getAttribute('onclick').includes(id)) b.classList.add('active');
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('active');
     });
-    if (id === 'firmas') cargarFirmas();
-    if (id === 'galeria') cargarGaleria();
-    if (id === 'deseos') cargarDeseos();
-    if (id === 'videos') cargarVideos();
-    if (id === 'premios') initPremios();
-    if (id === 'razones') cargarRazones();
-    if (id === 'sorpresa') cargarSorpresa();
   }
   window.scrollTo(0, 0);
+  if (id === 's-firmas')   cargarFirmas();
+  if (id === 's-galeria')  cargarGaleria();
+  if (id === 's-deseos')   cargarDeseos();
+  if (id === 's-videos')   cargarVideos();
+  if (id === 's-premios')  initPremios();
+  if (id === 's-razones')  cargarRazones();
+  if (id === 's-sorpresa') cargarSorpresa();
 }
 
-// ======= CUENTA ATRÁS =======
-function updateCountdown() {
-  const now = new Date();
-  const diff = FIESTA_DATE - now;
+// ═══════ COUNTDOWN ═══════
+function tick() {
+  const diff = FIESTA - new Date();
   if (diff <= 0) {
-    document.getElementById('countdown').innerHTML = '<div style="font-family:Playfair Display,serif;font-size:2rem;color:var(--deep)">🎉 ¡Hoy es el gran día!</div>';
+    document.querySelector('.countdown').innerHTML = '<div style="font-family:Playfair Display,serif;font-size:1.8rem;color:var(--deep)">🎉 ¡Es hoy!</div>';
     return;
   }
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  document.getElementById('cd-dias').textContent = String(d).padStart(2,'0');
-  document.getElementById('cd-horas').textContent = String(h).padStart(2,'0');
-  document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
-  document.getElementById('cd-seg').textContent = String(s).padStart(2,'0');
+  const d = Math.floor(diff/86400000);
+  const h = Math.floor((diff%86400000)/3600000);
+  const m = Math.floor((diff%3600000)/60000);
+  const s = Math.floor((diff%60000)/1000);
+  document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
 }
-setInterval(updateCountdown, 1000);
-updateCountdown();
+setInterval(tick,1000); tick();
 
-// ======= TOAST =======
-function showToast(msg) {
+// ═══════ TOAST ═══════
+function toast(msg, ok=true) {
   const t = document.getElementById('toast');
   t.textContent = msg;
+  t.style.background = ok ? 'var(--deep)' : '#c0392b';
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
+  setTimeout(() => t.classList.remove('show'), 3200);
 }
 
-// ======= SUPABASE HELPERS =======
-async function dbSelect(table, order = 'created_at') {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?order=${order}.asc`, { headers });
-  return res.json();
+// ═══════ SUPABASE HELPERS ═══════
+async function dbGet(table, extra='') {
+  const r = await fetch(`${SB_URL}/rest/v1/${table}?order=created_at.asc${extra}`, {headers: HDR});
+  if (!r.ok) { console.error(await r.text()); return []; }
+  return r.json();
 }
-async function dbInsert(table, data) {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
-    method: 'POST', headers, body: JSON.stringify(data)
-  });
-  return res.json();
+async function dbPost(table, body) {
+  const r = await fetch(`${SB_URL}/rest/v1/${table}`, {method:'POST', headers: HDR, body: JSON.stringify(body)});
+  if (!r.ok) { const e = await r.text(); console.error(e); throw new Error(e); }
+  return r.json();
+}
+async function dbCount(table) {
+  const r = await fetch(`${SB_URL}/rest/v1/${table}?select=id`, {headers:{...HDR,'Prefer':'count=exact'}});
+  return r.headers.get('content-range')?.split('/')[1] || '0';
 }
 async function uploadFile(file, path) {
-  const res = await fetch(`${SUPABASE_URL}/storage/v1/object/${BUCKET}/${path}`, {
+  const r = await fetch(`${SB_URL}/storage/v1/object/${BUCKET}/${path}`, {
     method: 'POST',
-    headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': file.type },
+    headers: {'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Content-Type': file.type},
     body: file
   });
-  const data = await res.json();
-  return `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${path}`;
+  if (!r.ok) throw new Error(await r.text());
+  return `${SB_URL}/storage/v1/object/public/${BUCKET}/${path}`;
+}
+function fmtDate(iso) {
+  return new Date(iso).toLocaleDateString('es-ES', {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
 }
 
-// ======= CANVAS FIRMA =======
-let isDrawing = false, lastX = 0, lastY = 0, strokeColor = '#3a2a26';
-const canvas = document.getElementById('firma-canvas');
-const ctx = canvas.getContext('2d');
-
+// ═══════ CANVAS ═══════
+let drawing = false, lx = 0, ly = 0, penColor = '#3a2a26';
+const cv = document.getElementById('firma-canvas');
+const cx = cv.getContext('2d');
 function initCanvas() {
-  canvas.width = canvas.offsetWidth;
-  canvas.height = 160;
-  ctx.strokeStyle = strokeColor;
-  ctx.lineWidth = 2.5;
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
+  cv.width = cv.offsetWidth; cv.height = 150;
+  cx.strokeStyle = penColor; cx.lineWidth = 2.5; cx.lineCap = 'round'; cx.lineJoin = 'round';
 }
-initCanvas();
-window.addEventListener('resize', initCanvas);
-
-function getPos(e) {
-  const rect = canvas.getBoundingClientRect();
-  const src = e.touches ? e.touches[0] : e;
-  return [src.clientX - rect.left, src.clientY - rect.top];
+initCanvas(); window.addEventListener('resize', initCanvas);
+function pos(e) {
+  const r = cv.getBoundingClientRect(), s = e.touches ? e.touches[0] : e;
+  return [s.clientX - r.left, s.clientY - r.top];
 }
-canvas.addEventListener('mousedown', e => { isDrawing = true; [lastX, lastY] = getPos(e); });
-canvas.addEventListener('mousemove', e => { if (!isDrawing) return; draw(e); });
-canvas.addEventListener('mouseup', () => isDrawing = false);
-canvas.addEventListener('touchstart', e => { e.preventDefault(); isDrawing = true; [lastX, lastY] = getPos(e); });
-canvas.addEventListener('touchmove', e => { e.preventDefault(); if (!isDrawing) return; draw(e); });
-canvas.addEventListener('touchend', () => isDrawing = false);
-
-function draw(e) {
-  const [x, y] = getPos(e);
-  ctx.beginPath();
-  ctx.moveTo(lastX, lastY);
-  ctx.lineTo(x, y);
-  ctx.stroke();
-  [lastX, lastY] = [x, y];
+function drawLine(e) {
+  if (!drawing) return;
+  const [x, y] = pos(e);
+  cx.beginPath(); cx.moveTo(lx, ly); cx.lineTo(x, y); cx.stroke();
+  [lx, ly] = [x, y];
 }
-function clearCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
-function cambiarColor(c) { strokeColor = c; ctx.strokeStyle = c; }
+cv.addEventListener('mousedown', e => { drawing=true; [lx,ly]=pos(e); });
+cv.addEventListener('mousemove', drawLine);
+cv.addEventListener('mouseup', () => drawing=false);
+cv.addEventListener('mouseleave', () => drawing=false);
+cv.addEventListener('touchstart', e => { e.preventDefault(); drawing=true; [lx,ly]=pos(e); }, {passive:false});
+cv.addEventListener('touchmove', e => { e.preventDefault(); drawLine(e); }, {passive:false});
+cv.addEventListener('touchend', () => drawing=false);
+function clearCanvas() { cx.clearRect(0,0,cv.width,cv.height); }
+function setPenColor(c, el) {
+  penColor = c; cx.strokeStyle = c;
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function canvasEmpty() {
+  return !cx.getImageData(0,0,cv.width,cv.height).data.some(v => v !== 0);
+}
 
-// ======= FOTO PREVIEW =======
-function previewFirmaFoto(input) {
-  const file = input.files[0]; if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    const img = document.getElementById('firma-foto-preview');
+// ═══════ PREVIEW HELPERS ═══════
+function previewImg(input, previewId) {
+  const f = input.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = e => {
+    const img = document.getElementById(previewId);
     img.src = e.target.result; img.style.display = 'block';
   };
-  reader.readAsDataURL(file);
+  r.readAsDataURL(f);
 }
-function previewGaleriaFoto(input) {
-  const file = input.files[0]; if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    const img = document.getElementById('galeria-foto-preview');
-    img.src = e.target.result; img.style.display = 'block';
-  };
-  reader.readAsDataURL(file);
-}
-
-// ======= VIDEO PREVIEW =======
 function previewVideo(input) {
-  const file = input.files[0]; if (!file) return;
-  const url = URL.createObjectURL(file);
-  const vid = document.getElementById('video-preview');
-  vid.src = url; vid.style.display = 'block';
+  const f = input.files[0]; if (!f) return;
+  const vid = document.getElementById('v-preview');
+  vid.src = URL.createObjectURL(f); vid.style.display = 'block';
   vid.onloadedmetadata = () => {
-    const msg = document.getElementById('video-duracion-msg');
-    if (vid.duration > 10) {
-      msg.textContent = `⚠️ El vídeo dura ${vid.duration.toFixed(1)}s. Por favor usa uno de máx. 10 segundos.`;
-      msg.style.color = '#c0392b';
-    } else {
-      msg.textContent = `✅ Duración: ${vid.duration.toFixed(1)} segundos`;
-      msg.style.color = 'var(--muted)';
-    }
+    const dur = vid.duration;
+    const el = document.getElementById('v-duracion');
+    if (dur > 10) { el.style.color='#c0392b'; el.textContent=`⚠️ El vídeo dura ${dur.toFixed(1)}s — demasiado largo. Por favor usa uno de máx. 10 segundos.`; }
+    else { el.style.color='var(--muted)'; el.textContent=`✅ Duración: ${dur.toFixed(1)} segundos`; }
   };
 }
 
-// ======= ENVIAR FIRMA =======
+// ═══════ FIRMAS ═══════
 async function enviarFirma() {
-  const nombre = document.getElementById('firma-nombre').value.trim();
-  const mensaje = document.getElementById('firma-mensaje').value.trim();
-  if (!nombre) return showToast('¡Escribe tu nombre! 😊');
-
-  const firmaDataUrl = canvas.toDataURL();
-  const isEmpty = !ctx.getImageData(0,0,canvas.width,canvas.height).data.some(x => x !== 0);
+  const nombre = document.getElementById('f-nombre').value.trim();
+  const mensaje = document.getElementById('f-mensaje').value.trim();
+  if (!nombre) return toast('¡Escribe tu nombre! 😊', false);
 
   let foto_url = null;
-  const fotoFile = document.getElementById('firma-foto-input').files[0];
+  const fotoFile = document.getElementById('f-foto').files[0];
   if (fotoFile) {
-    showToast('Subiendo foto...');
-    const path = `firmas/${Date.now()}_${fotoFile.name}`;
-    foto_url = await uploadFile(fotoFile, path);
+    toast('Subiendo foto...');
+    foto_url = await uploadFile(fotoFile, `firmas/${Date.now()}_${fotoFile.name}`).catch(e => { toast('Error subiendo foto', false); return null; });
   }
 
-  await dbInsert('firmas', {
-    nombre, mensaje,
-    firma_svg: isEmpty ? null : firmaDataUrl,
-    foto_url
-  });
+  const firma_img = canvasEmpty() ? null : cv.toDataURL('image/png');
 
-  showToast('¡Firma enviada! Gracias 💛');
-  document.getElementById('firma-nombre').value = '';
-  document.getElementById('firma-mensaje').value = '';
-  clearCanvas();
-  document.getElementById('firma-foto-preview').style.display = 'none';
-  document.getElementById('firma-foto-input').value = '';
-  cargarFirmas();
+  try {
+    await dbPost('firmas', { nombre, mensaje, firma_svg: firma_img, foto_url });
+    toast('¡Firma enviada! Gracias 💛');
+    document.getElementById('f-nombre').value = '';
+    document.getElementById('f-mensaje').value = '';
+    clearCanvas();
+    document.getElementById('f-foto').value = '';
+    document.getElementById('f-foto-prev').style.display = 'none';
+    cargarFirmas();
+  } catch { toast('Error al enviar. Inténtalo de nuevo.', false); }
 }
 
-// ======= CARGAR FIRMAS =======
 async function cargarFirmas() {
-  const cont = document.getElementById('firmas-lista');
-  cont.innerHTML = '<div class="loading"><div class="spinner"></div>Cargando firmas...</div>';
-  const data = await dbSelect('firmas');
-  if (!data.length) { cont.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;">Sé el primero en firmar 💛</p>'; return; }
-  cont.innerHTML = data.map(f => `
+  const c = document.getElementById('firmas-lista');
+  c.innerHTML = '<div class="loading-box"><div class="spinner"></div>Cargando firmas...</div>';
+  const data = await dbGet('firmas');
+  if (!data.length) { c.innerHTML = '<div class="empty-msg"><div class="em-icon">✍️</div>Sé el primero en firmar</div>'; return; }
+  c.innerHTML = '<div class="firmas-grid">' + data.map(f => `
     <div class="firma-card">
-      ${f.foto_url ? `<img class="foto" src="${f.foto_url}" alt="${f.nombre}" onclick="openLightbox('${f.foto_url}')">` : ''}
-      <div class="nombre">${f.nombre}</div>
-      ${f.mensaje ? `<div class="mensaje">${f.mensaje}</div>` : ''}
-      ${f.firma_svg ? `<img class="svg-firma" src="${f.firma_svg}" alt="firma">` : ''}
-    </div>
-  `).join('');
+      ${f.foto_url ? `<img class="fc-foto" src="${f.foto_url}" alt="${f.nombre}" onclick="openLightbox('${f.foto_url}')">` : ''}
+      <div class="fc-nombre">${esc(f.nombre)}</div>
+      ${f.mensaje ? `<div class="fc-msg">${esc(f.mensaje)}</div>` : ''}
+      ${f.firma_svg ? `<img class="fc-firma" src="${f.firma_svg}" alt="firma de ${f.nombre}">` : ''}
+      <div class="fc-date">${fmtDate(f.created_at)}</div>
+    </div>`).join('') + '</div>';
 }
 
-// ======= ENVIAR GALERÍA =======
+// ═══════ GALERÍA ═══════
 async function enviarGaleria() {
-  const nombre = document.getElementById('galeria-nombre').value.trim();
-  const fotoFile = document.getElementById('galeria-foto-input').files[0];
-  if (!nombre) return showToast('¡Escribe tu nombre! 😊');
-  if (!fotoFile) return showToast('¡Selecciona una foto! 📸');
-
-  showToast('Subiendo foto...');
-  const path = `galeria/${Date.now()}_${fotoFile.name}`;
-  const foto_url = await uploadFile(fotoFile, path);
-  await dbInsert('galeria', { nombre, foto_url });
-
-  showToast('¡Foto subida! 📸');
-  document.getElementById('galeria-nombre').value = '';
-  document.getElementById('galeria-foto-preview').style.display = 'none';
-  document.getElementById('galeria-foto-input').value = '';
-  cargarGaleria();
+  const nombre = document.getElementById('g-nombre').value.trim();
+  const fotoFile = document.getElementById('g-foto').files[0];
+  if (!nombre) return toast('¡Escribe tu nombre! 😊', false);
+  if (!fotoFile) return toast('¡Selecciona una foto! 📸', false);
+  toast('Subiendo foto...');
+  try {
+    const foto_url = await uploadFile(fotoFile, `galeria/${Date.now()}_${fotoFile.name}`);
+    await dbPost('galeria', { nombre, foto_url });
+    toast('¡Foto subida! 📸');
+    document.getElementById('g-nombre').value = '';
+    document.getElementById('g-foto').value = '';
+    document.getElementById('g-foto-prev').style.display = 'none';
+    cargarGaleria();
+  } catch { toast('Error al subir. Inténtalo.', false); }
 }
 
-// ======= CARGAR GALERÍA =======
 async function cargarGaleria() {
-  const cont = document.getElementById('galeria-grid');
-  cont.innerHTML = '<div class="loading"><div class="spinner"></div>Cargando fotos...</div>';
-  const data = await dbSelect('galeria');
-  if (!data.length) { cont.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;">¡Sube la primera foto! 📸</p>'; return; }
-  cont.innerHTML = data.map(g => `
+  const c = document.getElementById('galeria-grid');
+  c.innerHTML = '<div class="loading-box"><div class="spinner"></div>Cargando...</div>';
+  const data = await dbGet('galeria');
+  if (!data.length) { c.innerHTML = '<div class="empty-msg"><div class="em-icon">📸</div>¡La galería está esperando tu primera foto!</div>'; return; }
+  c.innerHTML = '<div class="galeria-grid">' + data.map(g => `
     <div class="galeria-item" onclick="openLightbox('${g.foto_url}')">
-      <img src="${g.foto_url}" alt="${g.nombre}">
-    </div>
-  `).join('');
+      <img src="${g.foto_url}" alt="${esc(g.nombre)}" loading="lazy">
+    </div>`).join('') + '</div>';
 }
 
-// ======= DESEOS =======
-let colorSeleccionado = '#fff9c4';
-function selectColor(c) {
-  colorSeleccionado = c;
-  document.getElementById('deseo-color').value = c;
-  document.querySelectorAll('#deseos button[onclick^="selectColor"]').forEach(b => {
-    b.style.border = b.getAttribute('onclick').includes(c) ? '2px solid var(--deep)' : '2px solid #ccc';
-  });
+// ═══════ DESEOS ═══════
+let deseoColor = '#fff9c4';
+function setDeseoColor(c, el) {
+  deseoColor = c;
+  document.querySelectorAll('#s-deseos .color-dot').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
 }
-
 async function enviarDeseo() {
-  const nombre = document.getElementById('deseo-nombre').value.trim();
-  const mensaje = document.getElementById('deseo-msg').value.trim();
-  if (!nombre || !mensaje) return showToast('Rellena tu nombre y deseo 💌');
-  await dbInsert('deseos', { nombre, mensaje, color: colorSeleccionado });
-  showToast('¡Deseo colgado! 💌');
-  document.getElementById('deseo-nombre').value = '';
-  document.getElementById('deseo-msg').value = '';
-  cargarDeseos();
+  const nombre = document.getElementById('d-nombre').value.trim();
+  const mensaje = document.getElementById('d-mensaje').value.trim();
+  if (!nombre || !mensaje) return toast('Rellena tu nombre y tu deseo 💌', false);
+  try {
+    await dbPost('deseos', { nombre, mensaje, color: deseoColor });
+    toast('¡Deseo colgado! 💌');
+    document.getElementById('d-nombre').value = '';
+    document.getElementById('d-mensaje').value = '';
+    cargarDeseos();
+  } catch { toast('Error al enviar. Inténtalo.', false); }
 }
-
 async function cargarDeseos() {
-  const cont = document.getElementById('deseos-grid');
-  cont.innerHTML = '<div class="loading"><div class="spinner"></div>Cargando deseos...</div>';
-  const data = await dbSelect('deseos');
-  if (!data.length) { cont.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;">Sé el primero en colgar un deseo 💌</p>'; return; }
-  const rotaciones = [-2, 1, -1, 2, 0, -1.5, 1.5];
-  cont.innerHTML = data.map((d, i) => `
-    <div class="deseo-card" style="background:${d.color};--rotate:${rotaciones[i % rotaciones.length]}deg">
-      <div class="dnombre">${d.nombre}</div>
-      <div class="dmsg">${d.mensaje}</div>
-    </div>
-  `).join('');
+  const c = document.getElementById('deseos-grid');
+  c.innerHTML = '<div class="loading-box"><div class="spinner"></div>Cargando deseos...</div>';
+  const data = await dbGet('deseos');
+  if (!data.length) { c.innerHTML = '<div class="empty-msg"><div class="em-icon">💌</div>Sé el primero en colgar un deseo</div>'; return; }
+  const rots = [-2,1,-1.5,2,0,-1,1.5,-2.5,0.5];
+  c.innerHTML = '<div class="deseos-grid">' + data.map((d,i) => `
+    <div class="deseo-card" style="background:${d.color};--rot:${rots[i%rots.length]}deg">
+      <div class="dc-nom">${esc(d.nombre)}</div>
+      <div class="dc-msg">${esc(d.mensaje)}</div>
+    </div>`).join('') + '</div>';
 }
 
-// ======= VÍDEOS =======
+// ═══════ VÍDEOS ═══════
 async function enviarVideo() {
-  const nombre = document.getElementById('video-nombre').value.trim();
-  const videoFile = document.getElementById('video-input').files[0];
-  if (!nombre) return showToast('¡Escribe tu nombre! 😊');
-  if (!videoFile) return showToast('¡Selecciona un vídeo! 🎬');
-
-  const vid = document.getElementById('video-preview');
-  if (vid.duration > 10) return showToast('El vídeo supera los 10 segundos ⚠️');
-
-  showToast('Subiendo vídeo...');
-  const path = `videos/${Date.now()}_${videoFile.name}`;
-  const video_url = await uploadFile(videoFile, path);
-  await dbInsert('videos', { nombre, video_url });
-  showToast('¡Vídeo enviado! 🎬');
-  document.getElementById('video-nombre').value = '';
-  document.getElementById('video-preview').style.display = 'none';
-  document.getElementById('video-input').value = '';
-  cargarVideos();
+  const nombre = document.getElementById('v-nombre').value.trim();
+  const videoFile = document.getElementById('v-video').files[0];
+  if (!nombre) return toast('¡Escribe tu nombre! 😊', false);
+  if (!videoFile) return toast('¡Selecciona un vídeo! 🎬', false);
+  const vid = document.getElementById('v-preview');
+  if (vid.duration > 10.5) return toast('El vídeo supera los 10 segundos ⚠️', false);
+  toast('Subiendo vídeo...');
+  try {
+    const video_url = await uploadFile(videoFile, `videos/${Date.now()}_${videoFile.name}`);
+    await dbPost('videos', { nombre, video_url });
+    toast('¡Vídeo enviado! 🎬');
+    document.getElementById('v-nombre').value = '';
+    document.getElementById('v-video').value = '';
+    document.getElementById('v-preview').style.display = 'none';
+    document.getElementById('v-duracion').textContent = '';
+    cargarVideos();
+  } catch { toast('Error al subir. Inténtalo.', false); }
 }
-
 async function cargarVideos() {
-  const cont = document.getElementById('videos-grid');
-  cont.innerHTML = '<div class="loading"><div class="spinner"></div>Cargando vídeos...</div>';
-  const data = await dbSelect('videos');
-  if (!data.length) { cont.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;">¡Sé el primero en enviar un vídeo! 🎬</p>'; return; }
-  cont.innerHTML = data.map(v => `
-    <div class="video-item">
+  const c = document.getElementById('videos-grid');
+  c.innerHTML = '<div class="loading-box"><div class="spinner"></div>Cargando vídeos...</div>';
+  const data = await dbGet('videos');
+  if (!data.length) { c.innerHTML = '<div class="empty-msg"><div class="em-icon">🎬</div>¡Sé el primero en enviar un vídeo de felicitación!</div>'; return; }
+  c.innerHTML = '<div class="videos-grid">' + data.map(v => `
+    <div class="video-card">
       <video src="${v.video_url}" controls playsinline></video>
-      <div class="vnombre">De: ${v.nombre}</div>
-    </div>
-  `).join('');
+      <div class="vc-nom">De: ${esc(v.nombre)}</div>
+    </div>`).join('') + '</div>';
 }
 
-// ======= PREMIOS =======
-const CATEGORIAS = [
-  { emoji: '👑', titulo: 'El/La más elegante de la noche' },
-  { emoji: '💃', titulo: 'El/La mejor bailarín/a' },
-  { emoji: '😂', titulo: 'El/La más divertido/a' },
-  { emoji: '🌟', titulo: 'El/La alma de la fiesta' },
-  { emoji: '📸', titulo: 'El/La más fotogénico/a' },
-  { emoji: '🎤', titulo: 'El/La más karaokero/a' },
-  { emoji: '🥂', titulo: 'El/La mejor brindis del año' },
-  { emoji: '🎨', titulo: 'El/La más creativo/a' },
+// ═══════ PREMIOS ═══════
+const CATS = [
+  {e:'👑', t:'El/La más elegante de la noche'},
+  {e:'💃', t:'El/La mejor bailarín/a'},
+  {e:'😂', t:'El/La más divertido/a'},
+  {e:'🌟', t:'El/La alma de la fiesta'},
+  {e:'📸', t:'El/La más fotogénico/a'},
+  {e:'🎤', t:'El/La más karaokero/a'},
+  {e:'🥂', t:'El/La del mejor brindis'},
+  {e:'🎨', t:'El/La más creativo/a'},
 ];
-
-async function initPremios() {
-  const grid = document.getElementById('premios-grid');
-  grid.innerHTML = CATEGORIAS.map((c, i) => `
+function initPremios() {
+  const g = document.getElementById('premios-grid');
+  g.innerHTML = CATS.map((c,i) => `
     <div class="premio-card">
-      <div class="premio-emoji">${c.emoji}</div>
-      <div class="premio-title">${c.titulo}</div>
-      <input class="premio-input" type="text" placeholder="Escribe el nombre..." data-cat="${c.titulo}" id="voto-${i}">
-    </div>
-  `).join('');
-  cargarResultados();
+      <div class="premio-emoji">${c.e}</div>
+      <div class="premio-titulo">${c.t}</div>
+      <input class="fg input" type="text" id="pv-${i}" placeholder="Nombre del ganador/a"
+        style="width:100%;font-family:Inter,sans-serif;font-size:0.88rem;padding:0.65rem 0.9rem;border:1.5px solid var(--rose);border-radius:8px;background:var(--cream);color:var(--text);outline:none;"
+        onfocus="this.style.borderColor='var(--mauve)'" onblur="this.style.borderColor='var(--rose)'">
+    </div>`).join('');
+  cargarResultadosPremios();
 }
-
 async function enviarVotos() {
-  const votante = document.getElementById('votante-nombre').value.trim();
-  if (!votante) return showToast('¡Escribe tu nombre para votar! 🗳️');
-  const inputs = document.querySelectorAll('.premio-input');
-  const votos = [];
-  inputs.forEach(inp => {
-    const nominado = inp.value.trim();
-    if (nominado) votos.push({ votante, categoria: inp.dataset.cat, nominado });
-  });
-  if (!votos.length) return showToast('¡Vota al menos en una categoría!');
-  for (const v of votos) await dbInsert('votos', v);
-  showToast(`¡Votos enviados! Gracias ${votante} 🏆`);
-  inputs.forEach(i => i.value = '');
-  cargarResultados();
+  const votante = document.getElementById('p-votante').value.trim();
+  if (!votante) return toast('¡Escribe tu nombre para votar! 🗳️', false);
+  const votos = CATS.map((c,i) => ({ votante, categoria: c.t, nominado: document.getElementById(`pv-${i}`).value.trim() })).filter(v => v.nominado);
+  if (!votos.length) return toast('¡Vota en al menos una categoría!', false);
+  try {
+    for (const v of votos) await dbPost('votos', v);
+    toast(`¡Votos enviados! Gracias ${votante} 🏆`);
+    CATS.forEach((_,i) => document.getElementById(`pv-${i}`).value='');
+    cargarResultadosPremios();
+  } catch { toast('Error al votar. Inténtalo.', false); }
 }
-
-async function cargarResultados() {
-  const data = await dbSelect('votos');
-  if (!data.length) return;
-  const cont = document.getElementById('resultados-premios');
-  const porCategoria = {};
+async function cargarResultadosPremios() {
+  const data = await dbGet('votos');
+  if (!data.length) { document.getElementById('premios-resultados').innerHTML=''; return; }
+  const porCat = {};
   data.forEach(v => {
-    if (!porCategoria[v.categoria]) porCategoria[v.categoria] = {};
-    porCategoria[v.categoria][v.nominado] = (porCategoria[v.categoria][v.nominado] || 0) + 1;
+    if (!porCat[v.categoria]) porCat[v.categoria] = {};
+    porCat[v.categoria][v.nominado] = (porCat[v.categoria][v.nominado]||0)+1;
   });
-  cont.innerHTML = `<h3 style="font-family:'Playfair Display',serif;color:var(--deep);font-weight:400;font-size:1.3rem;margin-bottom:1rem;">Resultados en tiempo real</h3>` +
-    Object.entries(porCategoria).map(([cat, votos]) => {
-      const sorted = Object.entries(votos).sort((a,b) => b[1]-a[1]);
-      const emoji = CATEGORIAS.find(c => c.titulo === cat)?.emoji || '🏆';
-      return `<div class="card" style="margin-bottom:1rem;">
-        <div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem;">${emoji} ${cat}</div>
-        ${sorted.map(([n, v], i) => `
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.4rem 0;border-bottom:1px solid var(--blush);">
-            <span style="${i===0?'font-weight:600;color:var(--deep);':''}">${i===0?'🥇 ':''}${n}</span>
-            <span style="font-size:0.85rem;color:var(--muted);">${v} ${v===1?'voto':'votos'}</span>
+  const html = `<h3 style="font-family:'Playfair Display',serif;color:var(--deep);font-weight:400;font-size:1.3rem;margin-bottom:1rem;">Resultados en tiempo real 📊</h3>
+    <div class="premios-grid">` + CATS.filter(c => porCat[c.t]).map(c => {
+    const votos = Object.entries(porCat[c.t]).sort((a,b)=>b[1]-a[1]);
+    const max = votos[0][1];
+    return `<div class="premio-card">
+      <div class="premio-emoji">${c.e}</div>
+      <div class="premio-titulo">${c.t}</div>
+      ${votos.map(([n,cnt],i) => `
+        <div style="text-align:left;margin-bottom:0.5rem;">
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:0.2rem;">
+            <span style="${i===0?'font-weight:600;color:var(--deep)':''}">${i===0?'🥇 ':''}${esc(n)}</span>
+            <span style="color:var(--muted)">${cnt}</span>
           </div>
-        `).join('')}
-      </div>`;
-    }).join('');
+          <div class="premio-bar"><div class="premio-bar-fill" style="width:${Math.round(cnt/max*100)}%"></div></div>
+        </div>`).join('')}
+    </div>`;
+  }).join('') + '</div>';
+  document.getElementById('premios-resultados').innerHTML = html;
 }
 
-// ======= RAZONES =======
+// ═══════ RAZONES ═══════
 async function enviarRazon() {
-  const autor = document.getElementById('razon-nombre').value.trim();
-  const razon = document.getElementById('razon-texto').value.trim();
-  if (!autor || !razon) return showToast('Rellena tu nombre y tu razón 💛');
-  await dbInsert('razones', { autor, razon });
-  showToast('¡Razón añadida! 💛');
-  document.getElementById('razon-nombre').value = '';
-  document.getElementById('razon-texto').value = '';
-  cargarRazones();
+  const autor = document.getElementById('r-nombre').value.trim();
+  const razon = document.getElementById('r-razon').value.trim();
+  if (!autor || !razon) return toast('Rellena tu nombre y tu razón 💛', false);
+  try {
+    await dbPost('razones', { autor, razon });
+    toast('¡Razón añadida! 💛');
+    document.getElementById('r-nombre').value = '';
+    document.getElementById('r-razon').value = '';
+    cargarRazones();
+  } catch { toast('Error. Inténtalo.', false); }
 }
-
 async function cargarRazones() {
-  const cont = document.getElementById('razones-lista');
-  cont.innerHTML = '<div class="loading"><div class="spinner"></div>Cargando razones...</div>';
-  const data = await dbSelect('razones');
-  if (!data.length) { cont.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;">Sé el primero en escribir una razón 💛</p>'; return; }
-  cont.innerHTML = data.map((r, i) => `
+  const c = document.getElementById('razones-lista');
+  c.innerHTML = '<div class="loading-box"><div class="spinner"></div>Cargando...</div>';
+  const data = await dbGet('razones');
+  if (!data.length) { c.innerHTML = '<div class="empty-msg"><div class="em-icon">💛</div>Sé el primero en escribir una razón</div>'; return; }
+  c.innerHTML = '<div class="razones-list">' + data.map((r,i) => `
     <div class="razon-item">
       <div class="razon-num">${String(i+1).padStart(2,'0')}</div>
-      <div>
-        <div class="razon-text">${r.razon}</div>
-        <div class="razon-autor">— ${r.autor}</div>
-      </div>
-    </div>
-  `).join('');
+      <div><div class="razon-text">${esc(r.razon)}</div><div class="razon-autor">— ${esc(r.autor)}</div></div>
+    </div>`).join('') + '</div>';
 }
 
-// ======= SORPRESA =======
+// ═══════ SORPRESA ═══════
+let isAdmin = false;
 async function cargarSorpresa() {
-  const cont = document.getElementById('sorpresa-container');
-  const hoy = new Date();
-  const fiestaDay = new Date('2026-09-12');
-  hoy.setHours(0,0,0,0); fiestaDay.setHours(0,0,0,0);
+  const c = document.getElementById('sorpresa-container');
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  const fiesta = new Date('2026-09-12'); fiesta.setHours(0,0,0,0);
 
-  if (hoy < fiestaDay) {
-    cont.innerHTML = `
-      <div class="card sorpresa-lock">
-        <div class="lock-icon">🔒</div>
-        <div class="lock-msg">Este mensaje se revelará el 12 de septiembre</div>
-        <div class="lock-sub">¡El día de la fiesta de Martina!</div>
-      </div>`;
+  if (!isAdmin && hoy < fiesta) {
+    const diff = fiesta - new Date();
+    const d = Math.floor(diff/86400000);
+    c.innerHTML = `<div class="sorpresa-lock">
+      <div class="lock-icon">🔒</div>
+      <div class="lock-msg">Este mensaje se revelará el 12 de septiembre</div>
+      <div class="lock-sub">Faltan ${d} días para la fiesta de Martina 🎉</div>
+    </div>`;
     return;
   }
 
-  const data = await dbSelect('mensaje_sorpresa');
-  if (!data.length) {
-    cont.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem;">Aún no hay mensaje sorpresa</p>';
-    return;
+  const data = await dbGet('mensaje_sorpresa');
+  if (isAdmin) {
+    c.innerHTML = `<div class="card">
+      <p style="font-size:0.78rem;color:var(--mauve);margin-bottom:1rem;">👑 Solo visible para administradores</p>
+      <div class="fg"><label>De parte de</label><input type="text" id="sor-autor" placeholder="Tu nombre" value="${data[0]?.autor||''}"></div>
+      <div class="fg"><label>Mensaje para Martina</label><textarea id="sor-texto" style="min-height:140px" placeholder="Martina, este mensaje ha esperado hasta hoy para decirte que...">${data[0]?.mensaje||''}</textarea></div>
+      <button class="btn btn-primary btn-full" onclick="guardarSorpresa()">💾 Guardar mensaje secreto</button>
+      ${data.length ? '<p style="font-size:0.78rem;color:var(--muted);margin-top:0.8rem;text-align:center;">Ya hay un mensaje guardado — guardando de nuevo lo sobreescribe</p>' : ''}
+    </div>`;
+  } else if (!data.length) {
+    c.innerHTML = '<div class="empty-msg"><div class="em-icon">🎁</div>Aún no hay mensaje sorpresa guardado</div>';
+  } else {
+    c.innerHTML = data.map(m => `
+      <div class="sorpresa-revealed">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">🎁</div>
+        <p>${esc(m.mensaje)}</p>
+        <div class="sor-autor">— Con todo el amor, ${esc(m.autor)}</div>
+      </div>`).join('');
   }
-  cont.innerHTML = data.map(m => `
-    <div class="sorpresa-msg">
-      <div style="font-size:2rem;margin-bottom:1rem;">🎁</div>
-      <p>${m.mensaje}</p>
-      <div class="autor">— Con todo el amor, ${m.autor}</div>
-    </div>
-  `).join('');
-  document.getElementById('sorpresa-form-admin').style.display = 'none';
 }
-
 async function guardarSorpresa() {
-  const autor = document.getElementById('sorpresa-autor').value.trim();
-  const mensaje = document.getElementById('sorpresa-texto').value.trim();
-  if (!autor || !mensaje) return showToast('Rellena el mensaje y tu nombre 💌');
-  await dbInsert('mensaje_sorpresa', { autor, mensaje });
-  showToast('¡Mensaje guardado en secreto! 🔒');
-  document.getElementById('sorpresa-autor').value = '';
-  document.getElementById('sorpresa-texto').value = '';
+  const autor = document.getElementById('sor-autor').value.trim();
+  const mensaje = document.getElementById('sor-texto').value.trim();
+  if (!autor || !mensaje) return toast('Rellena autor y mensaje 💌', false);
+  // borrar anteriores e insertar nuevo
+  await fetch(`${SB_URL}/rest/v1/mensaje_sorpresa`, {method:'DELETE', headers:{...HDR,'Prefer':''}});
+  await dbPost('mensaje_sorpresa', { autor, mensaje });
+  toast('¡Mensaje guardado en secreto! 🔒');
 }
 
-// ======= LIGHTBOX =======
-function openLightbox(src) {
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox').classList.add('open');
+// ═══════ ADMIN ═══════
+let adminClicks = 0, adminTimer;
+function openAdmin() {
+  document.getElementById('admin-overlay').classList.add('open');
+  document.getElementById('admin-login').style.display = 'block';
+  document.getElementById('admin-panel').classList.remove('open');
+  document.getElementById('adm-user').value = '';
+  document.getElementById('adm-pass').value = '';
+  document.getElementById('adm-error').textContent = '';
 }
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
+function closeAdmin() { document.getElementById('admin-overlay').classList.remove('open'); }
+function closeAdminOverlay(e) { if (e.target === document.getElementById('admin-overlay')) closeAdmin(); }
+async function loginAdmin() {
+  const u = document.getElementById('adm-user').value;
+  const p = document.getElementById('adm-pass').value;
+  if (u === ADM_USR && p === ADM_PWD) {
+    isAdmin = true;
+    document.getElementById('admin-login').style.display = 'none';
+    document.getElementById('admin-panel').classList.add('open');
+    // stats
+    const [nf, ng, nd, nv, np, nr] = await Promise.all([
+      dbCount('firmas'), dbCount('galeria'), dbCount('deseos'),
+      dbCount('videos'), dbCount('votos'), dbCount('razones')
+    ]);
+    document.getElementById('admin-stats').innerHTML = `
+      <div class="admin-stat"><span>✍️ Firmas</span><span class="admin-count">${nf}</span></div>
+      <div class="admin-stat"><span>📸 Fotos galería</span><span class="admin-count">${ng}</span></div>
+      <div class="admin-stat"><span>💌 Deseos</span><span class="admin-count">${nd}</span></div>
+      <div class="admin-stat"><span>🎬 Vídeos</span><span class="admin-count">${nv}</span></div>
+      <div class="admin-stat"><span>🏆 Votos premios</span><span class="admin-count">${np}</span></div>
+      <div class="admin-stat"><span>💛 Razones</span><span class="admin-count">${nr}</span></div>`;
+  } else {
+    document.getElementById('adm-error').textContent = 'Usuario o contraseña incorrectos';
+  }
+}
+
+// ═══════ LIGHTBOX ═══════
+function openLightbox(src) { document.getElementById('lb-img').src = src; document.getElementById('lightbox').classList.add('open'); }
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+
+// ═══════ UTILS ═══════
+function esc(s) {
+  if (!s) return '';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 </script>
 </body>
