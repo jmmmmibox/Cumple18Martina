@@ -147,7 +147,7 @@ body.is-admin .adm-bar{display:flex}
 .edit-field{width:100%;font-family:'Inter',sans-serif;font-size:.88rem;padding:.5rem .7rem;border:1.5px solid var(--mauve);border-radius:8px;background:#fff;color:var(--text);outline:none;margin-bottom:.4rem;resize:vertical}
 
 /* ADMIN LOGIN OVERLAY */
-#admin-trigger{position:fixed;bottom:0;right:0;width:44px;height:44px;cursor:pointer;z-index:500;background:transparent;border:none}
+#admin-trigger{position:fixed;bottom:0;left:0;width:44px;height:44px;cursor:pointer;z-index:500;background:transparent;border:none}
 .adm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600;align-items:center;justify-content:center}
 .adm-overlay.open{display:flex}
 .adm-box{background:var(--white);border-radius:var(--radius);padding:2rem;width:90%;max-width:360px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
@@ -170,6 +170,9 @@ body.is-admin .hero{padding-top:5rem}
 /* TOAST */
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(120px);background:var(--deep);color:#fff;padding:.85rem 1.8rem;border-radius:50px;font-size:.88rem;font-weight:500;box-shadow:0 8px 30px rgba(0,0,0,.2);transition:transform .3s cubic-bezier(.34,1.56,.64,1);z-index:800;white-space:nowrap}
 .toast.show{transform:translateX(-50%) translateY(0)}
+
+/* Ocultar badge Netlify */
+[data-netlify-deploy-id],[class*="netlify"]{display:none!important;opacity:0!important;pointer-events:none!important}
 
 /* UTILS */
 .loading-box{text-align:center;padding:3rem;color:var(--muted);font-size:.9rem}
