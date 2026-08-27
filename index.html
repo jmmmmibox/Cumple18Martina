@@ -171,6 +171,11 @@ body.is-admin .hero{padding-top:5rem}
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(120px);background:var(--deep);color:#fff;padding:.85rem 1.8rem;border-radius:50px;font-size:.88rem;font-weight:500;box-shadow:0 8px 30px rgba(0,0,0,.2);transition:transform .3s cubic-bezier(.34,1.56,.64,1);z-index:800;white-space:nowrap}
 .toast.show{transform:translateX(-50%) translateY(0)}
 
+/* MÚSICA */
+#music-btn{position:fixed;bottom:1.2rem;right:1.2rem;z-index:490;width:46px;height:46px;border-radius:50%;background:var(--deep);color:#fff;border:none;cursor:pointer;font-size:1.2rem;box-shadow:0 4px 16px rgba(107,76,69,.35);transition:all .2s;display:flex;align-items:center;justify-content:center}
+#music-btn:hover{transform:scale(1.1);background:var(--text)}
+#yt-frame{display:none}
+
 /* Ocultar badge Netlify */
 [data-netlify-deploy-id],[class*="netlify"]{display:none!important;opacity:0!important;pointer-events:none!important}
 
@@ -853,6 +858,37 @@ async function loadAdminStats(){
 // ══ LIGHTBOX ══
 function openLightbox(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open')}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
+
+// ══ MÚSICA ══
+let musicPlaying = true;
+const ytFrame = document.getElementById('yt-frame');
+const musicBtn = document.getElementById('music-btn');
+
+function toggleMusic(){
+  if(musicPlaying){
+    ytFrame.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
+    musicBtn.textContent = '🔇';
+    musicBtn.title = 'Reproducir música';
+  } else {
+    ytFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*');
+    musicBtn.textContent = '🎵';
+    musicBtn.title = 'Pausar música';
+  }
+  musicPlaying = !musicPlaying;
+}
+
+// Intentar autoplay al cargar (algunos navegadores lo bloquean hasta interacción)
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    ytFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*');
+  }, 1500);
+});
 </script>
+<!-- MÚSICA -->
+<button id="music-btn" onclick="toggleMusic()" title="Música">🎵</button>
+<iframe id="yt-frame" width="0" height="0"
+  src="https://www.youtube.com/embed/H3v9unphfi0?autoplay=1&loop=1&playlist=H3v9unphfi0&controls=0&mute=0&enablejsapi=1"
+  allow="autoplay" frameborder="0"></iframe>
+
 </body>
 </html>
