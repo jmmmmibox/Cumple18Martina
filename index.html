@@ -530,8 +530,9 @@ setInterval(tick,1000);tick();
 function openModal(id){
   document.getElementById(id).classList.add('open');
   document.body.style.overflow='hidden';
-  if(id==='m-libro')  cargarLibro();
-  if(id==='m-muro')   cargarMuro();
+  if(id==='m-firmas')   setTimeout(initCV,50); // canvas necesita estar visible
+  if(id==='m-libro')    cargarLibro();
+  if(id==='m-muro')     cargarMuro();
   if(id==='m-sorpresa') cargarSorpresa();
   if(id==='m-razones')  cargarRazones();
   if(id==='m-premios')  initPremios();
@@ -621,7 +622,7 @@ cv.addEventListener('touchmove',e=>{e.preventDefault();drawL(e)},{passive:false}
 cv.addEventListener('touchend',()=>drawing=false);
 function clearCanvas(){cx.clearRect(0,0,cv.width,cv.height)}
 function setPenColor(c,el){penColor=c;cx.strokeStyle=c;document.querySelectorAll('#m-firmas .color-dot').forEach(d=>d.classList.remove('sel'));el.classList.add('sel')}
-function canvasEmpty(){return!cx.getImageData(0,0,cv.width,cv.height).data.some(v=>v!==0)}
+function canvasEmpty(){if(!cv.width||!cv.height)return true;return!cx.getImageData(0,0,cv.width,cv.height).data.some(v=>v!==0)}
 
 // ══ PREVIEW ══
 function previewImg(input,pid){const f=input.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{const i=document.getElementById(pid);i.src=e.target.result;i.style.display='block'};r.readAsDataURL(f)}
