@@ -247,42 +247,6 @@ body.is-admin #main{padding-top:26px}
 .color-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.4rem}
 .sep{height:1px;background:var(--blush);margin:.8rem 0}
 
-/* SORPRESA ESQUINA */
-#sorpresa-corner{
-  position:absolute;top:1rem;left:1rem;z-index:10;
-  display:flex;flex-direction:column;align-items:center;cursor:pointer;
-  animation:float 3s ease-in-out infinite;
-}
-#sorpresa-corner .sc-bola{
-  width:64px;height:76px;
-  border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
-  background:linear-gradient(135deg,#f7e6b8,#d4a843);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  box-shadow:0 6px 20px rgba(107,76,69,.2),inset 0 -4px 8px rgba(0,0,0,.08),inset 0 4px 8px rgba(255,255,255,.3);
-  position:relative;gap:.2rem;
-}
-#sorpresa-corner .sc-bola::after{content:'';position:absolute;top:12%;left:22%;width:28%;height:16%;background:rgba(255,255,255,.35);border-radius:50%;transform:rotate(-30deg)}
-#sorpresa-corner .sc-icon{font-size:1.2rem;line-height:1}
-#sorpresa-corner .sc-txt{font-size:.48rem;font-weight:700;color:rgba(0,0,0,.6);text-align:center;line-height:1.2;padding:0 .2rem}
-#sorpresa-corner .sc-cuerda{width:1.5px;height:28px;background:linear-gradient(to bottom,rgba(107,76,69,.4),rgba(107,76,69,.15))}
-#sorpresa-corner .sc-knot{width:7px;height:7px;border-radius:50%;background:#d4a843}
-
-/* GLOBO VERDE */
-.globo-verde .globo-bola{background:linear-gradient(135deg,#b8f7cc,#4caf72)}
-.globo-verde .globo-knot{background:#4caf72}
-
-/* PREMIADOS BLOQUEADO */
-.premiados-lock{text-align:center;padding:1.5rem 1rem}
-.pl-icon{font-size:3rem;margin-bottom:.6rem}
-.pl-titulo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--deep);margin-bottom:.3rem}
-.pl-sub{color:var(--muted);font-size:.82rem;margin-bottom:1.2rem;line-height:1.5}
-.pl-countdown{display:flex;gap:.5rem;justify-content:center;margin-bottom:1.2rem}
-.pl-cd-unit{background:var(--deep);border-radius:10px;padding:.5rem .7rem;text-align:center;min-width:50px}
-.pl-cd-num{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff;line-height:1}
-.pl-cd-lbl{font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:.1rem}
-.pl-msg{font-size:.88rem;color:var(--mauve);font-style:italic;animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-
 [data-netlify-deploy-id],[class*="netlify-badge"],[id*="netlify"]{display:none!important;visibility:hidden!important}
 </style>
 </head>
@@ -312,18 +276,16 @@ body.is-admin #main{padding-top:26px}
     </div>
   </div>
 
-  <!-- SORPRESA ESQUINA SUPERIOR IZQUIERDA -->
-  <div id="sorpresa-corner" onclick="openModal('m-sorpresa')">
-    <div class="sc-bola">
-      <span class="sc-icon">🔒</span>
-      <span class="sc-txt">Mensaje<br>sorpresa</span>
-    </div>
-    <div class="sc-cuerda"></div>
-    <div class="sc-knot"></div>
-  </div>
-
-  <!-- GLOBOS (3 en el centro) -->
+  <!-- GLOBOS -->
   <div class="globos-area">
+    <div class="globo globo-dorado" onclick="openModal('m-sorpresa')">
+      <div class="globo-bola locked">
+        <span class="g-icon">🔒</span>
+        <span class="g-txt">Mensaje<br>sorpresa</span>
+      </div>
+      <div class="globo-cuerda"></div>
+      <div class="globo-knot"></div>
+    </div>
     <div class="globo globo-rosa" onclick="openModal('m-libro')">
       <div class="globo-bola">
         <span class="g-icon">📖</span>
@@ -336,14 +298,6 @@ body.is-admin #main{padding-top:26px}
       <div class="globo-bola">
         <span class="g-icon">💌</span>
         <span class="g-txt">Muro de<br>deseos</span>
-      </div>
-      <div class="globo-cuerda"></div>
-      <div class="globo-knot"></div>
-    </div>
-    <div class="globo globo-verde" onclick="openModal('m-premiados')">
-      <div class="globo-bola">
-        <span class="g-icon">🏆</span>
-        <span class="g-txt">Premiados<br>de la fiesta</span>
       </div>
       <div class="globo-cuerda"></div>
       <div class="globo-knot"></div>
@@ -362,8 +316,11 @@ body.is-admin #main{padding-top:26px}
   <button class="bnav-btn" onclick="openModal('m-deseos')">
     <span class="bi">💌</span><span class="bl">Deja un<br>deseo</span>
   </button>
+  <button class="bnav-btn" onclick="openModal('m-razones')">
+    <span class="bi">💛</span><span class="bl">18<br>Razones</span>
+  </button>
   <button class="bnav-btn" onclick="openModal('m-premios')">
-    <span class="bi">🏆</span><span class="bl">Vota a los<br>mejores</span>
+    <span class="bi">🏆</span><span class="bl">Premios<br>noche</span>
   </button>
 </nav>
 
@@ -523,21 +480,6 @@ body.is-admin #main{padding-top:26px}
   </div>
 </div>
 
-<!-- MODAL GLOBO: PREMIADOS DE LA FIESTA -->
-<div class="modal-overlay" id="m-premiados" onclick="closeModalOutside(event,this)">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-header">
-      <button class="modal-close" onclick="closeModal('m-premiados')">✕</button>
-      <div class="modal-title">Premiados de la <em>fiesta</em></div>
-      <div class="modal-sub">Los ganadores elegidos por todos vosotros</div>
-    </div>
-    <div class="modal-body">
-      <div id="premiados-container"></div>
-    </div>
-  </div>
-</div>
-
 <!-- ADMIN TRIGGER (invisible, esquina inferior izquierda) -->
 <button id="admin-trigger" onclick="openAdminModal()" title=""></button>
 
@@ -598,18 +540,16 @@ setInterval(tick,1000);tick();
 function openModal(id){
   document.getElementById(id).classList.add('open');
   document.body.style.overflow='hidden';
-  if(id==='m-firmas')    setTimeout(initCV,50);
-  if(id==='m-libro')     cargarLibro();
-  if(id==='m-muro')      cargarMuro();
-  if(id==='m-sorpresa')  cargarSorpresa();
-  if(id==='m-razones')   cargarRazones();
-  if(id==='m-premios')   initPremios();
-  if(id==='m-premiados') cargarPremiados();
+  if(id==='m-firmas')   setTimeout(initCV,50); // canvas necesita estar visible
+  if(id==='m-libro')    cargarLibro();
+  if(id==='m-muro')     cargarMuro();
+  if(id==='m-sorpresa') cargarSorpresa();
+  if(id==='m-razones')  cargarRazones();
+  if(id==='m-premios')  initPremios();
 }
 function closeModal(id){
   document.getElementById(id).classList.remove('open');
   document.body.style.overflow='';
-  if(id==='m-premiados' && premiadosTimer){ clearInterval(premiadosTimer); premiadosTimer=null; }
 }
 function closeModalOutside(e,overlay){
   if(e.target===overlay)closeModal(overlay.id);
@@ -920,89 +860,6 @@ async function loadAdminStats(){
     <div class="adm-stat"><span>💛 Razones</span><span class="adm-count">${nr}</span></div>
     <div class="adm-stat"><span>🏆 Votos</span><span class="adm-count">${nv}</span></div>
     <div class="adm-stat"><span>📸 Fotos galería</span><span class="adm-count">${ng}</span></div>`;
-}
-
-// ══ PREMIADOS (globo, bloqueado hasta 02:00 del 13/9) ══
-const PREMIADOS_UNLOCK = new Date('2026-09-13T02:00:00');
-const VOTE_MSGS = [
-  '¡Vota ya desde abajo! 🗳️',
-  '¿Ya has votado? ¡No te quedes sin hacerlo! 🏆',
-  '¡Los premios los decidís vosotros! 🎉',
-  '¡Que gane el mejor! ✨',
-  '¡Cada voto cuenta! 💫',
-];
-let voteMsgIdx = 0;
-let premiadosTimer = null;
-
-function cargarPremiados(){
-  const c = document.getElementById('premiados-container');
-  const ahora = new Date();
-
-  if(ahora >= PREMIADOS_UNLOCK){
-    if(premiadosTimer){ clearInterval(premiadosTimer); premiadosTimer = null; }
-    mostrarPremiados(c);
-    return;
-  }
-
-  // Bloqueado — mostrar cuenta atrás
-  c.innerHTML = `<div class="premiados-lock">
-    <div class="pl-icon">🏆</div>
-    <div class="pl-titulo">¡Los premiados se revelan a las 02:00!</div>
-    <div class="pl-sub">Aún estás a tiempo de votar.<br>Los resultados se desvelan en:</div>
-    <div class="pl-countdown">
-      <div class="pl-cd-unit"><div class="pl-cd-num" id="pl-h">--</div><div class="pl-cd-lbl">Horas</div></div>
-      <div class="pl-cd-unit"><div class="pl-cd-num" id="pl-m">--</div><div class="pl-cd-lbl">Min</div></div>
-      <div class="pl-cd-unit"><div class="pl-cd-num" id="pl-s">--</div><div class="pl-cd-lbl">Seg</div></div>
-    </div>
-    <div class="pl-msg" id="pl-vote-msg">${VOTE_MSGS[0]}</div>
-  </div>`;
-
-  if(premiadosTimer) clearInterval(premiadosTimer);
-  premiadosTimer = setInterval(()=>{
-    const now = new Date();
-    const diff = PREMIADOS_UNLOCK - now;
-    if(diff <= 0){
-      clearInterval(premiadosTimer); premiadosTimer = null;
-      mostrarPremiados(c); return;
-    }
-    const h = Math.floor(diff/3600000);
-    const m = Math.floor((diff%3600000)/60000);
-    const s = Math.floor((diff%60000)/1000);
-    const elH = document.getElementById('pl-h');
-    const elM = document.getElementById('pl-m');
-    const elS = document.getElementById('pl-s');
-    if(elH) elH.textContent = String(h).padStart(2,'0');
-    if(elM) elM.textContent = String(m).padStart(2,'0');
-    if(elS) elS.textContent = String(s).padStart(2,'0');
-    // rotar mensajes cada 4 segundos
-    if(Math.floor(now/1000)%4===0){
-      voteMsgIdx = (voteMsgIdx+1) % VOTE_MSGS.length;
-      const elMsg = document.getElementById('pl-vote-msg');
-      if(elMsg) elMsg.textContent = VOTE_MSGS[voteMsgIdx];
-    }
-  }, 1000);
-}
-
-async function mostrarPremiados(c){
-  c.innerHTML = '<div class="loading-box"><div class="spinner"></div>Calculando ganadores...</div>';
-  const data = await dbGet('votos');
-  if(!data.length){ c.innerHTML='<div class="empty-msg"><div class="em-icon">🏆</div>Aún no hay votos suficientes</div>'; return; }
-  const porCat = {};
-  data.forEach(v=>{
-    if(!porCat[v.categoria]) porCat[v.categoria]={};
-    porCat[v.categoria][v.nominado]=(porCat[v.categoria][v.nominado]||0)+1;
-  });
-  c.innerHTML = `<p style="font-family:'Playfair Display',serif;color:var(--deep);font-size:1.1rem;margin-bottom:1rem;text-align:center">🎊 ¡Y los ganadores son!</p>` +
-    CATS.filter(cat=>porCat[cat.t]).map(cat=>{
-      const sorted = Object.entries(porCat[cat.t]).sort((a,b)=>b[1]-a[1]);
-      const [ganador, votos] = sorted[0];
-      return `<div class="premio-card" style="margin-bottom:.7rem;text-align:center">
-        <div style="font-size:2rem;margin-bottom:.3rem">${cat.e}</div>
-        <div class="premio-titulo" style="margin-bottom:.4rem">${cat.t}</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--deep);font-weight:700">🥇 ${esc(ganador)}</div>
-        <div style="font-size:.75rem;color:var(--muted);margin-top:.2rem">${votos} ${votos===1?'voto':'votos'}</div>
-      </div>`;
-    }).join('');
 }
 
 // ══ LIGHTBOX ══
