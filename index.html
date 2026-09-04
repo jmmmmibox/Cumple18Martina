@@ -35,15 +35,14 @@ body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text)}
 
 /* HEADER */
 .main-header{
-  text-align:center;padding:.8rem 1.5rem .4rem;position:relative;z-index:2;
+  text-align:center;padding:.7rem 1.5rem .3rem;position:relative;z-index:2;
   flex-shrink:0;display:flex;flex-direction:column;align-items:center;
 }
-.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,12vw,4rem);font-weight:700;color:var(--deep);line-height:1;margin-bottom:.1rem;text-shadow:0 1px 8px rgba(255,255,255,.4)}
-.hero-age{font-family:'Playfair Display',serif;font-size:clamp(.95rem,4vw,1.4rem);font-style:italic;color:var(--mauve);margin-bottom:.6rem;}
-.fechas{display:flex;gap:.5rem;justify-content:center;margin-bottom:.6rem;flex-wrap:wrap}
-.fecha-pill{background:rgba(255,255,255,.55);backdrop-filter:blur(8px);border-radius:50px;padding:.32rem .8rem;text-align:center;border:1px solid rgba(232,196,184,.5)}
-.fecha-pill .fp-lbl{font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mauve)}
-.fecha-pill .fp-val{font-family:'Playfair Display',serif;font-size:.82rem;color:var(--deep)}
+.hero-top{display:flex;align-items:baseline;justify-content:center;gap:.5rem;margin-bottom:.1rem}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2rem,10vw,3.2rem);font-weight:700;color:var(--deep);line-height:1}
+.hero-age{font-family:'Playfair Display',serif;font-size:clamp(.85rem,3.5vw,1.2rem);font-style:italic;color:var(--mauve)}
+.fecha-cumple{font-family:'Playfair Display',serif;font-size:clamp(.82rem,3vw,1rem);color:var(--muted);margin-bottom:.3rem;font-weight:400}
+.fecha-fiesta{font-family:'Playfair Display',serif;font-size:clamp(.78rem,2.8vw,.95rem);color:var(--mauve);font-style:italic;margin-bottom:.4rem}
 .countdown{display:flex;gap:.45rem;justify-content:center}
 .cd-unit{background:rgba(255,255,255,.55);backdrop-filter:blur(8px);border-radius:10px;padding:.42rem .6rem;text-align:center;min-width:48px;border:1px solid rgba(232,196,184,.4)}
 .cd-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--deep);line-height:1}
@@ -263,23 +262,20 @@ body.is-admin #main{padding-top:26px}
 
 /* SORPRESA ESQUINA */
 #sorpresa-corner{
-  position:absolute;top:1rem;left:1rem;z-index:10;
+  position:absolute;top:.8rem;left:.8rem;z-index:10;
   display:flex;flex-direction:column;align-items:center;cursor:pointer;
-  animation:float 3s ease-in-out infinite;
+  animation:float 3.5s ease-in-out infinite;
 }
-#sorpresa-corner .sc-bola{
-  width:64px;height:76px;
-  border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
-  background:linear-gradient(135deg,#f7e6b8,#d4a843);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  box-shadow:0 6px 20px rgba(107,76,69,.2),inset 0 -4px 8px rgba(0,0,0,.08),inset 0 4px 8px rgba(255,255,255,.3);
-  position:relative;gap:.2rem;
-}
-#sorpresa-corner .sc-bola::after{content:'';position:absolute;top:12%;left:22%;width:28%;height:16%;background:rgba(255,255,255,.35);border-radius:50%;transform:rotate(-30deg)}
-#sorpresa-corner .sc-icon{font-size:1.2rem;line-height:1}
-#sorpresa-corner .sc-txt{font-size:.48rem;font-weight:700;color:rgba(0,0,0,.65);text-align:center;line-height:1.2;padding:0 .2rem}
-#sorpresa-corner .sc-cuerda{width:1.5px;height:28px;background:linear-gradient(to bottom,rgba(107,76,69,.4),rgba(107,76,69,.15))}
-#sorpresa-corner .sc-knot{width:7px;height:7px;border-radius:50%;background:#d4a843}
+#sorpresa-corner:active .cofre{transform:scale(.92)}
+.cofre{width:58px;height:54px;position:relative;filter:drop-shadow(0 4px 8px rgba(107,76,69,.3));transition:transform .15s;}
+.cofre-cuerpo{position:absolute;bottom:0;left:0;right:0;height:33px;background:linear-gradient(160deg,#8B5E3C,#6B4226);border-radius:3px 3px 6px 6px;border:2px solid #4a2c14;}
+.cofre-cuerpo::before{content:'';position:absolute;top:5px;left:0;right:0;height:3px;background:linear-gradient(90deg,#c8962a,#f0c84a,#c8962a);}
+.cofre-tapa{position:absolute;top:0;left:-1px;right:-1px;height:24px;background:linear-gradient(160deg,#a0714a,#7a4f2e);border-radius:28px 28px 3px 3px;border:2px solid #4a2c14;z-index:2;}
+.cofre-tapa::after{content:'';position:absolute;bottom:-2px;left:-2px;right:-2px;height:4px;background:linear-gradient(90deg,#c8962a,#f0c84a,#c8962a);}
+.cofre-lock{position:absolute;top:50%;left:50%;transform:translate(-50%,-25%);width:9px;height:11px;z-index:3;}
+.cofre-lock::before{content:'';position:absolute;bottom:0;left:0;right:0;height:7px;background:#c8962a;border-radius:2px;}
+.cofre-lock::after{content:'';position:absolute;top:0;left:1.5px;right:1.5px;height:6px;border:2px solid #c8962a;border-radius:4px 4px 0 0;background:transparent;}
+#sorpresa-corner .cofre-txt{font-size:.48rem;font-weight:700;color:var(--deep);text-align:center;line-height:1.2;margin-top:4px;background:rgba(255,255,255,.65);padding:.15rem .45rem;border-radius:50px;backdrop-filter:blur(4px);white-space:nowrap;}
 
 /* GLOBO VERDE */
 .globo-verde .globo-bola{background:linear-gradient(135deg,#fdf0c8,#e8c86a)}
@@ -311,12 +307,21 @@ body.is-admin #main{padding-top:26px}
 
   <!-- HEADER -->
   <div class="main-header">
-    <div class="hero-name">Martina</div>
-    <div class="hero-age">cumple 18 🎂</div>
-    <div class="fechas">
-      <div class="fecha-pill"><div class="fp-lbl">Cumpleaños</div><div class="fp-val">10 Sept 2026</div></div>
-      <div class="fecha-pill"><div class="fp-lbl">La fiesta</div><div class="fp-val">12 Sept 2026</div></div>
+    <div class="hero-top">
+      <span class="hero-name">Martina</span>
+      <span class="hero-age">· cumple 18 🎂</span>
     </div>
+    <div class="fecha-cumple">10 de Septiembre 2026</div>
+  </div>
+
+  <!-- FOTO MARTINA -->
+  <div class="martina-foto-wrap">
+    <img class="martina-foto" src="/martina.jpg" alt="Martina">
+  </div>
+
+  <!-- FIESTA + COUNTDOWN -->
+  <div class="fiesta-cd" style="text-align:center;flex-shrink:0;padding:.3rem 1rem .4rem;position:relative;z-index:2;">
+    <div class="fecha-fiesta">✨ La fiesta · 12 de Septiembre 2026</div>
     <div class="countdown">
       <div class="cd-unit"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Días</div></div>
       <div class="cd-unit"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">Horas</div></div>
@@ -325,19 +330,14 @@ body.is-admin #main{padding-top:26px}
     </div>
   </div>
 
-  <!-- FOTO MARTINA -->
-  <div class="martina-foto-wrap">
-    <img class="martina-foto" src="/martina.jpg" alt="Martina">
-  </div>
-
   <!-- SORPRESA ESQUINA SUPERIOR IZQUIERDA -->
   <div id="sorpresa-corner" onclick="openModal('m-sorpresa')">
-    <div class="sc-bola">
-      <span class="sc-icon">🔒</span>
-      <span class="sc-txt">Mensaje<br>sorpresa</span>
+    <div class="cofre">
+      <div class="cofre-tapa"></div>
+      <div class="cofre-cuerpo"></div>
+      <div class="cofre-lock"></div>
     </div>
-    <div class="sc-cuerda"></div>
-    <div class="sc-knot"></div>
+    <div class="cofre-txt">Mensaje<br>sorpresa</div>
   </div>
 
   <!-- GLOBOS (3 en el centro) -->
