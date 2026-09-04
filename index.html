@@ -35,37 +35,45 @@ body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text)}
 
 /* HEADER */
 .main-header{
-  text-align:center;padding:.7rem 1.5rem .3rem;position:relative;z-index:2;
-  flex-shrink:0;display:flex;flex-direction:column;align-items:center;
+  text-align:center;padding:.6rem 1rem .3rem;position:relative;z-index:2;
+  flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:.15rem;
 }
-.hero-top{display:flex;align-items:baseline;justify-content:center;gap:.5rem;margin-bottom:.1rem}
-.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2rem,10vw,3.2rem);font-weight:700;color:var(--deep);line-height:1}
-.hero-age{font-family:'Playfair Display',serif;font-size:clamp(.85rem,3.5vw,1.2rem);font-style:italic;color:var(--mauve)}
-.fecha-cumple{font-family:'Playfair Display',serif;font-size:clamp(.82rem,3vw,1rem);color:var(--muted);margin-bottom:.3rem;font-weight:400}
-.fecha-fiesta{font-family:'Playfair Display',serif;font-size:clamp(.78rem,2.8vw,.95rem);color:var(--mauve);font-style:italic;margin-bottom:.4rem}
-.countdown{display:flex;gap:.45rem;justify-content:center}
-.cd-unit{background:rgba(255,255,255,.55);backdrop-filter:blur(8px);border-radius:10px;padding:.42rem .6rem;text-align:center;min-width:48px;border:1px solid rgba(232,196,184,.4)}
-.cd-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--deep);line-height:1}
-.cd-lbl{font-size:.47rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.1rem}
+.hero-cumple{font-family:'Inter',sans-serif;font-size:clamp(.75rem,3vw,1rem);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mauve)}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,13vw,4.5rem);font-weight:700;color:var(--deep);line-height:1}
+.hero-fecha-cumple{font-family:'Inter',sans-serif;font-size:clamp(.82rem,3.2vw,1rem);font-weight:500;color:var(--deep);opacity:.75}
 
 /* FOTO MARTINA */
 .martina-foto-wrap{
   position:relative;z-index:2;flex:1;
   width:100%;max-width:420px;
-  min-height:0;
-  overflow:hidden;
+  min-height:0;overflow:hidden;
 }
 .martina-foto{
-  width:100%;height:100%;object-fit:cover;object-position:center 8%;
-  display:block;
-  mask-image:linear-gradient(to bottom,transparent 0%,black 12%,black 72%,transparent 100%);
-  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 12%,black 72%,transparent 100%);
+  width:100%;height:100%;object-fit:cover;object-position:center 8%;display:block;
+  mask-image:linear-gradient(to bottom,transparent 0%,black 10%,black 75%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 10%,black 75%,transparent 100%);
 }
+
+/* FIESTA + COUNTDOWN */
+.fiesta-block{
+  text-align:center;flex-shrink:0;padding:.35rem 1rem .35rem;
+  position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:.35rem;
+}
+.hero-fiesta{
+  font-family:'Playfair Display',serif;font-size:clamp(.95rem,3.8vw,1.2rem);
+  font-style:italic;color:var(--deep);font-weight:600;
+  background:rgba(255,255,255,.6);backdrop-filter:blur(8px);
+  padding:.3rem 1rem;border-radius:50px;border:1px solid rgba(232,196,184,.6);
+}
+.countdown{display:flex;gap:.45rem;justify-content:center}
+.cd-unit{background:rgba(255,255,255,.7);backdrop-filter:blur(8px);border-radius:10px;padding:.45rem .65rem;text-align:center;min-width:52px;border:1px solid rgba(232,196,184,.5)}
+.cd-num{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--deep);line-height:1}
+.cd-lbl{font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.15rem}
 
 /* GLOBOS */
 .globos-area{
   flex-shrink:0;display:flex;align-items:flex-end;justify-content:center;
-  gap:1.2rem;padding:0 1rem .4rem;position:relative;z-index:2;
+  gap:1.2rem;padding:0 1rem .5rem;position:relative;z-index:2;
   width:100%;max-width:420px;
 }
 .globo{
@@ -307,11 +315,9 @@ body.is-admin #main{padding-top:26px}
 
   <!-- HEADER -->
   <div class="main-header">
-    <div class="hero-top">
-      <span class="hero-name">Martina</span>
-      <span class="hero-age">· cumple 18 🎂</span>
-    </div>
-    <div class="fecha-cumple">10 de Septiembre 2026</div>
+    <div class="hero-cumple">Cumple 18 🎂</div>
+    <div class="hero-name">Martina</div>
+    <div class="hero-fecha-cumple">10 de Septiembre 2026</div>
   </div>
 
   <!-- FOTO MARTINA -->
@@ -320,8 +326,8 @@ body.is-admin #main{padding-top:26px}
   </div>
 
   <!-- FIESTA + COUNTDOWN -->
-  <div class="fiesta-cd" style="text-align:center;flex-shrink:0;padding:.3rem 1rem .4rem;position:relative;z-index:2;">
-    <div class="fecha-fiesta">✨ La fiesta · 12 de Septiembre 2026</div>
+  <div class="fiesta-block">
+    <div class="hero-fiesta">La Fiesta · 12 / 09 / 2026</div>
     <div class="countdown">
       <div class="cd-unit"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Días</div></div>
       <div class="cd-unit"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">Horas</div></div>
