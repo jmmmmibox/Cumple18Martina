@@ -51,23 +51,22 @@ body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text)}
 
 /* FOTO MARTINA */
 .martina-foto-wrap{
-  position:relative;z-index:2;flex-shrink:0;
+  position:relative;z-index:2;flex:1;
   width:100%;max-width:420px;
-  height:clamp(160px,38vh,240px);
-  margin:.5rem 0 0;
+  min-height:0;
   overflow:hidden;
 }
 .martina-foto{
-  width:100%;height:100%;object-fit:cover;object-position:center 15%;
+  width:100%;height:100%;object-fit:cover;object-position:center 8%;
   display:block;
-  mask-image:linear-gradient(to bottom,transparent 0%,black 18%,black 65%,transparent 100%);
-  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 18%,black 65%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0%,black 12%,black 72%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 12%,black 72%,transparent 100%);
 }
 
 /* GLOBOS */
 .globos-area{
-  flex:1;display:flex;align-items:flex-end;justify-content:center;
-  gap:1.2rem;padding:0 1rem .6rem;position:relative;z-index:2;
+  flex-shrink:0;display:flex;align-items:flex-end;justify-content:center;
+  gap:1.2rem;padding:0 1rem .4rem;position:relative;z-index:2;
   width:100%;max-width:420px;
 }
 .globo{
