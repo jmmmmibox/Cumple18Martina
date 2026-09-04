@@ -25,52 +25,49 @@ body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text)}
   display:flex;flex-direction:column;align-items:center;
   padding-bottom:var(--bar-h);
   overflow:hidden;
+  background:linear-gradient(180deg,#1a0f0d 0%,#3a1f1a 30%,#6b4c45 60%,#c9a99a 80%,var(--blush) 100%);
 }
 #main::before{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 100% 60% at 50% 0%,rgba(232,196,184,.5) 0%,transparent 65%);
-  pointer-events:none;
+  background:radial-gradient(ellipse 120% 40% at 50% 100%,var(--blush) 0%,transparent 60%);
+  pointer-events:none;z-index:1;
 }
 
 /* HEADER */
 .main-header{
-  text-align:center;padding:1rem 1.5rem .6rem;position:relative;z-index:1;
+  text-align:center;padding:.8rem 1.5rem .4rem;position:relative;z-index:2;
   flex-shrink:0;display:flex;flex-direction:column;align-items:center;
 }
-/* Foto circular de Martina */
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,12vw,4rem);font-weight:700;color:#fff;line-height:1;margin-bottom:.1rem;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.hero-age{font-family:'Playfair Display',serif;font-size:clamp(.95rem,4vw,1.4rem);font-style:italic;color:rgba(255,220,200,.9);margin-bottom:.6rem;text-shadow:0 1px 8px rgba(0,0,0,.2)}
+.fechas{display:flex;gap:.5rem;justify-content:center;margin-bottom:.6rem;flex-wrap:wrap}
+.fecha-pill{background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border-radius:50px;padding:.32rem .8rem;text-align:center;border:1px solid rgba(255,255,255,.2)}
+.fecha-pill .fp-lbl{font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,220,200,.8)}
+.fecha-pill .fp-val{font-family:'Playfair Display',serif;font-size:.82rem;color:#fff}
+.countdown{display:flex;gap:.45rem;justify-content:center}
+.cd-unit{background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border-radius:10px;padding:.42rem .6rem;text-align:center;min-width:48px;border:1px solid rgba(255,255,255,.15)}
+.cd-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff;line-height:1}
+.cd-lbl{font-size:.47rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,220,200,.7);margin-top:.1rem}
+
+/* FOTO MARTINA */
 .martina-foto-wrap{
-  position:relative;margin-bottom:.6rem;
+  position:relative;z-index:2;flex-shrink:0;
+  width:100%;max-width:420px;
+  height:clamp(160px,38vh,240px);
+  margin:.5rem 0 0;
+  overflow:hidden;
 }
 .martina-foto{
-  width:clamp(90px,24vw,115px);height:clamp(90px,24vw,115px);
-  border-radius:50%;object-fit:cover;object-position:center top;
-  border:3px solid rgba(255,255,255,.9);
-  box-shadow:0 6px 24px rgba(107,76,69,.25),0 0 0 4px rgba(232,196,184,.4);
+  width:100%;height:100%;object-fit:cover;object-position:center 15%;
   display:block;
+  mask-image:linear-gradient(to bottom,transparent 0%,black 18%,black 65%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 18%,black 65%,transparent 100%);
 }
-.martina-badge{
-  position:absolute;bottom:-2px;right:-2px;
-  background:var(--deep);color:#fff;
-  font-size:.7rem;font-weight:700;
-  padding:.2rem .55rem;border-radius:50px;
-  border:2px solid var(--cream);
-  white-space:nowrap;
-}
-.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,12vw,4rem);font-weight:700;color:var(--deep);line-height:1;margin-bottom:.15rem}
-.hero-age{font-family:'Playfair Display',serif;font-size:clamp(1rem,4.5vw,1.5rem);font-style:italic;color:var(--mauve);margin-bottom:.7rem}
-.fechas{display:flex;gap:.5rem;justify-content:center;margin-bottom:.7rem;flex-wrap:wrap}
-.fecha-pill{background:rgba(255,255,255,.65);backdrop-filter:blur(8px);border-radius:50px;padding:.35rem .8rem;text-align:center;border:1px solid rgba(232,196,184,.6)}
-.fecha-pill .fp-lbl{font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mauve)}
-.fecha-pill .fp-val{font-family:'Playfair Display',serif;font-size:.82rem;color:var(--deep)}
-.countdown{display:flex;gap:.45rem;justify-content:center}
-.cd-unit{background:rgba(255,255,255,.7);backdrop-filter:blur(8px);border-radius:10px;padding:.45rem .6rem;text-align:center;min-width:48px}
-.cd-num{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--deep);line-height:1}
-.cd-lbl{font-size:.48rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.1rem}
 
 /* GLOBOS */
 .globos-area{
-  flex:1;display:flex;align-items:center;justify-content:center;
-  gap:1.2rem;padding:0 1rem;position:relative;z-index:1;
+  flex:1;display:flex;align-items:flex-end;justify-content:center;
+  gap:1.2rem;padding:0 1rem .6rem;position:relative;z-index:2;
   width:100%;max-width:420px;
 }
 .globo{
@@ -281,7 +278,7 @@ body.is-admin #main{padding-top:26px}
 }
 #sorpresa-corner .sc-bola::after{content:'';position:absolute;top:12%;left:22%;width:28%;height:16%;background:rgba(255,255,255,.35);border-radius:50%;transform:rotate(-30deg)}
 #sorpresa-corner .sc-icon{font-size:1.2rem;line-height:1}
-#sorpresa-corner .sc-txt{font-size:.48rem;font-weight:700;color:rgba(0,0,0,.6);text-align:center;line-height:1.2;padding:0 .2rem}
+#sorpresa-corner .sc-txt{font-size:.48rem;font-weight:700;color:rgba(0,0,0,.65);text-align:center;line-height:1.2;padding:0 .2rem}
 #sorpresa-corner .sc-cuerda{width:1.5px;height:28px;background:linear-gradient(to bottom,rgba(107,76,69,.4),rgba(107,76,69,.15))}
 #sorpresa-corner .sc-knot{width:7px;height:7px;border-radius:50%;background:#d4a843}
 
@@ -315,10 +312,6 @@ body.is-admin #main{padding-top:26px}
 
   <!-- HEADER -->
   <div class="main-header">
-    <div class="martina-foto-wrap">
-      <img class="martina-foto" src="/martina.jpg" alt="Martina">
-      <div class="martina-badge">18 🎂</div>
-    </div>
     <div class="hero-name">Martina</div>
     <div class="hero-age">cumple 18 🎂</div>
     <div class="fechas">
@@ -331,6 +324,11 @@ body.is-admin #main{padding-top:26px}
       <div class="cd-unit"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">Min</div></div>
       <div class="cd-unit"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">Seg</div></div>
     </div>
+  </div>
+
+  <!-- FOTO MARTINA -->
+  <div class="martina-foto-wrap">
+    <img class="martina-foto" src="/martina.jpg" alt="Martina">
   </div>
 
   <!-- SORPRESA ESQUINA SUPERIOR IZQUIERDA -->
