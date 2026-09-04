@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Martina · 18 🎉</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#fdfaf6;--blush:#f5e6e0;--rose:#e8c4b8;
+  --mauve:#c9a99a;--deep:#6b4c45;--text:#3a2a26;
+  --muted:#9a7b74;--white:#fff;
+  --shadow:0 4px 24px rgba(107,76,69,.15);--radius:20px;
+  --bar-h:80px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text)}
+
+/* ══ PANTALLA PRINCIPAL ══ */
+#main{
+  position:fixed;inset:0;
+  background:linear-gradient(170deg,var(--cream) 0%,var(--blush) 55%,var(--rose) 100%);
+  display:flex;flex-direction:column;align-items:center;
+  padding-bottom:var(--bar-h);
+  overflow:hidden;
+  background:linear-gradient(180deg,#f5ece6 0%,#ecddd6 25%,#e0c8bc 50%,#c9a99a 75%,var(--blush) 100%);
+}
+#main::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 120% 40% at 50% 100%,rgba(253,250,246,.8) 0%,transparent 55%);
+  pointer-events:none;z-index:1;
+}
+
+/* HEADER */
+.main-header{
+  text-align:center;padding:.8rem 1.5rem .4rem;position:relative;z-index:2;
+  flex-shrink:0;display:flex;flex-direction:column;align-items:center;
+}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,12vw,4rem);font-weight:700;color:var(--deep);line-height:1;margin-bottom:.1rem;text-shadow:0 1px 8px rgba(255,255,255,.4)}
+.hero-age{font-family:'Playfair Display',serif;font-size:clamp(.95rem,4vw,1.4rem);font-style:italic;color:var(--mauve);margin-bottom:.6rem;}
+.fechas{display:flex;gap:.5rem;justify-content:center;margin-bottom:.6rem;flex-wrap:wrap}
+.fecha-pill{background:rgba(255,255,255,.55);backdrop-filter:blur(8px);border-radius:50px;padding:.32rem .8rem;text-align:center;border:1px solid rgba(232,196,184,.5)}
+.fecha-pill .fp-lbl{font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mauve)}
+.fecha-pill .fp-val{font-family:'Playfair Display',serif;font-size:.82rem;color:var(--deep)}
+.countdown{display:flex;gap:.45rem;justify-content:center}
+.cd-unit{background:rgba(255,255,255,.55);backdrop-filter:blur(8px);border-radius:10px;padding:.42rem .6rem;text-align:center;min-width:48px;border:1px solid rgba(232,196,184,.4)}
+.cd-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--deep);line-height:1}
+.cd-lbl{font-size:.47rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.1rem}
+
+/* FOTO MARTINA */
+.martina-foto-wrap{
+  position:relative;z-index:2;flex:1;
+  width:100%;max-width:420px;
+  min-height:0;
+  overflow:hidden;
+}
+.martina-foto{
+  width:100%;height:100%;object-fit:cover;object-position:center 8%;
+  display:block;
+  mask-image:linear-gradient(to bottom,transparent 0%,black 12%,black 72%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 12%,black 72%,transparent 100%);
+}
+
+/* GLOBOS */
+.globos-area{
+  flex-shrink:0;display:flex;align-items:flex-end;justify-content:center;
+  gap:1.2rem;padding:0 1rem .4rem;position:relative;z-index:2;
+  width:100%;max-width:420px;
+}
+.globo{
+  display:flex;flex-direction:column;align-items:center;cursor:pointer;
+  animation:float 3s ease-in-out infinite;
+  -webkit-tap-highlight-color:transparent;
+}
+.globo:nth-child(2){animation-delay:.6s}
+.globo:nth-child(3){animation-delay:1.2s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.globo-bola{
+  width:clamp(80px,22vw,110px);height:clamp(95px,26vw,130px);
+  border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 8px 32px rgba(107,76,69,.2),inset 0 -6px 12px rgba(0,0,0,.08),inset 0 6px 12px rgba(255,255,255,.3);
+  padding:.8rem .5rem;text-align:center;position:relative;transition:transform .15s;
+  gap:.3rem;
+}
+.globo:active .globo-bola{transform:scale(.93)}
+.globo-bola::after{content:'';position:absolute;top:12%;left:22%;width:28%;height:18%;background:rgba(255,255,255,.35);border-radius:50%;transform:rotate(-30deg)}
+.globo-bola.locked{filter:grayscale(.3)}
+.globo-bola .g-icon{font-size:clamp(1.4rem,5vw,1.8rem);line-height:1}
+.globo-bola .g-txt{font-size:clamp(.55rem,1.8vw,.7rem);font-weight:700;color:rgba(0,0,0,.65);line-height:1.2;padding:0 .3rem}
+.globo-cuerda{width:1.5px;height:clamp(30px,7vw,50px);background:linear-gradient(to bottom,rgba(107,76,69,.4),rgba(107,76,69,.15))}
+.globo-knot{width:8px;height:8px;border-radius:50%;margin-top:-1px}
+
+/* Colores globos */
+.globo-rosa .globo-bola{background:linear-gradient(135deg,#fde8d8,#e8b89a)}
+.globo-rosa .globo-knot{background:#e8b89a}
+.globo-lila .globo-bola{background:linear-gradient(135deg,#ecdff5,#c9a8dc)}
+.globo-lila .globo-knot{background:#c9a8dc}
+.globo-dorado .globo-bola{background:linear-gradient(135deg,#f7e6b8,#d4a843)}
+.globo-dorado .globo-knot{background:#d4a843}
+
+/* BOTTOM NAV */
+#bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:300;
+  background:rgba(253,250,246,.97);backdrop-filter:blur(20px);
+  border-top:1px solid var(--rose);
+  display:flex;align-items:stretch;
+  height:var(--bar-h);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.bnav-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:none;border:none;cursor:pointer;gap:3px;padding:8px 2px;
+  color:var(--muted);transition:all .15s;
+}
+.bnav-btn:active{transform:scale(.92)}
+.bnav-btn .bi{font-size:1.5rem;line-height:1}
+.bnav-btn .bl{font-size:.52rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;white-space:nowrap;line-height:1.2;text-align:center}
+
+/* ══ MODALES ══ */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:400;
+  background:rgba(58,42,38,.55);backdrop-filter:blur(4px);
+  align-items:flex-end;justify-content:center;
+}
+.modal-overlay.open{display:flex}
+.modal-sheet{
+  background:var(--cream);border-radius:28px 28px 0 0;
+  width:100%;max-width:520px;
+  height:85vh;
+  display:flex;flex-direction:column;
+  box-shadow:0 -8px 40px rgba(0,0,0,.18);
+  animation:slideUp .3s cubic-bezier(.34,1.2,.64,1);
+  overflow:hidden;
+}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-handle{width:40px;height:4px;background:var(--rose);border-radius:4px;margin:.8rem auto .2rem;flex-shrink:0}
+.modal-close{position:absolute;top:.6rem;right:1rem;width:34px;height:34px;border-radius:50%;background:var(--blush);border:none;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--deep)}
+.modal-close:active{transform:scale(.9)}
+.modal-header{padding:.3rem 3.5rem .8rem 1.4rem;border-bottom:1px solid var(--blush);position:relative;flex-shrink:0}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;color:var(--deep)}
+.modal-title em{font-style:italic;color:var(--mauve)}
+.modal-sub{font-size:.78rem;color:var(--muted);margin-top:.15rem}
+.modal-body{padding:1.1rem 1.2rem;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch;padding-bottom:calc(1.5rem + env(safe-area-inset-bottom))}
+
+/* CARD */
+.card{background:var(--white);border-radius:var(--radius);padding:1.3rem;box-shadow:var(--shadow);margin-bottom:1rem}
+
+/* FORM */
+.fg{margin-bottom:1rem}
+.fg label{display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.fg input,.fg textarea{width:100%;font-family:'Inter',sans-serif;font-size:1rem;padding:.85rem 1rem;border:1.5px solid var(--rose);border-radius:12px;background:var(--cream);color:var(--text);outline:none;transition:all .2s;-webkit-appearance:none;appearance:none}
+.fg input:focus,.fg textarea:focus{border-color:var(--mauve);background:var(--white);box-shadow:0 0 0 3px rgba(201,169,154,.15)}
+.fg textarea{resize:none;min-height:85px}
+
+/* BUTTONS */
+.btn{font-family:'Inter',sans-serif;font-size:.95rem;font-weight:600;padding:.95rem;border-radius:14px;cursor:pointer;transition:all .15s;border:none;display:flex;align-items:center;justify-content:center;gap:.4rem;width:100%;-webkit-appearance:none}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--deep);color:#fff;box-shadow:0 4px 16px rgba(107,76,69,.25)}
+.btn-outline{background:transparent;border:1.5px solid var(--mauve);color:var(--deep)}
+.btn-danger{background:#e74c3c;color:#fff;font-family:'Inter',sans-serif;font-size:.75rem;font-weight:700;padding:.35rem .8rem;border-radius:50px;border:none;cursor:pointer}
+.btn-edit{background:var(--deep);color:#fff;font-family:'Inter',sans-serif;font-size:.75rem;font-weight:700;padding:.35rem .8rem;border-radius:50px;border:none;cursor:pointer}
+.btn-save{background:#27ae60;color:#fff;font-family:'Inter',sans-serif;font-size:.75rem;font-weight:700;padding:.35rem .8rem;border-radius:50px;border:none;cursor:pointer}
+
+/* CANVAS */
+#firma-canvas{border:1.5px solid var(--rose);border-radius:12px;background:#fff;cursor:crosshair;width:100%;height:130px;display:block;touch-action:none}
+.canvas-row{display:flex;gap:.5rem;margin-top:.5rem;align-items:center;flex-wrap:wrap}
+.btn-xs{font-size:.72rem;padding:.38rem .85rem;border-radius:50px;cursor:pointer;border:1.5px solid var(--rose);background:transparent;color:var(--muted);font-family:'Inter',sans-serif;font-weight:600}
+.color-dot{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;flex-shrink:0}
+.color-dot.sel{border-color:var(--deep) !important}
+
+/* UPLOAD */
+.upload-area{border:2px dashed var(--rose);border-radius:14px;padding:1.5rem 1rem;text-align:center;cursor:pointer;background:var(--cream)}
+.upload-area:active{background:var(--blush)}
+.upload-icon{font-size:2rem;margin-bottom:.3rem}
+.upload-text{color:var(--muted);font-size:.82rem;font-weight:500}
+.preview-img{max-width:140px;max-height:140px;border-radius:10px;margin:.7rem auto 0;display:block;object-fit:cover}
+
+/* FIRMAS LISTA (modal globo) */
+.firmas-list{display:flex;flex-direction:column;gap:.8rem}
+.firma-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border-left:4px solid var(--rose);position:relative}
+.firma-inner{padding:1rem 1.1rem}
+.firma-foto{width:100%;height:150px;object-fit:cover;display:block;cursor:pointer}
+.firma-nombre{font-family:'Playfair Display',serif;font-size:1rem;color:var(--deep);margin-bottom:.25rem}
+.firma-msg{font-size:.85rem;color:var(--muted);line-height:1.55;margin-bottom:.5rem}
+.firma-svg-img{width:100%;max-height:45px;object-fit:contain;opacity:.5;margin-top:.3rem}
+.firma-date{font-size:.62rem;color:var(--rose);margin-top:.4rem}
+
+/* DESEOS GRID (modal globo) */
+.deseos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem}
+.deseo-card{border-radius:12px;padding:.9rem;box-shadow:0 3px 10px rgba(0,0,0,.07);position:relative}
+.deseo-nom{font-weight:700;font-size:.75rem;color:#555;margin-bottom:.3rem}
+.deseo-msg{font-size:.82rem;line-height:1.5;color:#333}
+
+/* SORPRESA BLOQUEADA */
+.lock-box{text-align:center;padding:2.5rem 1.5rem}
+.lock-icon{font-size:3.5rem;margin-bottom:.8rem}
+.lock-msg{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--deep);margin-bottom:.4rem}
+.lock-sub{color:var(--muted);font-size:.82rem;margin-bottom:1.2rem}
+.pin-input{width:100%;font-family:'Inter',sans-serif;font-size:1.2rem;padding:.9rem;text-align:center;border:1.5px solid var(--rose);border-radius:12px;background:var(--cream);color:var(--text);outline:none;letter-spacing:.1em}
+.pin-input:focus{border-color:var(--mauve)}
+.pin-error{color:#e74c3c;font-size:.8rem;margin-top:.4rem;text-align:center;min-height:1rem}
+.sorpresa-open{background:linear-gradient(135deg,var(--blush),var(--cream));border-radius:var(--radius);padding:2rem;text-align:center;border:1px solid var(--rose)}
+.sorpresa-open p{font-family:'Playfair Display',serif;font-size:1.05rem;line-height:1.85;color:var(--deep);font-style:italic;margin-bottom:.7rem}
+.sorpresa-open .sor-autor{font-size:.78rem;color:var(--muted)}
+
+/* PREMIOS */
+.premio-card{background:var(--white);border-radius:var(--radius);padding:1.1rem;box-shadow:var(--shadow);margin-bottom:.7rem}
+.premio-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.7rem}
+.premio-emoji{font-size:1.6rem}
+.premio-titulo{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--deep);line-height:1.3}
+.premio-input{width:100%;font-family:'Inter',sans-serif;font-size:.95rem;padding:.75rem;border:1.5px solid var(--rose);border-radius:10px;background:var(--cream);color:var(--text);outline:none;-webkit-appearance:none}
+.premio-input:focus{border-color:var(--mauve);background:var(--white)}
+.bar-wrap{background:var(--blush);border-radius:8px;overflow:hidden;margin-bottom:.2rem}
+.bar-fill{height:5px;background:var(--mauve);border-radius:8px;transition:width .4s}
+
+/* RAZONES */
+.razon-item{background:var(--white);border-radius:var(--radius);padding:.9rem 1rem;box-shadow:var(--shadow);display:flex;gap:.7rem;align-items:flex-start;margin-bottom:.6rem;position:relative}
+.razon-num{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--rose);font-weight:700;min-width:1.8rem;line-height:1.1}
+.razon-txt{font-size:.88rem;line-height:1.55}
+.razon-autor{font-size:.68rem;color:var(--muted);margin-top:.15rem}
+
+/* ADMIN */
+.adm-bar{display:none;gap:.35rem;padding:.45rem .5rem;background:rgba(107,76,69,.08);border-radius:8px;margin-bottom:.5rem;align-items:center;flex-wrap:wrap}
+body.is-admin .adm-bar{display:flex}
+.adm-bar span{font-size:.65rem;color:var(--muted);flex:1}
+.adm-banner{position:fixed;top:0;left:0;right:0;z-index:999;background:var(--deep);color:#fff;text-align:center;font-size:.7rem;font-weight:700;padding:.38rem;letter-spacing:.06em;display:none}
+body.is-admin .adm-banner{display:block}
+body.is-admin #main{padding-top:26px}
+.edit-field{width:100%;font-family:'Inter',sans-serif;font-size:.85rem;padding:.45rem .65rem;border:1.5px solid var(--mauve);border-radius:8px;background:#fff;color:var(--text);outline:none;margin-bottom:.3rem;resize:vertical;-webkit-appearance:none}
+
+/* ADMIN MODAL */
+#admin-trigger{position:fixed;bottom:calc(var(--bar-h) + 2px);left:0;width:44px;height:44px;background:transparent;border:none;z-index:299;cursor:pointer}
+.adm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;align-items:flex-end;justify-content:center}
+.adm-overlay.open{display:flex}
+.adm-sheet{background:var(--white);border-radius:24px 24px 0 0;padding:1.2rem 1.4rem calc(1.4rem + env(safe-area-inset-bottom));width:100%;max-width:500px;box-shadow:0 -8px 40px rgba(0,0,0,.15)}
+.adm-handle{width:38px;height:4px;background:var(--rose);border-radius:4px;margin:0 auto .9rem}
+.adm-sheet h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--deep);margin-bottom:.9rem}
+.adm-stat{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--blush);font-size:.84rem}
+.adm-stat:last-child{border:none}
+.adm-count{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--deep);font-weight:700}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:600;align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lightbox img{max-width:96vw;max-height:96vh;border-radius:14px;object-fit:contain}
+.lb-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.3rem;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+/* TOAST */
+.toast{position:fixed;bottom:calc(var(--bar-h) + .8rem);left:1rem;right:1rem;transform:translateY(120px);background:var(--deep);color:#fff;padding:.8rem 1.2rem;border-radius:12px;font-size:.86rem;font-weight:600;box-shadow:0 6px 24px rgba(0,0,0,.2);transition:transform .3s cubic-bezier(.34,1.56,.64,1);z-index:700;text-align:center}
+.toast.show{transform:translateY(0)}
+
+/* UTILS */
+.loading-box{text-align:center;padding:2.5rem;color:var(--muted);font-size:.88rem}
+.spinner{width:28px;height:28px;border:3px solid var(--rose);border-top-color:var(--mauve);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto .7rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty-msg{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.88rem}
+.empty-msg .em-icon{font-size:2.2rem;margin-bottom:.4rem}
+.color-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.4rem}
+.sep{height:1px;background:var(--blush);margin:.8rem 0}
+
+/* SORPRESA ESQUINA */
+#sorpresa-corner{
+  position:absolute;top:1rem;left:1rem;z-index:10;
+  display:flex;flex-direction:column;align-items:center;cursor:pointer;
+  animation:float 3s ease-in-out infinite;
+}
+#sorpresa-corner .sc-bola{
+  width:64px;height:76px;
+  border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  background:linear-gradient(135deg,#f7e6b8,#d4a843);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 6px 20px rgba(107,76,69,.2),inset 0 -4px 8px rgba(0,0,0,.08),inset 0 4px 8px rgba(255,255,255,.3);
+  position:relative;gap:.2rem;
+}
+#sorpresa-corner .sc-bola::after{content:'';position:absolute;top:12%;left:22%;width:28%;height:16%;background:rgba(255,255,255,.35);border-radius:50%;transform:rotate(-30deg)}
+#sorpresa-corner .sc-icon{font-size:1.2rem;line-height:1}
+#sorpresa-corner .sc-txt{font-size:.48rem;font-weight:700;color:rgba(0,0,0,.65);text-align:center;line-height:1.2;padding:0 .2rem}
+#sorpresa-corner .sc-cuerda{width:1.5px;height:28px;background:linear-gradient(to bottom,rgba(107,76,69,.4),rgba(107,76,69,.15))}
+#sorpresa-corner .sc-knot{width:7px;height:7px;border-radius:50%;background:#d4a843}
+
+/* GLOBO VERDE */
+.globo-verde .globo-bola{background:linear-gradient(135deg,#fdf0c8,#e8c86a)}
+.globo-verde .globo-knot{background:#e8c86a}
+
+/* PREMIADOS BLOQUEADO */
+.premiados-lock{text-align:center;padding:1.5rem 1rem}
+.pl-icon{font-size:3rem;margin-bottom:.6rem}
+.pl-titulo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--deep);margin-bottom:.3rem}
+.pl-sub{color:var(--muted);font-size:.82rem;margin-bottom:1.2rem;line-height:1.5}
+.pl-countdown{display:flex;gap:.5rem;justify-content:center;margin-bottom:1.2rem}
+.pl-cd-unit{background:var(--deep);border-radius:10px;padding:.5rem .7rem;text-align:center;min-width:50px}
+.pl-cd-num{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff;line-height:1}
+.pl-cd-lbl{font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:.1rem}
+.pl-msg{font-size:.88rem;color:var(--mauve);font-style:italic;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+[data-netlify-deploy-id],[class*="netlify-badge"],[id*="netlify"]{display:none!important;visibility:hidden!important}
+</style>
+</head>
+<body>
+
+<div class="adm-banner">👑 Modo administrador activo</div>
+
+<!-- ══════════════════════════════
+     PANTALLA PRINCIPAL
+══════════════════════════════ -->
+<div id="main">
+
+  <!-- HEADER -->
+  <div class="main-header">
+    <div class="hero-name">Martina</div>
+    <div class="hero-age">cumple 18 🎂</div>
+    <div class="fechas">
+      <div class="fecha-pill"><div class="fp-lbl">Cumpleaños</div><div class="fp-val">10 Sept 2026</div></div>
+      <div class="fecha-pill"><div class="fp-lbl">La fiesta</div><div class="fp-val">12 Sept 2026</div></div>
+    </div>
+    <div class="countdown">
+      <div class="cd-unit"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Días</div></div>
+      <div class="cd-unit"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">Horas</div></div>
+      <div class="cd-unit"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">Min</div></div>
+      <div class="cd-unit"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">Seg</div></div>
+    </div>
+  </div>
+
+  <!-- FOTO MARTINA -->
+  <div class="martina-foto-wrap">
+    <img class="martina-foto" src="/martina.jpg" alt="Martina">
+  </div>
+
+  <!-- SORPRESA ESQUINA SUPERIOR IZQUIERDA -->
+  <div id="sorpresa-corner" onclick="openModal('m-sorpresa')">
+    <div class="sc-bola">
+      <span class="sc-icon">🔒</span>
+      <span class="sc-txt">Mensaje<br>sorpresa</span>
+    </div>
+    <div class="sc-cuerda"></div>
+    <div class="sc-knot"></div>
+  </div>
+
+  <!-- GLOBOS (3 en el centro) -->
+  <div class="globos-area">
+    <div class="globo globo-rosa" onclick="openModal('m-libro')">
+      <div class="globo-bola">
+        <span class="g-icon">📖</span>
+        <span class="g-txt">Libro de<br>firmas</span>
+      </div>
+      <div class="globo-cuerda"></div>
+      <div class="globo-knot"></div>
+    </div>
+    <div class="globo globo-lila" onclick="openModal('m-muro')">
+      <div class="globo-bola">
+        <span class="g-icon">💌</span>
+        <span class="g-txt">Muro de<br>deseos</span>
+      </div>
+      <div class="globo-cuerda"></div>
+      <div class="globo-knot"></div>
+    </div>
+    <div class="globo globo-verde" onclick="openModal('m-premiados')">
+      <div class="globo-bola">
+        <span class="g-icon">🏆</span>
+        <span class="g-txt">Premiados<br>de la fiesta</span>
+      </div>
+      <div class="globo-cuerda"></div>
+      <div class="globo-knot"></div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- ══════════════════════════════
+     BOTTOM NAV
+══════════════════════════════ -->
+<nav id="bottom-nav">
+  <button class="bnav-btn" onclick="openModal('m-firmas')">
+    <span class="bi">✍️</span><span class="bl">Firma el<br>libro</span>
+  </button>
+  <button class="bnav-btn" onclick="openModal('m-deseos')">
+    <span class="bi">💌</span><span class="bl">Deja un<br>deseo</span>
+  </button>
+  <button class="bnav-btn" onclick="openModal('m-premios')">
+    <span class="bi">🏆</span><span class="bl">Vota a los<br>mejores</span>
+  </button>
+</nav>
+
+<!-- ══════════════════════════════
+     MODALES
+══════════════════════════════ -->
+
+<!-- MODAL: FIRMAR EL LIBRO -->
+<div class="modal-overlay" id="m-firmas" onclick="closeModalOutside(event,this)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('m-firmas')">✕</button>
+      <div class="modal-title">Firma el <em>libro</em></div>
+      <div class="modal-sub">Deja tu huella en el día más especial de Martina</div>
+    </div>
+    <div class="modal-body">
+      <div class="fg"><label>Tu nombre *</label><input type="text" id="f-nombre" placeholder="¿Cómo te llamas?" autocomplete="name"></div>
+      <div class="fg"><label>Dedicatoria para Martina</label><textarea id="f-mensaje" placeholder="Escríbele algo especial..."></textarea></div>
+      <div class="fg">
+        <label>Tu firma (dibuja con el dedo)</label>
+        <canvas id="firma-canvas"></canvas>
+        <div class="canvas-row">
+          <button class="btn-xs" onclick="clearCanvas()">🗑 Borrar</button>
+          <div class="color-dot sel" style="background:#3a2a26" onclick="setPenColor('#3a2a26',this)"></div>
+          <div class="color-dot" style="background:#c9a99a" onclick="setPenColor('#c9a99a',this)"></div>
+          <div class="color-dot" style="background:#4a7c7e" onclick="setPenColor('#4a7c7e',this)"></div>
+          <div class="color-dot" style="background:#2c3e7a" onclick="setPenColor('#2c3e7a',this)"></div>
+          <div class="color-dot" style="background:#c0392b" onclick="setPenColor('#c0392b',this)"></div>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Foto (opcional)</label>
+        <div class="upload-area" onclick="document.getElementById('f-foto').click()">
+          <input type="file" id="f-foto" accept="image/*" style="display:none" onchange="previewImg(this,'f-foto-prev')">
+          <div class="upload-icon">📷</div>
+          <div class="upload-text">Toca para añadir una foto</div>
+        </div>
+        <img id="f-foto-prev" class="preview-img" style="display:none">
+      </div>
+      <button class="btn btn-primary" onclick="enviarFirma()">Enviar mi firma ✨</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: DEJA UN DESEO -->
+<div class="modal-overlay" id="m-deseos" onclick="closeModalOutside(event,this)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('m-deseos')">✕</button>
+      <div class="modal-title">Deja un <em>deseo</em></div>
+      <div class="modal-sub">¿Qué le deseas a Martina para sus 18?</div>
+    </div>
+    <div class="modal-body">
+      <div class="fg"><label>Tu nombre *</label><input type="text" id="d-nombre" placeholder="¿Cómo te llamas?" autocomplete="name"></div>
+      <div class="fg"><label>Tu deseo *</label><textarea id="d-mensaje" placeholder="Que seas muy feliz y que..."></textarea></div>
+      <div class="fg">
+        <label>Color del post-it</label>
+        <div class="color-row">
+          <div class="color-dot sel" style="background:#fff9c4" onclick="setDeseoColor('#fff9c4',this)"></div>
+          <div class="color-dot" style="background:#ffd6d6" onclick="setDeseoColor('#ffd6d6',this)"></div>
+          <div class="color-dot" style="background:#d6f0d6" onclick="setDeseoColor('#d6f0d6',this)"></div>
+          <div class="color-dot" style="background:#d6e4f7" onclick="setDeseoColor('#d6e4f7',this)"></div>
+          <div class="color-dot" style="background:#f5e6ff" onclick="setDeseoColor('#f5e6ff',this)"></div>
+          <div class="color-dot" style="background:#ffe4c4" onclick="setDeseoColor('#ffe4c4',this)"></div>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="enviarDeseo()">Colgar mi deseo 💌</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: 18 RAZONES -->
+<div class="modal-overlay" id="m-razones" onclick="closeModalOutside(event,this)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('m-razones')">✕</button>
+      <div class="modal-title">18 razones para <em>quererte</em></div>
+      <div class="modal-sub">¿Cuál es la tuya?</div>
+    </div>
+    <div class="modal-body">
+      <div class="fg"><label>Tu nombre *</label><input type="text" id="r-nombre" placeholder="¿Cómo te llamas?" autocomplete="name"></div>
+      <div class="fg"><label>Tu razón *</label><textarea id="r-razon" placeholder="Porque..."></textarea></div>
+      <button class="btn btn-primary" onclick="enviarRazon()">Añadir mi razón 💛</button>
+      <div class="sep"></div>
+      <div id="razones-lista"><div class="loading-box"><div class="spinner"></div>Cargando...</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: PREMIOS -->
+<div class="modal-overlay" id="m-premios" onclick="closeModalOutside(event,this)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('m-premios')">✕</button>
+      <div class="modal-title">Premios de la <em>noche</em></div>
+      <div class="modal-sub">Vota a los mejores de la fiesta · resultados en tiempo real</div>
+    </div>
+    <div class="modal-body">
+      <div class="fg"><label>Tu nombre *</label><input type="text" id="p-votante" placeholder="¿Cómo te llamas?" autocomplete="name"></div>
+      <div id="premios-lista"></div>
+      <button class="btn btn-primary" style="margin-top:.3rem" onclick="enviarVotos()">Enviar mis votos 🏆</button>
+      <div class="sep"></div>
+      <div id="premios-resultados"></div>
+      <div id="adm-votos-btn" style="display:none;margin-top:.5rem">
+        <button class="btn-danger" style="width:100%;padding:.75rem;border-radius:12px;font-size:.85rem" onclick="borrarTodosVotos()">🗑 Borrar todos los votos</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL GLOBO: LIBRO DE FIRMAS (lectura) -->
+<div class="modal-overlay" id="m-libro" onclick="closeModalOutside(event,this)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('m-libro')">✕</button>
+      <div class="modal-title">Libro de <em>firmas</em></div>
+      <div class="modal-sub">Todos los mensajes del gran día</div>
+    </div>
+    <div class="modal-body">
+      <div id="libro-lista"><div class="loading-box"><div class="spinner"></div>Cargando firmas...</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL GLOBO: MURO DE DESEOS (lectura) -->
+<div class="modal-overlay" id="m-muro" onclick="closeModalOutside(event,this)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('m-muro')">✕</button>
+      <div class="modal-title">Muro de <em>deseos</em></div>
+      <div class="modal-sub">Todos los deseos para Martina</div>
+    </div>
+    <div class="modal-body">
+      <div id="muro-lista"><div class="loading-box"><div class="spinner"></div>Cargando deseos...</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL GLOBO: MENSAJE SORPRESA -->
+<div class="modal-overlay" id="m-sorpresa" onclick="closeModalOutside(event,this)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('m-sorpresa')">✕</button>
+      <div class="modal-title">Mensaje <em>sorpresa</em></div>
+      <div class="modal-sub">Un mensaje especial para Martina</div>
+    </div>
+    <div class="modal-body">
+      <div id="sorpresa-container"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL GLOBO: PREMIADOS DE LA FIESTA -->
+<div class="modal-overlay" id="m-premiados" onclick="closeModalOutside(event,this)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('m-premiados')">✕</button>
+      <div class="modal-title">Premiados de la <em>fiesta</em></div>
+      <div class="modal-sub">Los ganadores elegidos por todos vosotros</div>
+    </div>
+    <div class="modal-body">
+      <div id="premiados-container"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN TRIGGER (invisible, esquina inferior izquierda) -->
+<button id="admin-trigger" onclick="openAdminModal()" title=""></button>
+
+<!-- ADMIN SHEET -->
+<div class="adm-overlay" id="adm-overlay" onclick="closeAdminOverlay(event)">
+  <div class="adm-sheet" onclick="event.stopPropagation()">
+    <div class="adm-handle"></div>
+    <div id="adm-login-s">
+      <h3>🔐 Acceso admin</h3>
+      <div class="fg" style="margin-top:.8rem"><label>Usuario</label><input type="text" id="adm-user" autocomplete="off" placeholder="Usuario"></div>
+      <div class="fg"><label>Contraseña</label><input type="password" id="adm-pass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')loginAdmin()"></div>
+      <button class="btn btn-primary" onclick="loginAdmin()">Entrar</button>
+      <p id="adm-err" style="color:#e74c3c;font-size:.78rem;margin-top:.5rem;text-align:center"></p>
+    </div>
+    <div id="adm-panel-s" style="display:none">
+      <h3>👑 Panel admin</h3>
+      <div id="adm-stats" style="margin:.7rem 0"><div class="loading-box"><div class="spinner"></div></div></div>
+      <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:.7rem">
+        <button class="btn btn-outline" onclick="closeAdminModal();openModal('m-sorpresa')">✏️ Editar mensaje sorpresa</button>
+        <button class="btn-danger" style="padding:.85rem;border-radius:12px;font-size:.88rem;width:100%" onclick="logoutAdmin()">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const SB  = 'https://ksxassjthcofhhskhxht.supabase.co';
+const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzeGFzc2p0aGNvZmhoc2toeGh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4NDU5MzAsImV4cCI6MjEwMzQyMTkzMH0.Z5g35FPK_wbC72LMGXy4yQOnA2H0p79zd7cZjpJiRo0';
+const BKT = 'martina18';
+const FIESTA    = new Date('2026-09-12T20:00:00');
+const SORPRESA_UNLOCK = new Date('2026-09-12T23:00:00');
+const SORPRESA_WORD   = 'Martina';
+const HDR = {'apikey':KEY,'Authorization':`Bearer ${KEY}`,'Content-Type':'application/json','Prefer':'return=representation'};
+let isAdmin = false;
+
+// ══ COUNTDOWN ══
+function tick(){
+  const diff=FIESTA-new Date();
+  if(diff<=0){document.querySelector('.countdown').innerHTML='<div style="font-family:Playfair Display,serif;font-size:1.4rem;color:var(--deep)">🎉 ¡Es hoy!</div>';return}
+  const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+  document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+}
+setInterval(tick,1000);tick();
+
+// ══ MODALES ══
+function openModal(id){
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow='hidden';
+  if(id==='m-firmas')    setTimeout(initCV,50);
+  if(id==='m-libro')     cargarLibro();
+  if(id==='m-muro')      cargarMuro();
+  if(id==='m-sorpresa')  cargarSorpresa();
+  if(id==='m-razones')   cargarRazones();
+  if(id==='m-premios')   initPremios();
+  if(id==='m-premiados') cargarPremiados();
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow='';
+  if(id==='m-premiados' && premiadosTimer){ clearInterval(premiadosTimer); premiadosTimer=null; }
+}
+function closeModalOutside(e,overlay){
+  if(e.target===overlay)closeModal(overlay.id);
+}
+
+// ══ TOAST ══
+function toast(msg,ok=true){
+  const t=document.getElementById('toast');t.textContent=msg;t.style.background=ok?'var(--deep)':'#e74c3c';
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+// ══ DB ══
+async function dbGet(table,extra=''){
+  try{const r=await fetch(`${SB}/rest/v1/${table}?order=created_at.asc${extra}`,{headers:HDR});if(!r.ok)return[];return r.json()}catch{return[]}
+}
+async function dbPost(table,body){
+  const r=await fetch(`${SB}/rest/v1/${table}`,{method:'POST',headers:HDR,body:JSON.stringify(body)});
+  if(!r.ok)throw new Error(await r.text());return r.json();
+}
+async function dbDelete(table,id){
+  const r=await fetch(`${SB}/rest/v1/${table}?id=eq.${id}`,{method:'DELETE',headers:{...HDR,'Prefer':''}});
+  if(!r.ok)throw new Error(await r.text());
+}
+async function dbPatch(table,id,body){
+  await fetch(`${SB}/rest/v1/${table}?id=eq.${id}`,{method:'PATCH',headers:HDR,body:JSON.stringify(body)});
+}
+async function dbCount(table){
+  const r=await fetch(`${SB}/rest/v1/${table}?select=id`,{headers:{...HDR,'Prefer':'count=exact'}});
+  return r.headers.get('content-range')?.split('/')[1]||'0';
+}
+async function upload(file,path){
+  const r=await fetch(`${SB}/storage/v1/object/${BKT}/${path}`,{method:'POST',headers:{'apikey':KEY,'Authorization':`Bearer ${KEY}`,'Content-Type':file.type},body:file});
+  if(!r.ok)throw new Error(await r.text());
+  return`${SB}/storage/v1/object/public/${BKT}/${path}`;
+}
+function fmt(iso){return new Date(iso).toLocaleDateString('es-ES',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}
+function esc(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+
+// ══ ADMIN BAR ══
+function admBar(id,table,reloadFn){
+  if(!isAdmin)return'';
+  return`<div class="adm-bar"><span>Admin</span>
+    <button class="btn-edit" onclick="editItem('${id}','${table}','${reloadFn}')">✏️</button>
+    <button class="btn-danger" onclick="deleteItem('${id}','${table}','${reloadFn}')">🗑</button>
+  </div>`;
+}
+async function deleteItem(id,table,fn){
+  if(!confirm('¿Borrar este elemento?'))return;
+  try{await dbDelete(table,id);toast('Eliminado ✅');window[fn]()}
+  catch(e){toast('Error: '+e.message,false)}
+}
+function editItem(id,table,fn){
+  const card=document.querySelector(`[data-id="${id}"]`);if(!card)return;
+  card.querySelectorAll('[data-field]').forEach(f=>{
+    const val=f.dataset.raw||f.textContent.replace(/^— /,'');
+    const ta=document.createElement('textarea');ta.className='edit-field';ta.value=val;ta.dataset.field=f.dataset.field;ta.rows=2;
+    f.replaceWith(ta);
+  });
+  const bar=card.querySelector('.adm-bar');
+  bar.innerHTML=`<span style="color:var(--deep);font-weight:700">Editando…</span>
+    <button class="btn-save" onclick="saveItem('${id}','${table}','${fn}',this.closest('[data-id]'))">💾</button>
+    <button class="btn-xs" onclick="window['${fn}']()">✕</button>`;
+}
+async function saveItem(id,table,fn,card){
+  const body={};card.querySelectorAll('.edit-field[data-field]').forEach(t=>{body[t.dataset.field]=t.value.trim()});
+  await dbPatch(table,id,body);toast('¡Guardado! ✅');window[fn]();
+}
+
+// ══ CANVAS ══
+let drawing=false,lx=0,ly=0,penColor='#3a2a26';
+const cv=document.getElementById('firma-canvas'),cx=cv.getContext('2d');
+function initCV(){cv.width=cv.offsetWidth;cv.height=130;cx.strokeStyle=penColor;cx.lineWidth=2.8;cx.lineCap='round';cx.lineJoin='round'}
+initCV();window.addEventListener('resize',initCV);
+function pos(e){const r=cv.getBoundingClientRect(),s=e.touches?e.touches[0]:e;return[s.clientX-r.left,s.clientY-r.top]}
+function drawL(e){if(!drawing)return;const[x,y]=pos(e);cx.beginPath();cx.moveTo(lx,ly);cx.lineTo(x,y);cx.stroke();[lx,ly]=[x,y]}
+cv.addEventListener('mousedown',e=>{drawing=true;[lx,ly]=pos(e)});
+cv.addEventListener('mousemove',drawL);cv.addEventListener('mouseup',()=>drawing=false);cv.addEventListener('mouseleave',()=>drawing=false);
+cv.addEventListener('touchstart',e=>{e.preventDefault();drawing=true;[lx,ly]=pos(e)},{passive:false});
+cv.addEventListener('touchmove',e=>{e.preventDefault();drawL(e)},{passive:false});
+cv.addEventListener('touchend',()=>drawing=false);
+function clearCanvas(){cx.clearRect(0,0,cv.width,cv.height)}
+function setPenColor(c,el){penColor=c;cx.strokeStyle=c;document.querySelectorAll('#m-firmas .color-dot').forEach(d=>d.classList.remove('sel'));el.classList.add('sel')}
+function canvasEmpty(){if(!cv.width||!cv.height)return true;return!cx.getImageData(0,0,cv.width,cv.height).data.some(v=>v!==0)}
+
+// ══ PREVIEW ══
+function previewImg(input,pid){const f=input.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{const i=document.getElementById(pid);i.src=e.target.result;i.style.display='block'};r.readAsDataURL(f)}
+
+// ══ FIRMAR ══
+async function enviarFirma(){
+  const nombre=document.getElementById('f-nombre').value.trim();
+  if(!nombre)return toast('¡Escribe tu nombre!',false);
+  let foto_url=null;
+  const ff=document.getElementById('f-foto').files[0];
+  if(ff){toast('Subiendo foto...');try{foto_url=await upload(ff,`firmas/${Date.now()}_${ff.name}`)}catch{}}
+  const firma_svg=canvasEmpty()?null:cv.toDataURL('image/png');
+  try{
+    await dbPost('firmas',{nombre,mensaje:document.getElementById('f-mensaje').value.trim(),firma_svg,foto_url});
+    toast('¡Firma enviada! 💛');
+    document.getElementById('f-nombre').value='';document.getElementById('f-mensaje').value='';clearCanvas();
+    document.getElementById('f-foto').value='';document.getElementById('f-foto-prev').style.display='none';
+    closeModal('m-firmas');
+  }catch{toast('Error al enviar.',false)}
+}
+
+// ══ LIBRO (globo, solo lectura + admin) ══
+async function cargarLibro(){
+  const c=document.getElementById('libro-lista');
+  c.innerHTML='<div class="loading-box"><div class="spinner"></div>Cargando firmas...</div>';
+  const data=await dbGet('firmas');
+  if(!data.length){c.innerHTML='<div class="empty-msg"><div class="em-icon">✍️</div>Aún no hay firmas</div>';return}
+  c.innerHTML='<div class="firmas-list">'+data.map(f=>`
+    <div class="firma-card" data-id="${f.id}">
+      ${f.foto_url?`<img class="firma-foto" src="${f.foto_url}" alt="${esc(f.nombre)}" onclick="openLightbox('${f.foto_url}')">` :''}
+      <div class="firma-inner">
+        ${admBar(f.id,'firmas','cargarLibro')}
+        <div class="firma-nombre" data-field="nombre" data-raw="${esc(f.nombre)}">${esc(f.nombre)}</div>
+        ${f.mensaje?`<div class="firma-msg" data-field="mensaje" data-raw="${esc(f.mensaje)}">${esc(f.mensaje)}</div>`:''}
+        ${f.firma_svg?`<img class="firma-svg-img" src="${f.firma_svg}" alt="firma">`:''}
+        <div class="firma-date">${fmt(f.created_at)}</div>
+      </div>
+    </div>`).join('')+'</div>';
+}
+
+// ══ DESEO ══
+let deseoColor='#fff9c4';
+function setDeseoColor(c,el){deseoColor=c;document.querySelectorAll('#m-deseos .color-dot').forEach(d=>d.classList.remove('sel'));el.classList.add('sel')}
+async function enviarDeseo(){
+  const nombre=document.getElementById('d-nombre').value.trim(),mensaje=document.getElementById('d-mensaje').value.trim();
+  if(!nombre||!mensaje)return toast('Rellena tu nombre y deseo',false);
+  try{
+    await dbPost('deseos',{nombre,mensaje,color:deseoColor});
+    toast('¡Deseo colgado! 💌');
+    document.getElementById('d-nombre').value='';document.getElementById('d-mensaje').value='';
+    closeModal('m-deseos');
+  }catch{toast('Error.',false)}
+}
+
+// ══ MURO (globo, solo lectura + admin) ══
+async function cargarMuro(){
+  const c=document.getElementById('muro-lista');
+  c.innerHTML='<div class="loading-box"><div class="spinner"></div>Cargando deseos...</div>';
+  const data=await dbGet('deseos');
+  if(!data.length){c.innerHTML='<div class="empty-msg"><div class="em-icon">💌</div>Aún no hay deseos</div>';return}
+  const rots=[-2,1,-1.5,2,0,-1,1.5,-2.5,.5];
+  c.innerHTML='<div class="deseos-grid">'+data.map((d,i)=>`
+    <div class="deseo-card" data-id="${d.id}" style="background:${d.color};transform:rotate(${rots[i%rots.length]}deg)">
+      ${admBar(d.id,'deseos','cargarMuro')}
+      <div class="deseo-nom" data-field="nombre" data-raw="${esc(d.nombre)}">${esc(d.nombre)}</div>
+      <div class="deseo-msg" data-field="mensaje" data-raw="${esc(d.mensaje)}">${esc(d.mensaje)}</div>
+    </div>`).join('')+'</div>';
+}
+
+// ══ RAZONES ══
+async function enviarRazon(){
+  const autor=document.getElementById('r-nombre').value.trim(),razon=document.getElementById('r-razon').value.trim();
+  if(!autor||!razon)return toast('Rellena tu nombre y razón',false);
+  try{
+    await dbPost('razones',{autor,razon});
+    toast('¡Razón añadida! 💛');
+    document.getElementById('r-nombre').value='';document.getElementById('r-razon').value='';
+    cargarRazones();
+  }catch{toast('Error.',false)}
+}
+async function cargarRazones(){
+  const c=document.getElementById('razones-lista');
+  c.innerHTML='<div class="loading-box"><div class="spinner"></div>Cargando...</div>';
+  const data=await dbGet('razones');
+  if(!data.length){c.innerHTML='<div class="empty-msg"><div class="em-icon">💛</div>Sé el primero en escribir una razón</div>';return}
+  c.innerHTML=data.map((r,i)=>`
+    <div class="razon-item" data-id="${r.id}">
+      ${admBar(r.id,'razones','cargarRazones')}
+      <div class="razon-num">${String(i+1).padStart(2,'0')}</div>
+      <div>
+        <div class="razon-txt" data-field="razon" data-raw="${esc(r.razon)}">${esc(r.razon)}</div>
+        <div class="razon-autor" data-field="autor" data-raw="${esc(r.autor)}">— ${esc(r.autor)}</div>
+      </div>
+    </div>`).join('');
+}
+
+// ══ PREMIOS ══
+const CATS=[
+  {e:'👑',t:'El/La más elegante'},{e:'💃',t:'El/La mejor bailarín/a'},
+  {e:'😂',t:'El/La más divertido/a'},{e:'🌟',t:'El alma de la fiesta'},
+  {e:'📸',t:'El/La más fotogénico/a'},{e:'🎤',t:'El/La más karaokero/a'},
+  {e:'🥂',t:'El mejor brindis'},{e:'🎨',t:'El/La más creativo/a'},
+];
+function initPremios(){
+  document.getElementById('premios-lista').innerHTML=CATS.map((c,i)=>`
+    <div class="premio-card">
+      <div class="premio-head"><span class="premio-emoji">${c.e}</span><span class="premio-titulo">${c.t}</span></div>
+      <input class="premio-input" type="text" id="pv-${i}" placeholder="Nombre del ganador/a">
+    </div>`).join('');
+  if(isAdmin)document.getElementById('adm-votos-btn').style.display='block';
+  cargarResultadosPremios();
+}
+async function enviarVotos(){
+  const votante=document.getElementById('p-votante').value.trim();
+  if(!votante)return toast('¡Escribe tu nombre!',false);
+  const votos=CATS.map((c,i)=>({votante,categoria:c.t,nominado:document.getElementById(`pv-${i}`).value.trim()})).filter(v=>v.nominado);
+  if(!votos.length)return toast('¡Vota en al menos una categoría!',false);
+  try{for(const v of votos)await dbPost('votos',v);toast('¡Votos enviados! 🏆');CATS.forEach((_,i)=>document.getElementById(`pv-${i}`).value='');cargarResultadosPremios()}
+  catch{toast('Error al votar.',false)}
+}
+async function cargarResultadosPremios(){
+  const data=await dbGet('votos'),cont=document.getElementById('premios-resultados');
+  if(!data.length){cont.innerHTML='';return}
+  const porCat={};
+  data.forEach(v=>{if(!porCat[v.categoria])porCat[v.categoria]={};porCat[v.categoria][v.nominado]=(porCat[v.categoria][v.nominado]||0)+1});
+  cont.innerHTML=`<p style="font-family:'Playfair Display',serif;color:var(--deep);font-size:1.1rem;margin-bottom:.8rem">Resultados en tiempo real 📊</p>`+
+    CATS.filter(c=>porCat[c.t]).map(c=>{
+      const vs=Object.entries(porCat[c.t]).sort((a,b)=>b[1]-a[1]),max=vs[0][1];
+      return`<div class="premio-card">
+        <div class="premio-head"><span class="premio-emoji">${c.e}</span><span class="premio-titulo">${c.t}</span></div>
+        ${vs.map(([n,cnt],i)=>`
+          <div style="margin-bottom:.35rem">
+            <div style="display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:.12rem">
+              <span style="${i===0?'font-weight:700;color:var(--deep)':''}">${i===0?'🥇 ':''}${esc(n)}</span>
+              <span style="color:var(--muted)">${cnt}</span>
+            </div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:${Math.round(cnt/max*100)}%"></div></div>
+          </div>`).join('')}
+      </div>`;
+    }).join('');
+}
+async function borrarTodosVotos(){
+  if(!confirm('¿Borrar TODOS los votos?'))return;
+  await fetch(`${SB}/rest/v1/votos`,{method:'DELETE',headers:{...HDR,'Prefer':''}});
+  toast('Votos borrados');cargarResultadosPremios();
+}
+
+// ══ SORPRESA ══
+let sorpresaDesbloqueada=false;
+async function cargarSorpresa(){
+  const c=document.getElementById('sorpresa-container');
+  const ahora=new Date();
+  const data=await dbGet('mensaje_sorpresa');
+
+  if(isAdmin){
+    c.innerHTML=`<div class="card">
+      <p style="font-size:.72rem;color:var(--mauve);margin-bottom:.8rem">👑 Solo visible para administradores</p>
+      <div class="fg"><label>De parte de</label><input type="text" id="sor-autor" placeholder="Tu nombre" value="${esc(data[0]?.autor||'')}"></div>
+      <div class="fg"><label>Mensaje para Martina</label><textarea id="sor-texto" style="min-height:120px">${esc(data[0]?.mensaje||'')}</textarea></div>
+      <button class="btn btn-primary" onclick="guardarSorpresa()">💾 Guardar mensaje secreto</button>
+      ${data.length?'<p style="font-size:.72rem;color:var(--muted);margin-top:.6rem;text-align:center">Ya hay un mensaje guardado — guardar de nuevo lo reemplaza</p>':''}
+    </div>`;
+    return;
+  }
+
+  if(sorpresaDesbloqueada||ahora>=SORPRESA_UNLOCK){
+    sorpresaDesbloqueada=true;
+    if(!data.length){c.innerHTML='<div class="empty-msg"><div class="em-icon">🎁</div>El mensaje sorpresa está en camino…</div>';return}
+    c.innerHTML=data.map(m=>`<div class="sorpresa-open"><div style="font-size:2.2rem;margin-bottom:.8rem">🎁</div><p>${esc(m.mensaje)}</p><div class="sor-autor">— Con todo el amor, ${esc(m.autor)}</div></div>`).join('');
+    return;
+  }
+
+  // Bloqueado — pedir palabra clave
+  const diff=SORPRESA_UNLOCK-ahora,d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000);
+  c.innerHTML=`<div class="lock-box">
+    <div class="lock-icon">🔒</div>
+    <div class="lock-msg">Mensaje bloqueado</div>
+    <div class="lock-sub">Se desbloquea el 12 de septiembre a las 23:00h<br>o con la palabra mágica 🪄</div>
+    <input class="pin-input" type="text" id="pin-word" placeholder="Escribe la palabra mágica..." autocomplete="off" style="margin-top:1.2rem" onkeydown="if(event.key==='Enter')comprobarPin()">
+    <p class="pin-error" id="pin-error"></p>
+    <button class="btn btn-primary" style="margin-top:.8rem" onclick="comprobarPin()">🔓 Desbloquear</button>
+  </div>`;
+}
+
+function comprobarPin(){
+  const val=document.getElementById('pin-word').value.trim();
+  if(val.toLowerCase()===SORPRESA_WORD.toLowerCase()){
+    sorpresaDesbloqueada=true;
+    cargarSorpresa();
+  }else{
+    document.getElementById('pin-error').textContent='Palabra incorrecta, inténtalo de nuevo';
+    document.getElementById('pin-word').value='';
+  }
+}
+
+async function guardarSorpresa(){
+  const autor=document.getElementById('sor-autor').value.trim(),mensaje=document.getElementById('sor-texto').value.trim();
+  if(!autor||!mensaje)return toast('Rellena autor y mensaje',false);
+  await fetch(`${SB}/rest/v1/mensaje_sorpresa`,{method:'DELETE',headers:{...HDR,'Prefer':''}});
+  await dbPost('mensaje_sorpresa',{autor,mensaje});
+  toast('¡Mensaje guardado en secreto! 🔒');
+}
+
+// ══ ADMIN ══
+function openAdminModal(){
+  document.getElementById('adm-overlay').classList.add('open');
+  if(!isAdmin){document.getElementById('adm-login-s').style.display='block';document.getElementById('adm-panel-s').style.display='none';document.getElementById('adm-user').value='';document.getElementById('adm-pass').value='';document.getElementById('adm-err').textContent=''}
+  else{document.getElementById('adm-login-s').style.display='none';document.getElementById('adm-panel-s').style.display='block';loadAdminStats()}
+}
+function closeAdminModal(){document.getElementById('adm-overlay').classList.remove('open')}
+function closeAdminOverlay(e){if(e.target===document.getElementById('adm-overlay'))closeAdminModal()}
+async function loginAdmin(){
+  if(document.getElementById('adm-user').value==='Martina18'&&document.getElementById('adm-pass').value==='10092008'){
+    isAdmin=true;document.body.classList.add('is-admin');
+    document.getElementById('adm-login-s').style.display='none';document.getElementById('adm-panel-s').style.display='block';
+    loadAdminStats();
+  }else{document.getElementById('adm-err').textContent='Usuario o contraseña incorrectos'}
+}
+function logoutAdmin(){isAdmin=false;document.body.classList.remove('is-admin');closeAdminModal();document.getElementById('adm-votos-btn').style.display='none'}
+async function loadAdminStats(){
+  const [nf,nd,nr,nv,ng]=await Promise.all([dbCount('firmas'),dbCount('deseos'),dbCount('razones'),dbCount('votos'),dbCount('galeria')]);
+  document.getElementById('adm-stats').innerHTML=`
+    <div class="adm-stat"><span>✍️ Firmas</span><span class="adm-count">${nf}</span></div>
+    <div class="adm-stat"><span>💌 Deseos</span><span class="adm-count">${nd}</span></div>
+    <div class="adm-stat"><span>💛 Razones</span><span class="adm-count">${nr}</span></div>
+    <div class="adm-stat"><span>🏆 Votos</span><span class="adm-count">${nv}</span></div>
+    <div class="adm-stat"><span>📸 Fotos galería</span><span class="adm-count">${ng}</span></div>`;
+}
+
+// ══ PREMIADOS (globo, bloqueado hasta 02:00 del 13/9) ══
+const PREMIADOS_UNLOCK = new Date('2026-09-13T02:00:00');
+const VOTE_MSGS = [
+  '¡Vota ya desde abajo! 🗳️',
+  '¿Ya has votado? ¡No te quedes sin hacerlo! 🏆',
+  '¡Los premios los decidís vosotros! 🎉',
+  '¡Que gane el mejor! ✨',
+  '¡Cada voto cuenta! 💫',
+];
+let voteMsgIdx = 0;
+let premiadosTimer = null;
+
+function cargarPremiados(){
+  const c = document.getElementById('premiados-container');
+  const ahora = new Date();
+
+  if(ahora >= PREMIADOS_UNLOCK){
+    if(premiadosTimer){ clearInterval(premiadosTimer); premiadosTimer = null; }
+    mostrarPremiados(c);
+    return;
+  }
+
+  // Bloqueado — mostrar cuenta atrás
+  c.innerHTML = `<div class="premiados-lock">
+    <div class="pl-icon">🏆</div>
+    <div class="pl-titulo">¡Los premiados se revelan a las 02:00!</div>
+    <div class="pl-sub">Aún estás a tiempo de votar.<br>Los resultados se desvelan en:</div>
+    <div class="pl-countdown">
+      <div class="pl-cd-unit"><div class="pl-cd-num" id="pl-h">--</div><div class="pl-cd-lbl">Horas</div></div>
+      <div class="pl-cd-unit"><div class="pl-cd-num" id="pl-m">--</div><div class="pl-cd-lbl">Min</div></div>
+      <div class="pl-cd-unit"><div class="pl-cd-num" id="pl-s">--</div><div class="pl-cd-lbl">Seg</div></div>
+    </div>
+    <div class="pl-msg" id="pl-vote-msg">${VOTE_MSGS[0]}</div>
+  </div>`;
+
+  if(premiadosTimer) clearInterval(premiadosTimer);
+  premiadosTimer = setInterval(()=>{
+    const now = new Date();
+    const diff = PREMIADOS_UNLOCK - now;
+    if(diff <= 0){
+      clearInterval(premiadosTimer); premiadosTimer = null;
+      mostrarPremiados(c); return;
+    }
+    const h = Math.floor(diff/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const s = Math.floor((diff%60000)/1000);
+    const elH = document.getElementById('pl-h');
+    const elM = document.getElementById('pl-m');
+    const elS = document.getElementById('pl-s');
+    if(elH) elH.textContent = String(h).padStart(2,'0');
+    if(elM) elM.textContent = String(m).padStart(2,'0');
+    if(elS) elS.textContent = String(s).padStart(2,'0');
+    // rotar mensajes cada 4 segundos
+    if(Math.floor(now/1000)%4===0){
+      voteMsgIdx = (voteMsgIdx+1) % VOTE_MSGS.length;
+      const elMsg = document.getElementById('pl-vote-msg');
+      if(elMsg) elMsg.textContent = VOTE_MSGS[voteMsgIdx];
+    }
+  }, 1000);
+}
+
+async function mostrarPremiados(c){
+  c.innerHTML = '<div class="loading-box"><div class="spinner"></div>Calculando ganadores...</div>';
+  const data = await dbGet('votos');
+  if(!data.length){ c.innerHTML='<div class="empty-msg"><div class="em-icon">🏆</div>Aún no hay votos suficientes</div>'; return; }
+  const porCat = {};
+  data.forEach(v=>{
+    if(!porCat[v.categoria]) porCat[v.categoria]={};
+    porCat[v.categoria][v.nominado]=(porCat[v.categoria][v.nominado]||0)+1;
+  });
+  c.innerHTML = `<p style="font-family:'Playfair Display',serif;color:var(--deep);font-size:1.1rem;margin-bottom:1rem;text-align:center">🎊 ¡Y los ganadores son!</p>` +
+    CATS.filter(cat=>porCat[cat.t]).map(cat=>{
+      const sorted = Object.entries(porCat[cat.t]).sort((a,b)=>b[1]-a[1]);
+      const [ganador, votos] = sorted[0];
+      return `<div class="premio-card" style="margin-bottom:.7rem;text-align:center">
+        <div style="font-size:2rem;margin-bottom:.3rem">${cat.e}</div>
+        <div class="premio-titulo" style="margin-bottom:.4rem">${cat.t}</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--deep);font-weight:700">🥇 ${esc(ganador)}</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:.2rem">${votos} ${votos===1?'voto':'votos'}</div>
+      </div>`;
+    }).join('');
+}
+
+// ══ LIGHTBOX ══
+function openLightbox(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open')}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
+</script>
+</body>
+</html>
