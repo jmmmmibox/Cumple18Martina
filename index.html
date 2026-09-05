@@ -25,11 +25,19 @@ body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text)}
   display:flex;flex-direction:column;align-items:center;
   padding-bottom:var(--bar-h);
   overflow:hidden;
-  background:linear-gradient(180deg,#f5ece6 0%,#ecddd6 25%,#e0c8bc 50%,#c9a99a 75%,var(--blush) 100%);
+  background:linear-gradient(180deg,
+    #efe4dc 0%,
+    #e8d5c8 15%,
+    #dfc4b4 35%,
+    #d4b09e 55%,
+    #c9a99a 72%,
+    #e0c8bc 85%,
+    var(--blush) 100%
+  );
 }
 #main::before{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 120% 40% at 50% 100%,rgba(253,250,246,.8) 0%,transparent 55%);
+  background:radial-gradient(ellipse 120% 35% at 50% 100%,rgba(253,250,246,.85) 0%,transparent 55%);
   pointer-events:none;z-index:1;
 }
 
@@ -50,8 +58,43 @@ body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text)}
 }
 .martina-foto{
   width:100%;height:100%;object-fit:cover;object-position:center 8%;display:block;
-  mask-image:linear-gradient(to bottom,transparent 0%,black 10%,black 75%,transparent 100%);
-  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 10%,black 75%,transparent 100%);
+  mask-image:linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0,0,0,.6) 8%,
+    black 18%,
+    black 70%,
+    rgba(0,0,0,.7) 82%,
+    rgba(0,0,0,.3) 92%,
+    transparent 100%
+  );
+  -webkit-mask-image:linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0,0,0,.6) 8%,
+    black 18%,
+    black 70%,
+    rgba(0,0,0,.7) 82%,
+    rgba(0,0,0,.3) 92%,
+    transparent 100%
+  );
+}
+/* Capa de integración lateral */
+.martina-foto-wrap::before{
+  content:'';position:absolute;inset:0;z-index:3;
+  background:
+    linear-gradient(to right, var(--blush) 0%, transparent 8%, transparent 92%, var(--blush) 100%);
+  pointer-events:none;
+}
+/* Capa de color para fundir tonos de piel con el fondo */
+.martina-foto-wrap::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:35%;z-index:3;
+  background:linear-gradient(to top,
+    rgba(224,200,188,0.55) 0%,
+    rgba(224,200,188,0.2) 60%,
+    transparent 100%
+  );
+  pointer-events:none;
 }
 
 /* FIESTA + COUNTDOWN */
