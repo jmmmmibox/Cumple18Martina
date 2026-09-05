@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" width="200" height="260">
+  <defs>
+    <!-- Gradiente cubierta frontal -->
+    <linearGradient id="cover" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7a4a2e"/>
+      <stop offset="40%" style="stop-color:#6b3d22"/>
+      <stop offset="100%" style="stop-color:#4a2810"/>
+    </linearGradient>
+    <!-- Gradiente lomo -->
+    <linearGradient id="spine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3a1e0a"/>
+      <stop offset="100%" style="stop-color:#5a3018"/>
+    </linearGradient>
+    <!-- Gradiente canto dorado -->
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#c8962a"/>
+      <stop offset="40%" style="stop-color:#f0c84a"/>
+      <stop offset="100%" style="stop-color:#b87820"/>
+    </linearGradient>
+    <!-- Gradiente tapa superior (perspectiva) -->
+    <linearGradient id="top" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8a5535"/>
+      <stop offset="100%" style="stop-color:#6b3d22"/>
+    </linearGradient>
+    <!-- Textura cuero (patrón sutil) -->
+    <filter id="leather">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+      <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
+    <!-- Sombra interior -->
+    <filter id="innerShadow">
+      <feOffset dx="2" dy="2"/>
+      <feGaussianBlur stdDeviation="3"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <!-- LOMO del libro (izquierda, perspectiva 3D) -->
+  <polygon points="12,18 38,8 38,252 12,242" fill="url(#spine)"/>
+  <!-- Líneas decorativas lomo -->
+  <line x1="12" y1="50" x2="38" y2="43" stroke="#c8962a" stroke-width="1" opacity="0.6"/>
+  <line x1="12" y1="55" x2="38" y2="48" stroke="#c8962a" stroke-width="0.5" opacity="0.4"/>
+  <line x1="12" y1="200" x2="38" y2="193" stroke="#c8962a" stroke-width="1" opacity="0.6"/>
+  <line x1="12" y1="205" x2="38" y2="198" stroke="#c8962a" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- CUBIERTA FRONTAL (cuerpo principal) -->
+  <rect x="38" y="8" width="152" height="244" rx="3" ry="3" fill="url(#cover)" filter="url(#leather)"/>
+
+  <!-- Borde cubierta (efecto relieve) -->
+  <rect x="38" y="8" width="152" height="244" rx="3" ry="3" fill="none" stroke="#3a1e0a" stroke-width="1.5"/>
+
+  <!-- Marco interior decorativo -->
+  <rect x="50" y="20" width="128" height="220" rx="2" ry="2" fill="none" stroke="#5a3018" stroke-width="1.2" opacity="0.7"/>
+  <rect x="53" y="23" width="122" height="214" rx="1.5" ry="1.5" fill="none" stroke="#8a5535" stroke-width="0.6" opacity="0.5"/>
+
+  <!-- CANTO dorado (páginas, derecha) -->
+  <rect x="188" y="12" width="6" height="236" fill="url(#gold)"/>
+  <!-- Líneas páginas -->
+  <line x1="188" y1="14" x2="194" y2="14" stroke="#a07020" stroke-width="0.4"/>
+  <line x1="188" y1="18" x2="194" y2="18" stroke="#d4a830" stroke-width="0.3"/>
+  <line x1="188" y1="22" x2="194" y2="22" stroke="#a07020" stroke-width="0.4"/>
+  <line x1="188" y1="240" x2="194" y2="240" stroke="#a07020" stroke-width="0.4"/>
+  <line x1="188" y1="244" x2="194" y2="244" stroke="#d4a830" stroke-width="0.3"/>
+
+  <!-- TAPA SUPERIOR (perspectiva 3D) -->
+  <polygon points="12,18 38,8 190,8 190,14 38,14 12,24" fill="url(#top)" opacity="0.9"/>
+
+  <!-- Banda dorada superior decorativa -->
+  <rect x="38" y="28" width="152" height="5" fill="#c8962a" opacity="0.35" rx="1"/>
+  <rect x="38" y="30" width="152" height="1" fill="#f0c84a" opacity="0.5"/>
+
+  <!-- Banda dorada inferior decorativa -->
+  <rect x="38" y="215" width="152" height="5" fill="#c8962a" opacity="0.35" rx="1"/>
+  <rect x="38" y="217" width="152" height="1" fill="#f0c84a" opacity="0.5"/>
+
+  <!-- TEXTO "Felices" en cursiva estilo relieve -->
+  <text x="114" y="118"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="36"
+    font-style="italic"
+    font-weight="bold"
+    text-anchor="middle"
+    fill="#3a1e0a"
+    opacity="0.6"
+    letter-spacing="-1">Felices</text>
+  <!-- Sombra del texto para efecto grabado -->
+  <text x="115" y="119"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="36"
+    font-style="italic"
+    font-weight="bold"
+    text-anchor="middle"
+    fill="#8a5535"
+    opacity="0.3"
+    letter-spacing="-1">Felices</text>
+
+  <!-- TEXTO "18" grande -->
+  <text x="114" y="168"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="58"
+    font-weight="bold"
+    text-anchor="middle"
+    fill="#3a1e0a"
+    opacity="0.55">18</text>
+  <!-- Sombra "18" -->
+  <text x="115.5" y="169.5"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="58"
+    font-weight="bold"
+    text-anchor="middle"
+    fill="#8a5535"
+    opacity="0.25">18</text>
+
+  <!-- Pequeño ornamento debajo del 18 (puntos dorados) -->
+  <circle cx="90" cy="185" r="2" fill="#c8962a" opacity="0.5"/>
+  <circle cx="114" cy="185" r="2.5" fill="#c8962a" opacity="0.6"/>
+  <circle cx="138" cy="185" r="2" fill="#c8962a" opacity="0.5"/>
+
+  <!-- Reflejo sutil cubierta -->
+  <rect x="55" y="30" width="30" height="180" rx="5" fill="white" opacity="0.04"/>
+</svg>
