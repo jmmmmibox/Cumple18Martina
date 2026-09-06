@@ -339,9 +339,9 @@ body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text)}
 .adm-bar{display:none;gap:.35rem;padding:.45rem .5rem;background:rgba(107,76,69,.08);border-radius:8px;margin-bottom:.5rem;align-items:center;flex-wrap:wrap}
 body.is-admin .adm-bar{display:flex}
 .adm-bar span{font-size:.65rem;color:var(--muted);flex:1}
-.adm-banner{position:fixed;top:0;left:0;right:0;z-index:999;background:var(--deep);color:#fff;text-align:center;font-size:.7rem;font-weight:700;padding:.38rem;letter-spacing:.06em;display:none}
+.adm-banner{position:fixed;top:0;left:0;right:0;z-index:999;background:var(--deep);color:#fff;text-align:center;font-size:.65rem;font-weight:700;padding:.28rem;letter-spacing:.06em;display:none;line-height:1}
 body.is-admin .adm-banner{display:block}
-body.is-admin #main{padding-top:26px}
+body.is-admin #main{padding-top:22px}
 .edit-field{width:100%;font-family:'Inter',sans-serif;font-size:.85rem;padding:.45rem .65rem;border:1.5px solid var(--mauve);border-radius:8px;background:#fff;color:var(--text);outline:none;margin-bottom:.3rem;resize:vertical;-webkit-appearance:none}
 
 /* ADMIN MODAL */
@@ -405,7 +405,7 @@ body.is-admin #main{padding-top:26px}
 .pl-msg{font-size:.88rem;color:var(--mauve);font-style:italic;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 
-[data-netlify-deploy-id],[class*="netlify-badge"],[id*="netlify"]{display:none!important;visibility:hidden!important}
+[data-netlify-deploy-id],[class*="netlify-badge"],[id*="netlify"],#netlify-identity-widget{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important;height:0!important;}
 </style>
 </head>
 <body>
