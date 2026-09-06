@@ -974,7 +974,7 @@ async function cargarResultadosPremios(){
 }
 async function borrarTodosVotos(){
   if(!confirm('¿Borrar TODOS los votos?'))return;
-  await fetch(`${SB}/rest/v1/votos`,{method:'DELETE',headers:{...HDR,'Prefer':''}});
+  await fetch(`${SB}/rest/v1/votos?id=neq.00000000-0000-0000-0000-000000000000`,{method:'DELETE',headers:{...HDR,'Prefer':''}});
   toast('Votos borrados');
   cargarResultadosPremios();
   const c=document.getElementById('premiados-container');
