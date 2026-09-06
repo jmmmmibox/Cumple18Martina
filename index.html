@@ -660,6 +660,9 @@ body.is-admin #main{padding-top:22px}
     </div>
     <div class="modal-body">
       <div id="premiados-container"></div>
+      <div id="adm-votos-btn2" style="display:none;margin-top:1rem">
+        <button class="btn-danger" style="width:100%;padding:.75rem;border-radius:12px;font-size:.85rem" onclick="borrarTodosVotos()">🗑 Borrar todos los votos</button>
+      </div>
     </div>
   </div>
 </div>
@@ -972,7 +975,10 @@ async function cargarResultadosPremios(){
 async function borrarTodosVotos(){
   if(!confirm('¿Borrar TODOS los votos?'))return;
   await fetch(`${SB}/rest/v1/votos`,{method:'DELETE',headers:{...HDR,'Prefer':''}});
-  toast('Votos borrados');cargarResultadosPremios();
+  toast('Votos borrados');
+  cargarResultadosPremios();
+  const c=document.getElementById('premiados-container');
+  if(c)mostrarPremiados(c);
 }
 
 // ══ SORPRESA ══
@@ -1075,6 +1081,7 @@ function cargarPremiados(){
 
   if(isAdmin || ahora >= PREMIADOS_UNLOCK){
     if(premiadosTimer){ clearInterval(premiadosTimer); premiadosTimer = null; }
+    if(isAdmin) document.getElementById('adm-votos-btn2').style.display='block';
     mostrarPremiados(c);
     return;
   }
