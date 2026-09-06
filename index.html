@@ -1064,7 +1064,7 @@ function cargarPremiados(){
   const c = document.getElementById('premiados-container');
   const ahora = new Date();
 
-  if(ahora >= PREMIADOS_UNLOCK){
+  if(isAdmin || ahora >= PREMIADOS_UNLOCK){
     if(premiadosTimer){ clearInterval(premiadosTimer); premiadosTimer = null; }
     mostrarPremiados(c);
     return;
