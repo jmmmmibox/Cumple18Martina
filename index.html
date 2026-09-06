@@ -936,10 +936,16 @@ async function enviarVotos(){
   if(!votante)return toast('¡Escribe tu nombre!',false);
   const votos=CATS.map((c,i)=>({votante,categoria:c.t,nominado:document.getElementById(`pv-${i}`).value.trim()})).filter(v=>v.nominado);
   if(!votos.length)return toast('¡Vota en al menos una categoría!',false);
-  try{for(const v of votos)await dbPost('votos',v);toast('¡Votos enviados! 🏆');CATS.forEach((_,i)=>document.getElementById(`pv-${i}`).value='');cargarResultadosPremios()}
-  catch{toast('Error al votar.',false)}
+  try{
+    for(const v of votos)await dbPost('votos',v);
+    toast('¡Gracias por votar! 🏆');
+    CATS.forEach((_,i)=>document.getElementById(`pv-${i}`).value='');
+    document.getElementById('p-votante').value='';
+    if(isAdmin)cargarResultadosPremios();
+  }catch{toast('Error al votar.',false)}
 }
 async function cargarResultadosPremios(){
+  if(!isAdmin)return;
   const data=await dbGet('votos'),cont=document.getElementById('premios-resultados');
   if(!data.length){cont.innerHTML='';return}
   const porCat={};
